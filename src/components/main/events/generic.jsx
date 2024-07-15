@@ -2,8 +2,8 @@ import Button from "../../elements/button";
 import { useContext } from "react";
 import { GameContext } from "../../../game";
 
-export default function GenericEvent({title, description, actions}) {
 
+export default function GenericEvent({title, description, actions}) {
     const gameState = useContext(GameContext);
 
     const buttons = actions.map((action)=>(
@@ -19,5 +19,4 @@ export default function GenericEvent({title, description, actions}) {
             </div>
         </div>
     )
-
 }

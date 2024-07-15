@@ -46,22 +46,31 @@ function Game() {
 
   const [charCondition, setCharCondition] = useState(initialCharCondition);
 
+  const [ntask, setNtask] = useState(24);
+  // const [day, setDay] = useState({day: 0, date: new Date()});
+  const [day, setDay] = useState(0);
+
   const [page, setPage] = useState("map");
 
   useEffect(()=>{
     setCurrentEvent(null);
-
   }, [location])
 
   return (
 
-  <GameContext.Provider value ={{currentEvent, setCurrentEvent, location, setLocation, character, setCharacter, inventory, setInventory, charCondition, setCharCondition}}>
+  <GameContext.Provider value ={{
+    currentEvent, setCurrentEvent, 
+    location, setLocation, 
+    character, setCharacter, 
+    inventory, setInventory, 
+    charCondition, setCharCondition, 
+    ntask, setNtask,
+    day, setDay}}>
     <div className="flex flex-col justify-start items-start w-full max-w-[1000px] mx-auto p-8 gap-5">
       <NavBar setPage={setPage}/>
       <MainBody page={page}/>
     </div>
-    </GameContext.Provider>
-  )
+  </GameContext.Provider>)
 }
 
 export default Game;
