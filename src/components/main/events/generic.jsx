@@ -4,16 +4,11 @@ import { GameContext } from "../../../game";
 
 export default function GenericEvent({title, description, actions}) {
 
-    const {location, setLocation} = useContext(GameContext);
-
-    console.log(actions);
+    const gameState = useContext(GameContext);
 
     const buttons = actions.map((action)=>(
         <Button onClick={()=>{
-            console.log(action);
-            if (action.actionType === "setLocation") {
-                setLocation(...action.params);
-            }
+            action.func(gameState);
         }}>{action.name}</Button>
     ));
     return (
@@ -24,7 +19,5 @@ export default function GenericEvent({title, description, actions}) {
             </div>
         </div>
     )
-
-
 
 }
