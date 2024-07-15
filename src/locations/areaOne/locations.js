@@ -1,5 +1,16 @@
 
-//TODO: change this to a more efficient tree structure, instead of this
+/*README FOR ADDING EVENTS
+
+This is an intentionally flat datastructure for easy lookups/no tree traversals. 
+
+eventId: {
+    title: "Title of location",
+    id: "locationId", -- choose a UNIQUE ID.
+    description: "Description of location" -- will display in location header
+    children: [] -- list of child locations
+    parent: "locationId" -- parent location
+*/
+
 export const AreaOneLocations = {
     "beginning":{
         title: "Beginnings",

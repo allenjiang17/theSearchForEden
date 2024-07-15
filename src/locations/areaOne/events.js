@@ -1,5 +1,22 @@
 import { produce } from "immer";
 
+/*README FOR ADDING EVENTS
+
+eventId: {
+    title: "Title of event",
+    id: "eventId", -- choose a UNIQUE ID. convention is "eventNameEventLocation" like "donatingMoneyTemple"
+    probability: 1,  -- weight for RNG selection ranging from 0-1.  
+    description: "Description of event" -- will display in the actual body of the event
+    actions: [{
+            name: "Begin your adventure", -- name of action
+            actionType: "setLocation", --type of action
+            func: (gameState) => { -- function that will be called when the action is selected. gameState includes all game state variables
+                gameState.setLocation("world");
+            }
+        }]}
+*/
+
+
 export const AreaOneEvents = {
     "beginnings": {
         title: "Beginnings",
