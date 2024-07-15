@@ -1,59 +1,59 @@
 
 //TODO: change this to a more efficient tree structure, instead of this
-export const AreaOneLocations = [
-    {
-        title: "Beginning",
-        id: 1,
-        event: 0,
+export const AreaOneLocations = {
+    "beginning":{
+        title: "Beginnings",
+        id: "beginning",
+        event: "beginnings",
         children:[]
     },
-    {
+    "world": {
         title: "World",
-        id: 2,
+        id: "world",
         description: "This is the great big world. You take a deep breath and look around. Where should you go?",
         event: null,
-        children: [2, 5, 6],
+        children: ["house", "templeJerusalem", "fieldOfBoaz"],
         parent: null
     },
-    {
+    "house":{
         title: "Your House",
-        id: 3,
+        id: "house",
         description: "This is your humble abode. ",
         event: null,
-        children: [3, 4],
-        parent: 1
+        children: ["bedroom", "livingRoom"],
+        parent: "world"
     },
-    {
+    "bedroom":{
         title: "Bedroom",
-        id: 4,
+        id: "bedroom",
         description: "A neat, nice bedroom with all a soft plush bed. ",
         event: null,
         children: [],
-        parent: 2
+        parent: "house"
     },
-    {
+    "livingRoom": {
         title: "Living room",
-        id: 5,
+        id: "livingRoom",
         description: "Your go-to place for shenanigans and hangouts.",
-        event: 7,
+        event: "searchForCoinsBedroom",
         children: [],
-        parent: 2
+        parent: "house"
     },
-    {
+    "templeJerusalem":{
         title: "Temple of Jerusalem",
-        id: 6,
+        id: "templeJersualem",
         description: "The great temple of Jerusalem looms above you. The rich smell of incense overwhelms your senses",
-        event: 1,
+        event: "donatingMoneyTemple",
         children:[],
-        parent: 1
+        parent: "world"
     },
-    {
+    "fieldOfBoaz":{
         title: "Field of Boaz",
-        id: 7,
+        id: "fieldOfBoaz",
         description: "",
-        event: 5,
+        event: "gotBarleyFieldOfBoaz",
         children:[],
-        parent: 1
+        parent: "world"
     }
    
-]
+};

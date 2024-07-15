@@ -1,22 +1,22 @@
 import { produce } from "immer";
 
-export const AreaOneEvents = [
-    {
+export const AreaOneEvents = {
+    "beginnings": {
         title: "Beginnings",
-        id: 1,
+        id: "beginnings",
         probability: 1,
         description: "You wake up, and you feel strange. Something like scales falls from your eyes, and it is as if you can see for the first time. Everything that felt familiar to you now feels distant. Your thinking still feels futile, and your foolish heart still feels darkened. But you have this sense that eternity has been set on your heart. And it calls to you to go from your country, your people, and your father’s household, and to a new land.",
         actions: [{
             name: "Begin your adventure",
             actionType: "setLocation",
             func: (gameState) => {
-                gameState.setLocation(1);
+                gameState.setLocation("world");
             }
         }]
     },
-    {
-        title: "Donating Money ",
-        id: 2,
+    "donatingMoneyTemple":{
+        title: "Donating Money",
+        id: "donatingMoneyTemple",
         probability: 1,
         description: "You approach the Temple of Jerusalem, and you see many rich people putting their gifts into the temple treasury. What would you like to do?",
         actions: [
@@ -28,9 +28,9 @@ export const AreaOneEvents = [
                         gameState.setInventory(produce((newInventory)=>{
                             newInventory.money -= 2;
                         }));
-                        gameState.setCurrentEvent(3);
+                        gameState.setCurrentEvent("gainHolinessPointTemple");
                     } else {
-                        gameState.setCurrentEvent(2);
+                        gameState.setCurrentEvent("noMoneyTemple");
 
                     }
                 }
@@ -43,46 +43,46 @@ export const AreaOneEvents = [
                         gameState.setInventory(produce((newInventory)=>{
                             newInventory.money -= 3;
                         }));
-                        gameState.setCurrentEvent(4);
+                        gameState.setCurrentEvent("showOffTemple");
                     } else {
-                        gameState.setCurrentEvent(2);
+                        gameState.setCurrentEvent("noMoneyTemple");
 
                     }
                 }
             }, 
-        ]
+        ],
     },
-    {
-        title: "You don't have enough money",
-        id: 3,
+    "noMoneyTemple":{
+        title: "No Money",
+        id: "noMoneyTemple",
         probability: 1, 
-        description: "You don't have enough money",
+        description: "You don't have enough money to do that",
         actions: []
     },
-    {
+    "gainHolinessPointTemple": {
         title: "Gain holiness point",
-        id: 4,
+        id: "gainHolinessPointTemple",
         probability: 1, 
-        description: "You gained a holiness point",
+        description: "You gained a holiness point! Yay!",
         actions: []
     },
-    {
+    "showOffTemple": {
         title: "Show off!",
-        id: 5,
+        id: "showOffTemple",
         probability: 1, 
-        description: "Show off!",
+        description: "You're just showing off at this point.",
         actions: []
     },
-    {
+    "gotBarleyFieldOfBoaz":{
         title: "Got Barley? ",
-        id: 6,
+        id: "gotBarleyFieldOfBoaz",
         probability: 1, 
         description: "You see a large field of barley with many harvesters. A kind man walks up to you and tells you that you may follow along his laborers and glean some of his barley for free. You thank him and glean a bundle of barley.",
         actions: []
     },
-    {        
+    "restBedroom":{        
         title: "Rest",
-        id: 7,
+        id: "restBedroom",
         probability: 1,
         description: "You seem pretty tired -- take a nap on your bed?",
         actions: [{
@@ -95,9 +95,9 @@ export const AreaOneEvents = [
             }
         }]
     },
-    {        
+    "searchForCoinsBedroom":{        
         title: "Search for Coins",
-        id: 8,
+        id: "searchForCoinsBedroom",
         probability: 1,
         description: "You've lost a number of coins in this space in the past...perhaps a careful search will turn up fruitful?",
         actions: [{
@@ -108,26 +108,26 @@ export const AreaOneEvents = [
                     gameState.setInventory(produce((newInventory)=>{
                         newInventory.money += 1;
                     }));
-                    gameState.setCurrentEvent(8);
+                    gameState.setCurrentEvent("gainedCoinBedroom");
                 } else {
-                    gameState.setCurrentEvent(9);
+                    gameState.setCurrentEvent("nothingFoundBedroom");
 
                 }
         }
         }]
     },
-    {
+    "gainedCoinBedroom":{
         title: "You gained a coin!",
-        id: 9,
+        id: "gainedCoinBedroom",
         probability: 1, 
         description: "You searched carefully and found a lost coin! You rejoice! (Money +1)",
         actions: []
     },
-    {
+    "nothingFoundBedroom":{
         title: "Nothing found",
-        id: 10,
+        id: "nothingFoundBedroom",
         probability: 1, 
         description: "You searched carefully but did not find anything",
         actions: []
     }
-]
+}

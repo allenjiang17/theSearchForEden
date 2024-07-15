@@ -40,7 +40,7 @@ const initialCharCondition = {
 function Game() {
 
   const [currentEvent, setCurrentEvent] = useState(null);
-  const [location, setLocation] = useState(0); //future get from local storage
+  const [location, setLocation] = useState("beginning"); //future get from local storage
   const [character, setCharacter] = useState(initialCharacterTest); 
   const [inventory, setInventory] = useState(initialInventory);
 
