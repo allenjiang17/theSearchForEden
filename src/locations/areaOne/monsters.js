@@ -1,7 +1,8 @@
 export const AreaOneMonsters = {
-
-
-
-
     
+
+
+
+
+
 }

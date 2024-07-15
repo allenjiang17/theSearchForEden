@@ -13,7 +13,7 @@ export default function Map() {
     const currentLocation = AreaOneLocations[location];
     
     //we'll need some kind of RNG to select the currentEvent out of the possible selection of events for a given location
-    const currentEventToShow = AreaOneEvents[currentEvent] ?? AreaOneEvents[currentLocation.event];
+    const currentEventToShow = AreaOneEvents[currentEvent] ?? getRandomEvent(currentLocation.events);
 
 
     useEffect(()=>{
@@ -40,5 +40,24 @@ export default function Map() {
         </div>
     )
     
+}
+
+function getRandomEvent(events) {
+
+    let probSum = 0;
+
+    for (let event of events) {
+        probSum += AreaOneEvents[event].probability;
+
+    }
+
+    let seed = probSum * Math.random();
+
+    for (let event of events) {
+        seed -= AreaOneEvents[event].probability;
+        if (seed <= 0) {
+            return AreaOneEvents[event];
+        }
+    }
 }
 

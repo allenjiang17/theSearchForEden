@@ -15,14 +15,14 @@ export const AreaOneLocations = {
     "beginning":{
         title: "Beginnings",
         id: "beginning",
-        event: "beginnings",
+        events: ["beginnings"],
         children:[]
     },
     "world": {
         title: "World",
         id: "world",
         description: "This is the great big world. You take a deep breath and look around. Where should you go?",
-        event: null,
+        events: [],
         children: ["house", "templeJerusalem", "fieldOfBoaz"],
         parent: null
     },
@@ -30,7 +30,7 @@ export const AreaOneLocations = {
         title: "Your House",
         id: "house",
         description: "This is your humble abode. ",
-        event: null,
+        events: [],
         children: ["bedroom", "livingRoom"],
         parent: "world"
     },
@@ -38,7 +38,7 @@ export const AreaOneLocations = {
         title: "Bedroom",
         id: "bedroom",
         description: "A neat, nice bedroom with all a soft plush bed. ",
-        event: null,
+        events: [],
         children: [],
         parent: "house"
     },
@@ -46,7 +46,7 @@ export const AreaOneLocations = {
         title: "Living room",
         id: "livingRoom",
         description: "Your go-to place for shenanigans and hangouts.",
-        event: "searchForCoinsBedroom",
+        events: ["searchForCoinsBedroom"],
         children: [],
         parent: "house"
     },
@@ -54,7 +54,7 @@ export const AreaOneLocations = {
         title: "Temple of Jerusalem",
         id: "templeJersualem",
         description: "The great temple of Jerusalem looms above you. The rich smell of incense overwhelms your senses",
-        event: "donatingMoneyTemple",
+        events: ["donatingMoneyTemple"],
         children:[],
         parent: "world"
     },
@@ -62,7 +62,7 @@ export const AreaOneLocations = {
         title: "Field of Boaz",
         id: "fieldOfBoaz",
         description: "",
-        event: "gotBarleyFieldOfBoaz",
+        events: ["gotBarleyFieldOfBoaz"],
         children:[],
         parent: "world"
     }
