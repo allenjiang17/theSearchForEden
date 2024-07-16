@@ -34,7 +34,14 @@ const initialInventory = {
 const initialCharCondition = {
   hp: 100,
   spiritualHp: 100,
-  states: []
+  states: [],
+  weapon: [],
+  equipment: {
+    head: null,
+    body: null,
+    hands: null,
+    trinkets: []
+  }
 }
 
 function Game() {

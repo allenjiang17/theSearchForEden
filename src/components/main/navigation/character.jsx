@@ -27,6 +27,21 @@ export default function Character() {
                     <span>Spiritual HP: </span>
                     <span>{charCondition.spiritualHp}/{character.stats.spiritualHp}</span>
                 </div>
+            </div>            
+            <div className="flex flex-col justify-center items-start gap-2">
+                <span className="font-semibold">Equipment</span>
+                <div>
+                    <span>Weapon</span>
+                    <span>{charCondition.weapon}</span>
+                </div>
+                <div>
+                    <span>Head </span>
+                    <span>{charCondition.equipment.head}</span>
+                </div>
+                <div>
+                    <span>Body </span>
+                    <span>{charCondition.equipment.body}</span>
+                </div>
             </div>
             <div className="flex flex-col justify-center items-start gap-2">
                 <span className="font-semibold">Stats</span>
