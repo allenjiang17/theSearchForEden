@@ -94,7 +94,7 @@ export const AreaOneEvents = {
         title: "Got Barley? ",
         id: "gotBarleyFieldOfBoaz",
         encounterRate: 1, 
-        description: "You see a large field of barley with many harvesters. A kind man walks up to you and tells you that you may follow along his laborers and glean some of his barley for free. You thank him and glean a bundle of barley.",
+        description: "A kind man walks up to you and tells you that you may follow along his laborers and glean some of his barley for free. You thank him and glean a bundle of barley.",
         actions: []
     },
     "restBedroom":{        
@@ -184,5 +184,35 @@ export const AreaOneEvents = {
         encounterRate: 1, 
         description: '\"Whoa! Whoa! You can\'t walk in here without clothes! What in the world are you thinking?\"\n\n\"I am so sorry,\" you say, \"You see, that\'s why I\'m here. I need some clothes."\n\n\“Ah, I see,\” the Tailor says. \“Tell you what—I\'ll help you out. If you get me 5 pieces of garment, I\'ll make you something to wear. It\'ll cost you 2 Earthly Coins though.\"',
         actions: []
-    }
+    },
+    "gotManna":{
+        title: "Got Manna? ",
+        id: "gotManna",
+        encounterRate: 1, 
+        description: "You wonder, \"What is it?\" You take it and give it a little lick, and it tastes like wafers made with honey. You put some in your bag.",
+        actions: []
+    },
+    "lookBronzeSerpent":{        
+        title: "Look at the Bronze Serpent",
+        id: "lookBronzeSerpent",
+        encounterRate: 1,
+        description: "Would you like to be healed? It will cost 5 Heavenly Coins.",
+        actions: [{
+            name: "Be Healed",
+            actionType: "setCharCondition",
+            func: (gameState) => {
+                    gameState.setCharCondition(produce((newCharCondition)=>{
+                        newCharCondition.hp = 100;
+                    }));
+                    gameState.setCurrentEvent("finishLookBronzeSerpent");
+            }
+        }]
+    },
+    "finishLookBronzeSerpent":{        
+        title: "Look at the Bronze Serpent",
+        id: "finishLookBronzeSerpent",
+        encounterRate: 1,
+        description: "Your Physical HP is back to full!",
+        actions: []
+    },
 }
