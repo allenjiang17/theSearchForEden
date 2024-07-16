@@ -215,4 +215,11 @@ export const AreaOneEvents = {
         description: "Your Physical HP is back to full!",
         actions: []
     },
+    "greatFear":{        
+        title: "Great Fear",
+        id: "greatFear",
+        encounterRate: 1,
+        description: "Your body shivers. Terror and dread descend on your body. A thundering voice speaks, \"Was it because there were no graves in the City of Destruction that you have come to the desert to die?\" Larry\'s Note: Give option to fight Great Fear or run away.",
+        actions: []
+    },
 }

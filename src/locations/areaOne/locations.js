@@ -96,7 +96,7 @@ export const AreaOneLocations = {
         id: "wilderness",
         description: "You walk out into the Wilderness. You hear a faint voice crying out, \"Prepare the way of the Lord; make his paths straight.\"\n\nYou look around but don't see any paths. Maybe these paths are not literal but metaphorical?",
         events: [],
-        children: ["theLostMan", "fieldOfManna", "valleyOfStones", "desertOfWandering", "bronzeSerpent"],
+        children: ["theLostMan", "fieldOfManna", "valleyOfStones", "desertOfWandering", "bronzeSerpent", "yamSuph", "landOfThePatriarchs", "landOfTheJudges"],
         parent: "cityOfDestruction"
     },
     "theLostMan": {
@@ -127,8 +127,8 @@ export const AreaOneLocations = {
     "desertOfWandering": {
         title: "Desert of Wandering",
         id: "desertOfWandering",
-        description: "It\'s blistering hot. You\'re tired, thirsty, and hungry. This is the type of place where you might see a mirage of an oasis. Larry\'s Note: Will fill in enemies later.",
-        events: [],
+        description: "It\'s blistering hot. You\'re tired, thirsty, and hungry. This is the type of place where you might see a mirage of an oasis.",
+        events: ["commonGluttony", "grumbling", "fierySerpent"],
         children: [],
         parent: "wilderness"
     },
@@ -137,6 +137,30 @@ export const AreaOneLocations = {
         id: "bronzeSerpent",
         description: "You see a magnificent bronze serpent set on a pole. You\'re not sure what it means, but looking at it seems to give you life.",
         events: ["lookBronzeSerpent"],
+        children: [],
+        parent: "wilderness"
+    },
+    "yamSuph": {
+        title: "Yam Suph",
+        id: "yamSuph",
+        description: "You see a large body of water before you. Some say that the water is red, while others say that the water is filled with reeds. You\'re not quite sure. Either way, you sense that something extraordinary happened here long ago.",
+        events: ["greatFear"],
+        children: [],
+        parent: "wilderness"
+    },
+    "landOfThePatriarchs": {
+        title: "Land of the Patriarchs",
+        id: "landOfThePatriarchs",
+        description: "You try to go to the Land of the Patriarchs, but you can't figure out how to get there. Seems like you need somebody to guide you there.",
+        events: [],
+        children: [],
+        parent: "wilderness"
+    },
+    "landOfTheJudges": {
+        title: "Land of the Judges",
+        id: "landOfThePatriarchs",
+        description: "As you approach the Land of the Judges, you notice that all the people there are of great size. You seem like a grasshopper in their eyes. Immediately, you are stricken by fear, and you run back to the Wilderness.",
+        events: [],
         children: [],
         parent: "wilderness"
     },
