@@ -128,7 +128,8 @@ export const AreaOneLocations = {
         title: "Desert of Wandering",
         id: "desertOfWandering",
         description: "It\'s blistering hot. You\'re tired, thirsty, and hungry. This is the type of place where you might see a mirage of an oasis.",
-        events: ["commonGluttony", "grumblingOrgan", "fierySerpent"],
+        events: [],
+        enemies: ["commonGluttony", "grumblingOrgan", "fierySerpent"],
         children: [],
         parent: "wilderness"
     },
