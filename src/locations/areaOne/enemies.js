@@ -147,4 +147,5 @@ export const AreaOneEnemies = {
         itemDrop: [
           {item: "imperfectLovePotion", chance: 1}
         ]
+    }
 }
