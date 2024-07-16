@@ -11,7 +11,9 @@ export const AreaOneEnemies = {
             {stat: "strength", amount: 1, chance: 0.5},
             {stat: "defense", amount: 1, chance: 0.5},
         ],
-        itemDrop: ["chewedUpGarments"]
+        itemDrop: [
+            {item: "chewedUpGarments", chance: 0.5}
+        ]
     }, 
     "commonSloth": {
         name: "Common Sloth",
@@ -25,7 +27,8 @@ export const AreaOneEnemies = {
             {stat: "zeal", amount: 1, chance: 0.5},
             {stat: "resilience", amount: 1, chance: 0.5},
         ],
-        itemDrop: ["capturedEnergy"]
-
+        itemDrop: [
+            {item: "capturedEnergy", chance: 0.25}
+        ]
     }
 }
