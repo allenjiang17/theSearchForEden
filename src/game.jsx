@@ -26,7 +26,7 @@ const initialCharacterTest = {
 const initialInventory = {
   money: 0,
   keyItems: [],
-  items: [],
+  items: new Map(),
   equipment: [],
   weapons: []
 }
@@ -52,9 +52,7 @@ function Game() {
 
   const [page, setPage] = useState("map");
 
-  useEffect(()=>{
-    setCurrentEvent(null);
-  }, [location])
+
 
   return (
 

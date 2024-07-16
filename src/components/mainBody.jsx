@@ -1,6 +1,6 @@
 import Button from "./elements/button";
 import { useState, createContext } from 'react';
-import Map from "./main/navigation/map";
+import Map from "./location";
 import Character from "./main/navigation/character";
 import Inventory from "./main/navigation/inventory";
 

@@ -47,6 +47,7 @@ export const AreaOneLocations = {
         id: "livingRoom",
         description: "Your go-to place for shenanigans and hangouts.",
         events: ["searchForCoinsBedroom"],
+        enemies: ["mothAndRust", "commonSloth"],
         children: [],
         parent: "house"
     },
