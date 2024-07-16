@@ -27,8 +27,48 @@ export const AreaOneEnemies = {
             {stat: "zeal", amount: 1, chance: 0.5},
             {stat: "resilience", amount: 1, chance: 0.5},
         ],
-        itemDrop: [
-            {item: "capturedEnergy", chance: 0.25}
-        ]
+        itemDrop: ["capturedEnergy"]
+    },
+    "waterStone": {
+        name: "Water Stone",
+        encounterRate: 1,
+        type: "physical",
+        description: "You encounter a Water Stone! There must be a way to get water out of this stone somehow. You wonder momentarily if you should speak to it or strike it.",
+        hp: 20,
+        attack: 2,
+        defense: 2,
+        statReward: [
+            {stat: "strength", amount: 1, chance: 0.5},
+            {stat: "defense", amount: 1, chance: 0.5},
+        ],
+        itemDrop: ["waterOfMeribah"]
+    },
+    "breadStone": {
+        name: "Bread Stone",
+        encounterRate: 1,
+        type: "physical",
+        description: "You encounter a Bread Stone! This used to be a regular stone, but one day somebody came along, and they were so hungry that they turned this stone into bread! So is this actually a bread or a stone? Nobody knows.",
+        hp: 24,
+        attack: 2,
+        defense: 2,
+        statReward: [
+            {stat: "strength", amount: 1, chance: 0.5},
+            {stat: "defense", amount: 1, chance: 0.5},
+        ],
+        itemDrop: ["exStoneBread"]
+    },
+    "ancientBoundaryStone": {
+        name: "Ancient Boundary Stone",
+        encounterRate: 1,
+        type: "physical",
+        description: "You encounter an Ancient Boundary Stone. It doesn\'t seem like it\'s in the right place. It\'s as if it was set up somewhere else by ancestors long ago, but somebody must have moved it here.",
+        hp: 36,
+        attack: 3,
+        defense: 3,
+        statReward: [
+            {stat: "strength", amount: 1, chance: 0.5},
+            {stat: "defense", amount: 1, chance: 0.5},
+        ],
+        itemDrop: ["senseOfDirection"]
     }
 }
