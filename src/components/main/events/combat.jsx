@@ -79,7 +79,6 @@ export function Combat({enemy}) {
         }
 
         setCombatMessage(`You defeated ${enemy.name}! You gained ${joinList(statMessage)}, and you found ${joinList(lootMessage)}.`);
-        
 
     }
 
@@ -91,7 +90,7 @@ export function Combat({enemy}) {
     
     const button = combatStatus === "ongoing" ? 
         <Button onClick={calculateCombatTurn}>Attack!</Button> :
-        <Button onClick={()=>gameState.setLocation(AreaOneLocations[gameState.location].parent)}>Go back to {AreaOneLocations[AreaOneLocations[gameState.location].parent].title}</Button>;
+        <Button onClick={()=>{gameState.setCurrentEvent(null); gameState.setLocation(AreaOneLocations[gameState.location].parent)}}>Go back to {AreaOneLocations[AreaOneLocations[gameState.location].parent].title}</Button>;
     
     return (
         <div className="p-8 border-2 flex flex-col justify-start items-center gap-3">

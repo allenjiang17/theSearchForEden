@@ -27,7 +27,9 @@ export const AreaOneEnemies = {
             {stat: "zeal", amount: 1, chance: 0.5},
             {stat: "resilience", amount: 1, chance: 0.5},
         ],
-        itemDrop: ["capturedEnergy"]
+        itemDrop: [            
+            {item: "capturedEnergy", chance: 0.25}
+        ]
     },
     "waterStone": {
         name: "Water Stone",
@@ -41,7 +43,10 @@ export const AreaOneEnemies = {
             {stat: "strength", amount: 1, chance: 0.5},
             {stat: "defense", amount: 1, chance: 0.5},
         ],
-        itemDrop: ["waterOfMeribah"]
+        itemDrop: [
+            {item: "waterOfMeribah", chance: 0.5}
+
+        ]
     },
     "breadStone": {
         name: "Bread Stone",
@@ -55,20 +60,24 @@ export const AreaOneEnemies = {
             {stat: "strength", amount: 1, chance: 0.5},
             {stat: "defense", amount: 1, chance: 0.5},
         ],
-        itemDrop: ["exStoneBread"]
+        itemDrop: [           
+             {item: "exStoneBread", chance: 0.5}
+        ]
     },
     "ancientBoundaryStone": {
         name: "Ancient Boundary Stone",
-        encounterRate: 1,
+        encounterRate: 0.5,
         type: "physical",
         description: "You encounter an Ancient Boundary Stone. It doesn\'t seem like it\'s in the right place. It\'s as if it was set up somewhere else by ancestors long ago, but somebody must have moved it here.",
         hp: 36,
-        attack: 3,
-        defense: 3,
+        attack: 5,
+        defense: 5,
         statReward: [
             {stat: "strength", amount: 1, chance: 0.5},
             {stat: "defense", amount: 1, chance: 0.5},
         ],
-        itemDrop: ["senseOfDirection"]
+        itemDrop: [            
+            {item: "senseOfDirection", chance: 0.2}
+        ]
     }
 }

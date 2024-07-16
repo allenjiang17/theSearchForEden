@@ -3,7 +3,7 @@ import { GameContext } from "../../../game";
 
 export default function Character() {
 
-    const {character, setCharacter} = useContext(GameContext);
+    const {character, setCharacter, charCondition} = useContext(GameContext);
 
     return(
         <div className="flex flex-col gap-4">
@@ -15,6 +15,17 @@ export default function Character() {
                 <div>
                     <span>Level: </span>
                     <span>{character.level}</span>
+                </div>
+            </div>
+            <div className="flex flex-col justify-start items-start gap-2">
+                <span className="font-semibold">Condition</span>
+                <div>
+                    <span>HP: </span>
+                    <span>{charCondition.hp}/{character.stats.hp}</span>
+                </div>
+                <div>
+                    <span>Spiritual HP: </span>
+                    <span>{charCondition.spiritualHp}/{character.stats.spiritualHp}</span>
                 </div>
             </div>
             <div className="flex flex-col justify-center items-start gap-2">
