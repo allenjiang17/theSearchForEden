@@ -26,7 +26,6 @@ export const AreaOneEnemies = {
             {stat: "resilience", amount: 1, chance: 0.5},
         ],
         itemDrop: ["capturedEnergy"]
-
     },
     "waterStone": {
         name: "Water Stone",
@@ -41,7 +40,6 @@ export const AreaOneEnemies = {
             {stat: "defense", amount: 1, chance: 0.5},
         ],
         itemDrop: ["waterOfMeribah"]
-
     },
     "breadStone": {
         name: "Bread Stone",

@@ -97,7 +97,7 @@ export const AreaOneLocations = {
         description: "You walk out into the Wilderness. You hear a faint voice crying out, \"Prepare the way of the Lord; make his paths straight.\"\n\nYou look around but don't see any paths. Maybe these paths are not literal but metaphorical?",
         events: [],
         children: ["theLostMan", "fieldOfManna", "valleyOfStones", "desertOfWandering", "bronzeSerpent"],
-        parent: null
+        parent: "cityOfDestruction"
     },
     "theLostMan": {
         title: "The Lost Man",
