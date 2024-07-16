@@ -38,7 +38,7 @@ export const AreaOneLocations = {
         title: "Bedroom",
         id: "bedroom",
         description: "A neat, nice bedroom with all a soft plush bed. ",
-        events: [],
+        events: ["restBedroom"],
         children: [],
         parent: "house"
     },

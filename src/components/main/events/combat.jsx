@@ -79,6 +79,8 @@ export function Combat({enemy}) {
 
     function loseCombat() {
 
+        setCombatMessage(`Ouch. You were defeated by ${enemy.name}. Perhaps you should go home and take a nap.`);
+
     }
     
     const button = combatStatus === "ongoing" ? 

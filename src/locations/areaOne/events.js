@@ -105,12 +105,20 @@ export const AreaOneEvents = {
         actions: [{
             name: "Rest",
             actionType: "setCharCondition",
-            func: (charCondition, setCharCondition) => {
-                    setCharCondition(produce((newCharCondition)=>{
+            func: (gameState) => {
+                    gameState.setCharCondition(produce((newCharCondition)=>{
                         newCharCondition.hp = 100;
                     }));
+                    gameState.setCurrentEvent("finishRestBedroom");
             }
         }]
+    },
+    "finishRestBedroom":{        
+        title: "Rest",
+        id: "finishRestBedroom",
+        encounterRate: 1,
+        description: "You wake up nice and refreshed. Your hp is back to full!",
+        actions: []
     },
     "searchForCoinsBedroom":{        
         title: "Search for Coins",
