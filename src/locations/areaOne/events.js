@@ -27,7 +27,7 @@ export const AreaOneEvents = {
             name: "Begin your adventure",
             actionType: "setLocation",
             func: (gameState) => {
-                gameState.setLocation("world");
+                gameState.setLocation("house");
             }
         }]
     },
@@ -101,7 +101,7 @@ export const AreaOneEvents = {
         title: "Rest",
         id: "restBedroom",
         encounterRate: 1,
-        description: "You seem pretty tired -- take a nap on your bed?",
+        description: "You seem pretty tired -- do you want to take a nap on your bed?",
         actions: [{
             name: "Rest",
             actionType: "setCharCondition",
@@ -117,7 +117,30 @@ export const AreaOneEvents = {
         title: "Rest",
         id: "finishRestBedroom",
         encounterRate: 1,
-        description: "You wake up nice and refreshed. Your hp is back to full!",
+        description: "You wake up nice and refreshed. Your Physical HP is back to full!",
+        actions: []
+    },
+    "prayCloset":{        
+        title: "Pray",
+        id: "prayCloset",
+        encounterRate: 1,
+        description: "You seem to be anxious about many things -- do you want to spend some time in prayer and meditation?",
+        actions: [{
+            name: "Pray",
+            actionType: "setCharCondition",
+            func: (gameState) => {
+                    gameState.setCharCondition(produce((newCharCondition)=>{
+                        newCharCondition.spiritualHp = 100;
+                    }));
+                    gameState.setCurrentEvent("finishprayCloset");
+            }
+        }]
+    },
+    "finishprayCloset":{        
+        title: "Pray",
+        id: "finishPrayCloset",
+        encounterRate: 1,
+        description: "You feel a deep sense of peace. Your Spiritual HP is back to full!",
         actions: []
     },
     "searchForCoinsBedroom":{        
@@ -153,6 +176,13 @@ export const AreaOneEvents = {
         id: "nothingFoundBedroom",
         encounterRate: 1, 
         description: "You searched carefully but did not find anything",
+        actions: []
+    },
+    "getSomeClothes":{
+        title: "Get Some Clothes",
+        id: "getSomeClothes",
+        encounterRate: 1, 
+        description: '\"Whoa! Whoa! You can\'t walk in here without clothes! What in the world are you thinking?\"\n\n\"I am so sorry,\" you say, \"You see, that\'s why I\'m here. I need some clothes."\n\n\“Ah, I see,\” the Tailor says. \“Tell you what—I\'ll help you out. If you get me 5 pieces of garment, I\'ll make you something to wear. It\'ll cost you 2 Earthly Coins though.\"',
         actions: []
     }
 }
