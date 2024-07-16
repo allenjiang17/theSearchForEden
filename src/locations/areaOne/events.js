@@ -190,8 +190,18 @@ export const AreaOneEvents = {
         id: "gotManna",
         encounterRate: 1, 
         description: "You wonder, \"What is it?\" You take it and give it a little lick, and it tastes like wafers made with honey. You put some in your bag.",
+        autoAction: {
+            name: "Get Manna",
+            actionType: "setInventory",
+            func: (gameState) => {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.items.set("manna", newInventory.items.get("manna") || 0 + 1);
+                    }));            
+            }
+        },
         actions: []
     },
+
     "lookBronzeSerpent":{        
         title: "Look at the Bronze Serpent",
         id: "lookBronzeSerpent",

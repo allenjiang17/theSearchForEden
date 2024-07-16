@@ -57,23 +57,28 @@ export function Combat({enemy}) {
         //add xp
         for (let statReward of enemy.statReward) {
 
-            const statGain = Math.ceil(statReward.amount * Math.random() * statReward.chance);
+            const statGain = (Math.random()<=statReward.chance) ? statReward.amount : 0;
             gameState.setCharacter(produce((character)=>{
                 character.stats[statReward.stat] = Math.max(0, gameState.character.stats[statReward.stat] + statGain);
             }))
-            statMessage.push(`+${statGain} ${statReward.stat}`);
+            if (statGain > 0) {
+                statMessage.push(`+${statGain} ${statReward.stat}`);
+            }
         }
 
         //get loot
         for (let itemDrop of enemy.itemDrop) {
-            gameState.setInventory(produce((inventory)=>{
-                inventory.items.set(itemDrop, (inventory.items.get(itemDrop) || 0) + 1);
-            }))
-            lootMessage.push(`${AreaOneItems[itemDrop].name}`);
+
+            if (Math.random()<=itemDrop.chance) {
+                gameState.setInventory(produce((inventory)=>{
+                    inventory.items.set(itemDrop.item, (inventory.items.get(itemDrop.item) || 0) + 1);
+                }))
+                lootMessage.push(`${AreaOneItems[itemDrop.item].name}`);
+
+            }
         }
 
         setCombatMessage(`You defeated ${enemy.name}! You gained ${joinList(statMessage)}, and you found ${joinList(lootMessage)}.`);
-        
 
     }
 
@@ -85,7 +90,7 @@ export function Combat({enemy}) {
     
     const button = combatStatus === "ongoing" ? 
         <Button onClick={calculateCombatTurn}>Attack!</Button> :
-        <Button onClick={()=>gameState.setLocation(AreaOneLocations[gameState.location].parent)}>Go back to {AreaOneLocations[AreaOneLocations[gameState.location].parent].title}</Button>;
+        <Button onClick={()=>{gameState.setCurrentEvent(null); gameState.setLocation(AreaOneLocations[gameState.location].parent)}}>Go back to {AreaOneLocations[AreaOneLocations[gameState.location].parent].title}</Button>;
     
     return (
         <div className="p-8 border-2 flex flex-col justify-start items-center gap-3">
@@ -124,7 +129,7 @@ function getRandomEnemy(enemies) {
 }
 
 function joinList(array) {
-    if (array.length === 0) return '';
+    if (array.length === 0) return 'nothing';
     if (array.length === 1) return array[0];
     if (array.length === 2) return array.join(' and ');
     return array.slice(0, -1).join(', ') + ', and ' + array[array.length - 1];

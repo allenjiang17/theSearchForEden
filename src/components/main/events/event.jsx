@@ -10,7 +10,7 @@ export default function Event({event}) {
 
     } else {
         const eventObj = AreaOneEvents[event];
-        return <GenericEvent title={eventObj.title} description={eventObj.description} actions={eventObj.actions} />
+        return <GenericEvent event={eventObj} />
     }
 
 }

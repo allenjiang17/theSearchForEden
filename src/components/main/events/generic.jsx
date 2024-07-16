@@ -3,8 +3,16 @@ import { useContext } from "react";
 import { GameContext } from "../../../game";
 
 
-export default function GenericEvent({title, description, actions}) {
+export default function GenericEvent({event}) {
     const gameState = useContext(GameContext);
+
+    const title = event.title;
+    const description = event.description;
+    const actions = event.actions;
+
+    if (event.autoAction) {
+        event.autoAction.func(gameState);
+    }
 
     const buttons = actions.map((action)=>(
         <Button onClick={()=>{
