@@ -5,6 +5,7 @@ import { produce } from "immer";
 import { AreaOneLocations } from "../../../locations/areaOne/locations";
 import { AreaOneEnemies } from "../../../locations/areaOne/enemies";
 import { AreaOneItems } from "../../../locations/areaOne/items";
+import { Weapons } from "../../../equipables/weapons";
 
 
 
@@ -28,8 +29,9 @@ export function Combat({enemy}) {
 
         const charAttack = enemy.type === "physical" ? gameState.character.stats.strength : gameState.character.stats.zeal;
         const charDefense = enemy.type === "physical" ? gameState.character.stats.defense: gameState.character.stats.resilience;
+        const charWeapon = Weapons[gameState.character.weapon ?? "bareHands"];
 
-        const damage = Math.ceil((charAttack / enemy.defense) * 0.5*Math.random() + 0.75);
+        const damage = Math.ceil(charWeapon.power * (charAttack / enemy.defense) * (0.5*Math.random() + 0.75));
         const enemyDamage = Math.ceil((enemy.attack / charDefense) * 0.5*Math.random() + 0.75);
 
         setEnemyHp(Math.max(0, enemyHp - damage));
