@@ -25,11 +25,13 @@ export function Combat({enemy}) {
     const [combatMessage, setCombatMessage] = useState("");
     const [combatStatus, setCombatStatus] = useState("ongoing"); //ongoing, won, lost
 
+    const isPhysicalBattle = enemy.type === "physical";
+
     function calculateCombatTurn() {
 
-        const charAttack = enemy.type === "physical" ? gameState.character.stats.strength : gameState.character.stats.zeal;
-        const charDefense = enemy.type === "physical" ? gameState.character.stats.defense: gameState.character.stats.resilience;
-        const charWeapon = Weapons[gameState.character.weapon ?? "bareHands"];
+        const charAttack = isPhysicalBattle ? gameState.character.stats.strength : gameState.character.stats.zeal;
+        const charDefense = isPhysicalBattle ? gameState.character.stats.defense : gameState.character.stats.resilience;
+        const charWeapon = Weapons[gameState.charCondition.weapon ?? "bareHands"];
 
         const damage = Math.ceil(charWeapon.power * (charAttack / enemy.defense) * (0.5*Math.random() + 0.75));
         const enemyDamage = Math.ceil((enemy.attack / charDefense) * 0.5*Math.random() + 0.75);
@@ -37,7 +39,8 @@ export function Combat({enemy}) {
         setEnemyHp(Math.max(0, enemyHp - damage));
         gameState.setCharCondition(produce((charCondition)=>{
             
-            charCondition.hp = Math.max(0, gameState.charCondition.hp - enemyDamage)
+            isPhysicalBattle ? charCondition.hp = Math.max(0, gameState.charCondition.hp - enemyDamage) 
+            : charCondition.spiritualHp = Math.max(0, gameState.charCondition.spiritualHp - enemyDamage);
 
         }));
         setCombatMessage(`You dealt ${damage} damage. ${enemy.name} dealt ${enemyDamage} damage.`);
@@ -45,7 +48,7 @@ export function Combat({enemy}) {
         if (enemyHp === 0) {
             setCombatStatus("won");
             winCombat();
-        } else if (gameState.charCondition.hp === 0){
+        } else if (gameState.charCondition.hp === 0 || gameState.charCondition.spiritualHp === 0) {
             setCombatStatus("lost");
             loseCombat();
         }
@@ -91,7 +94,7 @@ export function Combat({enemy}) {
     }
     
     const button = combatStatus === "ongoing" ? 
-        <Button onClick={calculateCombatTurn}>Attack!</Button> :
+        <Button onClick={calculateCombatTurn}>Attack with {gameState.charCondition.weapon ?? "your bare hands"}!</Button> :
         <Button onClick={()=>{gameState.setCurrentEvent(null); gameState.setLocation(AreaOneLocations[gameState.location].parent)}}>Go back to {AreaOneLocations[AreaOneLocations[gameState.location].parent].title}</Button>;
     
     return (
@@ -100,7 +103,11 @@ export function Combat({enemy}) {
             <span>Hp: {enemyHp}/{enemy.hp}</span>
             <span>{enemy.description}</span>
             <span>{combatMessage}</span>
-            <span>Your Hp: {gameState.charCondition.hp}/{gameState.character.stats.hp}</span>
+            {isPhysicalBattle ? 
+                <span>Your Hp: {gameState.charCondition.hp}/{gameState.character.stats.hp}</span>
+            : 
+                <span>Your Spiritual Hp: {gameState.charCondition.spiritualHp}/{gameState.character.stats.spiritualHp}</span>
+            }          
             <div className="flex flex-row justify-center items-center gap-3">
                 {button}
             </div>

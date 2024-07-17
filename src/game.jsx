@@ -35,7 +35,7 @@ const initialCharCondition = {
   hp: 100,
   spiritualHp: 100,
   states: [],
-  weapon: [],
+  weapon: null,
   equipment: {
     head: null,
     body: null,
@@ -71,7 +71,7 @@ function Game() {
     charCondition, setCharCondition, 
     ntask, setNtask,
     day, setDay}}>
-    <div className="flex flex-col justify-start items-start w-full max-w-[1000px] mx-auto p-8 gap-5">
+    <div className="flex flex-col justify-start items-start w-full max-w-[1000px] whitespace-pre-wrap mx-auto p-8 gap-5">
       <NavBar setPage={setPage}/>
       <MainBody page={page}/>
     </div>
