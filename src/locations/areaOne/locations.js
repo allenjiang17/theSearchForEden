@@ -154,7 +154,7 @@ export const AreaOneLocations = {
         id: "landOfThePatriarchs",
         description: "You try to go to the Land of the Patriarchs, but you can't figure out how to get there. Seems like you need somebody to guide you there.",
         events: [],
-        children: [],
+        children: ["bethel", "valleyOfSiddim", "cityOfSodom"],
         parent: "world"
     },
     "landOfTheJudges": {
@@ -204,6 +204,31 @@ export const AreaOneLocations = {
         events: [],
         children: [],
         parent: "world"
+    },
+    "bethel": {
+        title: "Bethel",
+        id: "bethel",
+        description: "There's not much here. All you see is an unassuming stone laying on the ground.",
+        events: ["sleepOnStone"],
+        children: [],
+        parent: "landOfThePatriarchs"
+    },
+    "valleyOfSiddim": {
+        title: "Valley of Siddim",
+        id: "valleyOfSiddim",
+        description: "A great battle happened here long ago.",
+        events: ["rescueTheCaptives"],
+        children: [],
+        parent: "landOfThePatriarchs"
+    },
+    "cityOfSodom": {
+        title: "City of Sodom",
+        id: "cityOfSodom",
+        description: "You enter the great city of wickedness. The outcry against Sodom is great.",
+        events: [],
+        enemies: ["meaninglessOffering", "worthlessAssembly", "handOfBlood", "commonPride"],
+        children: [],
+        parent: "landOfThePatriarchs"
     },
     "templeJerusalem":{
         title: "Temple of Jerusalem",

@@ -133,7 +133,7 @@ export const AreaOneEnemies = {
         ]
     },
     "greatFear": {
-        name: "greatFear",
+        name: "Great Fear",
         encounterRate: 1,
         type: "spiritual",
         description: "You encounter a Great Fear. Legend has it that long ago, this spirit seized a crowd of people that was being chased down by an army of chariots. It continues to terrorize people today.",
@@ -146,6 +146,70 @@ export const AreaOneEnemies = {
         ],
         itemDrop: [
           {item: "imperfectLovePotion", chance: 1}
+        ]
+    },
+    "meaninglessOffering": {
+        name: "Meaningless Offering",
+        encounterRate: 1,
+        type: "spiritual",
+        description: "You encounter a Meaningless Offering. It invites you to give offerings while neglecting the more important matters of the law--justice, mercy, and faithfulness.",
+        hp: 60,
+        attack: 6,
+        defense: 6,
+        statReward: [
+            {stat: "zeal", amount: 1, chance: 0.5},
+            {stat: "resilience", amount: 1, chance: 0.5},
+        ],
+        itemDrop: [
+          {item: "herdOfGoats", chance: 1}
+        ]
+    },
+    "worthlessAssembly": {
+        name: "Worthless Assembly",
+        encounterRate: 1,
+        type: "spiritual",
+        description: "You encounter a Worthless Assembly. It invites you to come near to God with your mouth and honor him with your lips, but to keep your hearts are far from him.",
+        hp: 60,
+        attack: 6,
+        defense: 6,
+        statReward: [
+            {stat: "zeal", amount: 1, chance: 0.5},
+            {stat: "resilience", amount: 1, chance: 0.5},
+        ],
+        itemDrop: [
+          {item: "flockOfSheep", chance: 1}
+        ]
+    },
+    "handOfBlood": {
+        name: "Hand of Blood",
+        encounterRate: 1,
+        type: "spiritual",
+        description: "You encounter a Hand of Blood. This enemy prevents God from listening to a Hand of Prayer.",
+        hp: 70,
+        attack: 7,
+        defense: 7,
+        statReward: [
+            {stat: "zeal", amount: 1, chance: 0.5},
+            {stat: "resilience", amount: 1, chance: 0.5},
+        ],
+        itemDrop: [
+          {item: "handOfPrayer", chance: 0.5}
+        ]
+    },
+    "commonPride": {
+        name: "Common Pride",
+        encounterRate: 1,
+        type: "spiritual",
+        description: "You encounter Common Pride! It looks arrogant, overfed, and unconcered. It cares not for the poor and the needy.",
+        hp: 60,
+        attack: 6,
+        defense: 6,
+        statReward: [
+            {stat: "zeal", amount: 1, chance: 0.5},
+            {stat: "resilience", amount: 1, chance: 0.5},
+        ],
+        itemDrop: [
+          {item: "healthyDoseOfHumility", chance: 0.5}
         ]
     }
 }
