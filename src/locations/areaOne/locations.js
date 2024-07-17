@@ -152,7 +152,7 @@ export const AreaOneLocations = {
     "landOfThePatriarchs": {
         title: "Land of the Patriarchs",
         id: "landOfThePatriarchs",
-        description: "You try to go to the Land of the Patriarchs, but you can't figure out how to get there. Seems like you need somebody to guide you there.",
+        description: "You try to go to the Land of the Patriarchs, but you can't figure out how to get there. Seems like you need somebody to guide you there. \n\nLarry\'s Note: The following places will be unlocked after you finish The Lost Man quest.",
         events: [],
         children: ["bethel", "valleyOfSiddim", "cityOfSodom"],
         parent: "world"

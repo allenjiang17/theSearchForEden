@@ -253,7 +253,7 @@ export const AreaOneEvents = {
         title: "Rescue the Captives",
         id: "rescueTheCaptives",
         encounterRate: 1,
-        description: "You see an exhausted man with terror on his face running over to you. \"What\'s the matter?\" you ask.\n\nWith tears in his eyes, the man takes a few large breaths and responds, \"Our cities have been attacked and plundered, and our people have been taken captive.\"\n\n\"Don't worry you,\" you say, \"I\'ll rescue them!\"",
+        description: "You see an exhausted man with terror on his face running over to you. \"What\'s the matter?\" you ask.\n\nWith tears in his eyes, the man takes a few large breaths and responds, \"Our cities have been attacked and plundered, and our people have been taken captive.\"\n\n\"Take courage,\" you say, \"I will rescue them!\"",
         actions: []
     },
 
