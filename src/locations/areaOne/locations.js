@@ -23,7 +23,7 @@ export const AreaOneLocations = {
         id: "world",
         description: "This is the great big world. You take a deep breath and look around. Where should you go?\n\nLarry\'s Note: These places will be reassigned elsewhere later.",
         events: [],
-        children: ["cityOfDestruction", "templeJerusalem", "fieldOfBoaz"],
+        children: ["cityOfDestruction", "wilderness", "landOfThePatriarchs", "landOfTheJudges", "landOfTheKings", "landOfThePoets", "landOfTheProphets", "landOfTheApostles", "heavenlyPlaces",],
         parent: null
     },
     "house":{
@@ -31,8 +31,8 @@ export const AreaOneLocations = {
         id: "house",
         description: "You look around at your humble abode. Where would you like to go?",
         events: [],
-        children: ["bedroom", "prayerCloset", "livingRoom", "cityOfDestruction"],
-        parent: null
+        children: ["bedroom", "prayerCloset", "livingRoom"],
+        parent: "cityOfDestruction"
     },
     "bedroom":{
         title: "Bedroom",
@@ -64,8 +64,8 @@ export const AreaOneLocations = {
         id: "cityOfDestruction",
         description: "You venture out into the City of Destruction. It's a somewhat foreboding name, but you didn't choose it. You just happen to live here. Where would you like to go?",
         events: [],
-        children: ["house", "townTailor", "brokenCistern", "emptyLand", "wilderness"],
-        parent: null
+        children: ["house", "townTailor", "brokenCistern", "emptyLand"],
+        parent: "world"
     },
     "townTailor": {
         title: "Town Tailor",
@@ -96,8 +96,8 @@ export const AreaOneLocations = {
         id: "wilderness",
         description: "You walk out into the Wilderness. You hear a faint voice crying out, \"Prepare the way of the Lord; make his paths straight.\"\n\nYou look around but don't see any paths. Maybe these paths are not literal but metaphorical?",
         events: [],
-        children: ["theLostMan", "fieldOfManna", "valleyOfStones", "desertOfWandering", "bronzeSerpent", "yamSuph", "landOfThePatriarchs", "landOfTheJudges"],
-        parent: "cityOfDestruction"
+        children: ["theLostMan", "fieldOfManna", "valleyOfStones", "desertOfWandering", "bronzeSerpent", "yamSuph"],
+        parent: "world"
     },
     "theLostMan": {
         title: "The Lost Man",
@@ -155,15 +155,55 @@ export const AreaOneLocations = {
         description: "You try to go to the Land of the Patriarchs, but you can't figure out how to get there. Seems like you need somebody to guide you there.",
         events: [],
         children: [],
-        parent: "wilderness"
+        parent: "world"
     },
     "landOfTheJudges": {
         title: "Land of the Judges",
-        id: "landOfThePatriarchs",
+        id: "landOfTheJudges",
         description: "As you approach the Land of the Judges, you notice that all the people there are of great size. You seem like a grasshopper in their eyes. Immediately, you are stricken by fear, and you run back to the Wilderness.",
         events: [],
         children: [],
-        parent: "wilderness"
+        parent: "world"
+    },
+    "landOfTheKings": {
+        title: "Land of the Kings",
+        id: "landOfTheKings",
+        description: "You try to go to the Land of the Kings, but you can't figure out how to get there. Seems like you need somebody to guide you there.",
+        events: [],
+        children: [],
+        parent: "world"
+    },
+    "landOfThePoets": {
+        title: "Land of the Poets",
+        id: "landOfThePoets",
+        description: "You try to go to the Land of the Poets, but you can't figure out how to get there. Seems like you need somebody to guide you there.",
+        events: [],
+        children: [],
+        parent: "world"
+    },
+    "landOfTheProphets": {
+        title: "Land of the Prophets",
+        id: "landOfTheProphets",
+        description: "You try to go to the Land of the Prophets, but you can't figure out how to get there. Seems like you need somebody to guide you there.",
+        events: [],
+        children: [],
+        parent: "world"
+    },
+    "landOfTheApostles": {
+        title: "Land of the Apostles",
+        id: "landOfTheApostles",
+        description: "You try to go to the Land of the Apostles, but you can't figure out how to get there. Seems like you need somebody to guide you there.",
+        events: [],
+        children: [],
+        parent: "world"
+    },
+    "heavenlyPlaces": {
+        title: "The Heavenly Places",
+        id: "heavenlyPlaces",
+        description: "You try to go to the Heavenly Places, but you can't figure out how to get there. Seems like you need somebody to guide you there.",
+        events: [],
+        children: [],
+        parent: "world"
     },
     "templeJerusalem":{
         title: "Temple of Jerusalem",
@@ -171,7 +211,7 @@ export const AreaOneLocations = {
         description: "The great temple of Jerusalem looms above you. The rich smell of incense overwhelms your senses.",
         events: ["donatingMoneyTemple"],
         children:[],
-        parent: "world"
+        parent: "landOfTheApostles"
     },
     "fieldOfBoaz":{
         title: "Field of Boaz",
@@ -179,7 +219,7 @@ export const AreaOneLocations = {
         description: "You see a large field of barley with many harvesters.",
         events: ["gotBarleyFieldOfBoaz"],
         children:[],
-        parent: "world"
+        parent: "landOfTheJudges"
     }
    
 };
