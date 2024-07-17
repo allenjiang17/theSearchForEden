@@ -19,6 +19,7 @@ export default function GenericEvent({event}) {
             action.func(gameState);
         }}>{action.name}</Button>
     ));
+    
     return (
         <div className="p-8 border-2 flex flex-col justify-start items-center gap-3">
             <span>{description}</span>
