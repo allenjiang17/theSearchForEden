@@ -1,5 +1,5 @@
 import Button from "../../elements/button";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { GameContext } from "../../../game";
 
 
@@ -10,9 +10,12 @@ export default function GenericEvent({event}) {
     const description = event.description;
     const actions = event.actions;
 
-    if (event.autoAction) {
-        event.autoAction.func(gameState);
-    }
+    useEffect(()=>{
+        //load auto action upon component mount
+        if (event.autoAction) {
+            event.autoAction.func(gameState);
+        }
+    },[])
 
     const buttons = actions.map((action)=>(
         <Button onClick={()=>{

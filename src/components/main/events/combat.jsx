@@ -1,4 +1,5 @@
 import Button from "../../elements/button";
+import { Fragment } from "react";
 import { useContext, useState } from "react";
 import { GameContext } from "../../../game";
 import { produce } from "immer";
@@ -6,6 +7,7 @@ import { AreaOneLocations } from "../../../locations/areaOne/locations";
 import { AreaOneEnemies } from "../../../locations/areaOne/enemies";
 import { AreaOneItems } from "../../../locations/areaOne/items";
 import { Weapons } from "../../../equipables/weapons";
+import { updateInventory } from "../../../utils/misc";
 
 
 
@@ -76,8 +78,8 @@ export function Combat({enemy}) {
         for (let itemDrop of enemy.itemDrop) {
 
             if (Math.random()<=itemDrop.chance) {
-                gameState.setInventory(produce((inventory)=>{
-                    inventory.items.set(itemDrop.item, (inventory.items.get(itemDrop.item) || 0) + 1);
+                gameState.setInventory(produce((newInventory)=>{
+                    updateInventory(newInventory, itemDrop.item);
                 }))
                 lootMessage.push(`${AreaOneItems[itemDrop.item].name}`);
 
@@ -93,12 +95,12 @@ export function Combat({enemy}) {
         setCombatMessage(`Ouch. You were defeated by ${enemy.name}. Perhaps you should go home and take a nap.`);
 
     }
-    const battleItems = gameState.inventory.items.map((item)=>{
+    const battleItems = Object.keys(gameState.inventory.items).map((item)=>{
         <Option value={item}>{item.name}</Option>
     });
 
     const buttonActions = 
-        <React.Fragment>
+        <Fragment>
             <Button onClick={calculateCombatTurn}>Attack with {gameState.charCondition.weapon ?? "your bare hands"}!</Button> 
             Item: 
             <select value={itemUsed} onChange={setItemUsed}>
@@ -106,7 +108,7 @@ export function Combat({enemy}) {
             </select> 
 
         
-        </React.Fragment>
+        </Fragment>
     const buttonLeave = <Button onClick={()=>{gameState.setCurrentEvent(null); gameState.setLocation(AreaOneLocations[gameState.location].parent)}}>Go back to {AreaOneLocations[AreaOneLocations[gameState.location].parent].title}</Button>;
     
     return (

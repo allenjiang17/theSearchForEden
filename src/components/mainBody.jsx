@@ -3,6 +3,7 @@ import { useState, createContext } from 'react';
 import Map from "./location";
 import Character from "./main/navigation/character";
 import Inventory from "./main/navigation/inventory";
+import Settings from "./main/navigation/settings";
 
 
 export default function MainBody({page}) {
@@ -13,7 +14,9 @@ export default function MainBody({page}) {
         return <Character/>
     } else if (page === "inventory") {
         return <Inventory/>
-    } 
+    } else if (page === "settings") {
+        return <Settings/>
+    }
     //and so on...
 
 

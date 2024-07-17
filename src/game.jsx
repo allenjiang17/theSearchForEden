@@ -26,7 +26,7 @@ const initialCharacterTest = {
 const initialInventory = {
   money: 0,
   keyItems: [],
-  items: new Map(),
+  items: {},
   equipment: [],
   weapons: []
 }

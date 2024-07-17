@@ -5,11 +5,9 @@ import { AreaOneItems } from "../../../locations/areaOne/items";
 export default function Inventory() {
 
     const {inventory, setInventory} = useContext(GameContext);
-    
-    console.log(inventory.items.entries());
-
-    const items = Array.from(inventory.items.entries()).map((item)=>{
-        return <div>{AreaOneItems[item[0]].name + " x" + item[1]}</div>
+    console.log(inventory);
+    const items = Object.keys(inventory.items).map((item)=>{
+        return <div>{AreaOneItems[item].name + " x" + inventory.items[item]}</div>
     });
 
     console.log(items);

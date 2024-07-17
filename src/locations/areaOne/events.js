@@ -1,4 +1,5 @@
 import { produce } from "immer";
+import { updateInventory } from "../../utils/misc";
 
 /*README FOR ADDING EVENTS
 
@@ -195,7 +196,7 @@ export const AreaOneEvents = {
             actionType: "setInventory",
             func: (gameState) => {
                     gameState.setInventory(produce((newInventory)=>{
-                        newInventory.items.set("manna", newInventory.items.get("manna") || 0 + 1);
+                        updateInventory(newInventory, "manna");
                     }));            
             }
         },
@@ -211,7 +212,7 @@ export const AreaOneEvents = {
             actionType: "setInventory",
             func: (gameState) => {
                     gameState.setInventory(produce((newInventory)=>{
-                        newInventory.items.set("locust", newInventory.items.get("locust") || 0 + 1);
+                        updateInventory(newInventory, "locust");
                     }));            
             }
         },
