@@ -1,10 +1,11 @@
 import Button from "../../elements/button";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { GameContext } from "../../../game";
 
 
 export default function GenericEvent({event}) {
     const gameState = useContext(GameContext);
+    const loaded = useRef(false);
 
     const title = event.title;
     const description = event.description;
@@ -12,9 +13,11 @@ export default function GenericEvent({event}) {
 
     useEffect(()=>{
         //load auto action upon component mount
-        if (event.autoAction) {
+        if (event.autoAction && !loaded.current) {
             event.autoAction.func(gameState);
         }
+
+        loaded.current = true
     },[])
 
     const buttons = actions.map((action)=>(
