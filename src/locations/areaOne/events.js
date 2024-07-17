@@ -248,4 +248,35 @@ export const AreaOneEvents = {
         description: "Your body shivers. Terror and dread descend on your body. A thundering voice speaks, \"Was it because there were no graves in the City of Destruction that you have come to the desert to die?\" Larry\'s Note: Give option to fight Great Fear or run away.",
         actions: []
     },
+    "rescueTheCaptives":{        
+        title: "Rescue the Captives",
+        id: "rescueTheCaptives",
+        encounterRate: 1,
+        description: "You see an exhausted man with terror on his face running over to you. \"What\'s the matter?\" you ask.\n\nWith tears in his eyes, the man takes a few large breaths and responds, \"Our cities have been attacked and plundered, and our people have been taken captive.\"\n\n\"Take courage,\" you say, \"I will rescue them!\"",
+        actions: []
+    },
+
+    "sleepOnStone":{        
+        title: "Sleep on the Stone",
+        id: "sleepOnStone",
+        encounterRate: 1,
+        description: "Would you like to lay your head on the stone and go to sleep?",
+        actions: [{
+            name: "Sleep on the Stone",
+            actionType: "setCharCondition",
+            func: (gameState) => {
+                    gameState.setCharCondition(produce((newCharCondition)=>{
+                        newCharCondition.spiritualHp = 100;
+                    }));
+                    gameState.setCurrentEvent("finishSleepOnStone");
+            }
+        }]
+    },
+    "finishSleepOnStone":{        
+        title: "Sleep on the Stone",
+        id: "finishSleepOnStone",
+        encounterRate: 1,
+        description: "You have a dream, and behold, you see a ladder set up on the earth, with the top of it reaching to heaven. And behold, you see the angels of God ascending and descending on it!\n\nYou wake up with wonder and think, \"Surely the Lord is in this place, and I did not know it.\"\n\nYour Spiritual HP is back to full!",
+        actions: []
+    }
 }

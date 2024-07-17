@@ -73,5 +73,25 @@ export const AreaOneItems = {
         name: "Imperfect Love Potion",
         description: "This is a potion of love that hasn't been perfected yet.",
         price: 0
+    },
+    "healthyDoseOfHumility": {
+        name: "Healthy Dose of Humility",
+        description: "This is a small dosage of humility, meant to give its user a proper perspective of their significance in the grand scheme of things.",
+        price: 0
+    },
+    "herdOfGoats": {
+        name: "Herd of Goats",
+        description: "This is a herd of goats. It contains about 20 goats.",
+        price: 0
+    },
+    "flockOfSheep": {
+        name: "Flock of Sheep",
+        description: "This is a flock of sheep. It contains about 20 sheep.",
+        price: 0
+    },
+    "handOfPrayer": {
+        name: "Hand of Prayer",
+        description: "This is a single hand of prayer. It can be used whenever famine or plague comes to the land, or blight or mildew, locusts or grasshoppers, or when an enemy besieges you in any of your cities.",
+        price: 0
     }
 }
