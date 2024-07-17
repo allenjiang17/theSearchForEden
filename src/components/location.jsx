@@ -13,13 +13,14 @@ export default function Location() {
     console.log(currentEvent);
     
     const currentLocation = AreaOneLocations[location];
-    let currentEventToShow =  currentEvent ?? getRandomEvent(currentLocation);
+    let currentEventToShow = currentEvent ?? getRandomEvent(currentLocation);
 
+    // I feel like this event listener is not great if we change locations outside of the context
+    // of the game (i.e., because of loading in)
     useEffect(()=>{
-            console.log("here");
-
+        if (typeof currentLocation != 'undefined') {
             setCurrentEvent(getRandomEvent(AreaOneLocations[location]));
-
+        }
     },[location]);
 
     const locationOptions = currentLocation.children.map((location)=>(
@@ -36,11 +37,9 @@ export default function Location() {
             </div>
         </div>
     )
-    
 }
 
 function getRandomEvent(currentLocation) {
-
     let probSum = 0;
 
     for (let event of currentLocation.events) {
@@ -62,16 +61,13 @@ function getRandomEvent(currentLocation) {
     }
 
     if (currentLocation.enemies) {
-
         for (let enemy of currentLocation.enemies) {
             seed -= AreaOneEnemies[enemy].encounterRate;
             if (seed <= 0) {
                 return "combat";
             }
         }
-
     }
-
 }
 
 

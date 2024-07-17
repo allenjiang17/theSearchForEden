@@ -7,12 +7,10 @@ export default function Event({event}) {
 
     if (event === "combat") {
         return <CombatEvent />
-
     } else {
         const eventObj = AreaOneEvents[event];
         return <GenericEvent event={eventObj} />
     }
-
 }
 
 
