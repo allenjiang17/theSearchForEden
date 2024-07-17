@@ -186,7 +186,7 @@ export const AreaOneEvents = {
         actions: []
     },
     "gotManna":{
-        title: "Got Manna? ",
+        title: "Got Manna?",
         id: "gotManna",
         encounterRate: 1, 
         description: "You wonder, \"What is it?\" You take it and give it a little lick, and it tastes like wafers made with honey. You put some in your bag.",
@@ -196,6 +196,22 @@ export const AreaOneEvents = {
             func: (gameState) => {
                     gameState.setInventory(produce((newInventory)=>{
                         newInventory.items.set("manna", newInventory.items.get("manna") || 0 + 1);
+                    }));            
+            }
+        },
+        actions: []
+    },
+    "gotLocust":{
+        title: "Got Locust?",
+        id: "gotLocust",
+        encounterRate: 1, 
+        description: "You find a wild locust! You patiently wait for the right opportunity... and then you reach out and grab it! Very dextrous of you.",
+        autoAction: {
+            name: "Get Locust",
+            actionType: "setInventory",
+            func: (gameState) => {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.items.set("locust", newInventory.items.get("locust") || 0 + 1);
                     }));            
             }
         },
