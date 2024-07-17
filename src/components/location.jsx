@@ -16,8 +16,6 @@ export default function Location() {
     let currentEventToShow =  currentEvent ?? getRandomEvent(currentLocation);
 
     useEffect(()=>{
-            console.log("here");
-
             setCurrentEvent(getRandomEvent(AreaOneLocations[location]));
 
     },[location]);

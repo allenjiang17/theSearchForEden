@@ -22,6 +22,7 @@ export function Combat({enemy}) {
     const gameState = useContext(GameContext);
 
     const [enemyHp, setEnemyHp] = useState(enemy.hp);
+    const [itemUsed, setItemUsed] = useState(null);
     const [combatMessage, setCombatMessage] = useState("");
     const [combatStatus, setCombatStatus] = useState("ongoing"); //ongoing, won, lost
 
@@ -92,10 +93,21 @@ export function Combat({enemy}) {
         setCombatMessage(`Ouch. You were defeated by ${enemy.name}. Perhaps you should go home and take a nap.`);
 
     }
-    
-    const button = combatStatus === "ongoing" ? 
-        <Button onClick={calculateCombatTurn}>Attack with {gameState.charCondition.weapon ?? "your bare hands"}!</Button> :
-        <Button onClick={()=>{gameState.setCurrentEvent(null); gameState.setLocation(AreaOneLocations[gameState.location].parent)}}>Go back to {AreaOneLocations[AreaOneLocations[gameState.location].parent].title}</Button>;
+    const battleItems = gameState.inventory.items.map((item)=>{
+        <Option value={item}>{item.name}</Option>
+    });
+
+    const buttonActions = 
+        <React.Fragment>
+            <Button onClick={calculateCombatTurn}>Attack with {gameState.charCondition.weapon ?? "your bare hands"}!</Button> 
+            Item: 
+            <select value={itemUsed} onChange={setItemUsed}>
+                {battleItems}
+            </select> 
+
+        
+        </React.Fragment>
+    const buttonLeave = <Button onClick={()=>{gameState.setCurrentEvent(null); gameState.setLocation(AreaOneLocations[gameState.location].parent)}}>Go back to {AreaOneLocations[AreaOneLocations[gameState.location].parent].title}</Button>;
     
     return (
         <div className="p-8 border-2 flex flex-col justify-start items-center gap-3">
@@ -109,7 +121,8 @@ export function Combat({enemy}) {
                 <span>Your Spiritual Hp: {gameState.charCondition.spiritualHp}/{gameState.character.stats.spiritualHp}</span>
             }          
             <div className="flex flex-row justify-center items-center gap-3">
-                {button}
+               {combatStatus === "ongoing" ? buttonActions : null}
+               {combatStatus === "won" || combatStatus === "lost" ? buttonLeave : null}
             </div>
         </div>
     )
