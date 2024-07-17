@@ -44,38 +44,63 @@ const initialCharCondition = {
   }
 }
 
+function checkLocal(obj) {
+  return(!(localStorage.getItem(obj) === null))
+}
+function getLocal(obj) {
+  return(JSON.parse(localStorage.getItem(obj)))
+}
+function useStateLocal(obj, initialval = null) {
+  if(!(localStorage.getItem(obj) === null)) {
+    console.log(obj + " : " + getLocal(obj));
+  }
+  return(useState(checkLocal(obj) ? getLocal(obj) : initialval))
+}
+function effectHook(objname, obj) {
+  useEffect(() => {
+    localStorage.setItem(objname, JSON.stringify(obj));
+  }, [obj]);
+}
+
+
 function Game() {
+  // const [currentEvent, setCurrentEvent] = useStateLocal("currentEvent", null)
+  const [currentEvent, setCurrentEvent] = useState(null)
+  // effectHook("currentEvent", currentEvent);
+  // const [location, setLocation] = useStateLocal("location", "beginning")
+  const [location, setLocation] = useState("beginning")
+  // effectHook("location", location);
+  const [character, setCharacter] = useStateLocal("character", initialCharacterTest)
+  effectHook("character", character);
+  const [inventory, setInventory] = useStateLocal("inventory", initialInventory)
+  effectHook("inventory", inventory);
 
-  const [currentEvent, setCurrentEvent] = useState(null);
-  const [location, setLocation] = useState("beginning"); //future get from local storage
-  const [character, setCharacter] = useState(initialCharacterTest); 
-  const [inventory, setInventory] = useState(initialInventory);
+  const [charCondition, setCharCondition] = useStateLocal("charCondition", initialCharCondition);
+  effectHook("charCondition", charCondition);
 
-  const [charCondition, setCharCondition] = useState(initialCharCondition);
+  const [ntask, setNtask] = useStateLocal("ntask", 24);
+  effectHook("ntask", ntask);
+  const [day, setDay] = useStateLocal("day", 0);
+  effectHook("day", day);
 
-  const [ntask, setNtask] = useState(24);
-  // const [day, setDay] = useState({day: 0, date: new Date()});
-  const [day, setDay] = useState(0);
-
-  const [page, setPage] = useState("map");
-
-
+  const [page, setPage] = useStateLocal("map", "map");
+  effectHook("page", page);
 
   return (
-
-  <GameContext.Provider value ={{
-    currentEvent, setCurrentEvent, 
-    location, setLocation, 
-    character, setCharacter, 
-    inventory, setInventory, 
-    charCondition, setCharCondition, 
-    ntask, setNtask,
-    day, setDay}}>
-    <div className="flex flex-col justify-start items-start w-full max-w-[1000px] whitespace-pre-wrap mx-auto p-8 gap-5">
-      <NavBar setPage={setPage}/>
-      <MainBody page={page}/>
-    </div>
-  </GameContext.Provider>)
+    <GameContext.Provider value ={{
+      currentEvent, setCurrentEvent, 
+      location, setLocation, 
+      character, setCharacter, 
+      inventory, setInventory, 
+      charCondition, setCharCondition, 
+      ntask, setNtask,
+      day, setDay}}>
+      <div className="flex flex-col justify-start items-start w-full max-w-[1000px] mx-auto p-8 gap-5">
+        <NavBar setPage={setPage}/>
+        <MainBody page={page}/>
+      </div>
+    </GameContext.Provider>
+  )
 }
 
 export default Game;

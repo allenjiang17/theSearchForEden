@@ -186,7 +186,7 @@ export const AreaOneEvents = {
         actions: []
     },
     "gotManna":{
-        title: "Got Manna? ",
+        title: "Got Manna?",
         id: "gotManna",
         encounterRate: 1, 
         description: "You wonder, \"What is it?\" You take it and give it a little lick, and it tastes like wafers made with honey. You put some in your bag.",
@@ -196,6 +196,22 @@ export const AreaOneEvents = {
             func: (gameState) => {
                     gameState.setInventory(produce((newInventory)=>{
                         newInventory.items.set("manna", newInventory.items.get("manna") || 0 + 1);
+                    }));            
+            }
+        },
+        actions: []
+    },
+    "gotLocust":{
+        title: "Got Locust?",
+        id: "gotLocust",
+        encounterRate: 1, 
+        description: "You find a wild locust! You patiently wait for the right opportunity... and then you reach out and grab it! Very dextrous of you.",
+        autoAction: {
+            name: "Get Locust",
+            actionType: "setInventory",
+            func: (gameState) => {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.items.set("locust", newInventory.items.get("locust") || 0 + 1);
                     }));            
             }
         },
@@ -232,4 +248,35 @@ export const AreaOneEvents = {
         description: "Your body shivers. Terror and dread descend on your body. A thundering voice speaks, \"Was it because there were no graves in the City of Destruction that you have come to the desert to die?\" Larry\'s Note: Give option to fight Great Fear or run away.",
         actions: []
     },
+    "rescueTheCaptives":{        
+        title: "Rescue the Captives",
+        id: "rescueTheCaptives",
+        encounterRate: 1,
+        description: "You see an exhausted man with terror on his face running over to you. \"What\'s the matter?\" you ask.\n\nWith tears in his eyes, the man takes a few large breaths and responds, \"Our cities have been attacked and plundered, and our people have been taken captive.\"\n\n\"Don't worry you,\" you say, \"I\'ll rescue them!\"",
+        actions: []
+    },
+
+    "sleepOnStone":{        
+        title: "Sleep on the Stone",
+        id: "sleepOnStone",
+        encounterRate: 1,
+        description: "Would you like to lay your head on the stone and go to sleep?",
+        actions: [{
+            name: "Sleep on the Stone",
+            actionType: "setCharCondition",
+            func: (gameState) => {
+                    gameState.setCharCondition(produce((newCharCondition)=>{
+                        newCharCondition.spiritualHp = 100;
+                    }));
+                    gameState.setCurrentEvent("finishSleepOnStone");
+            }
+        }]
+    },
+    "finishSleepOnStone":{        
+        title: "Sleep on the Stone",
+        id: "finishSleepOnStone",
+        encounterRate: 1,
+        description: "You have a dream, and behold, you see a ladder set up on the earth, with the top of it reaching to heaven. And behold, you see the angels of God ascending and descending on it!\n\nYou wake up with wonder and think, \"Surely the Lord is in this place, and I did not know it.\"\n\nYour Spiritual HP is back to full!",
+        actions: []
+    }
 }

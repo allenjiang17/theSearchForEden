@@ -14,6 +14,11 @@ export const AreaOneItems = {
         description: "\"What is it?\" you wonder. It tastes like wafers made with honey.",
         price: 0
     },
+    "locust": {
+        name: "Locust",
+        description: "This is a rare delicacy. Some say that it pairs well with wild honey.",
+        price: 0
+    },
     "waterOfMeribah": {
         name: "Water of Meribah",
         description: "When you look at this water, you start to feel quarrelsome.",
