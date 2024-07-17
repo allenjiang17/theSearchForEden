@@ -35,7 +35,7 @@ const initialCharCondition = {
   hp: 100,
   spiritualHp: 100,
   states: [],
-  weapon: [],
+  weapon: null,
   equipment: {
     head: null,
     body: null,
