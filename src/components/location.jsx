@@ -5,6 +5,7 @@ import Button from "./elements/button";
 import Event from "./main/events/event";
 import { useContext, useState, useEffect } from "react";
 import { GameContext } from "../game";
+import DialogueBox from "./elements/dialoguebox";
 
 
 export default function Location() {
@@ -25,13 +26,15 @@ export default function Location() {
     },[location]);
 
 
+    // If you don't like the dynamic text, switch dialoguebox back to a static span
     return (
         <div className="flex flex-col justify-center items-start gap-3">
-            <span>{currentLocation.description}</span>
+            <DialogueBox text={currentLocation.description}/>
             {currentEvent ? <Event event={currentEvent} setCurrentEvent={setCurrentEvent}/> : null}
             <div className="flex flex-col justify-start items-start gap-3">
                 {locationOptions}
-                {currentLocation.parent && currentEvent !== "combat" ? <Button onClick={()=>{setLocation(currentLocation.parent)}}>Leave {AreaOneLocations[currentLocation.id].title}</Button> : null}
+                {currentLocation.parent && currentEvent !== "combat" ? 
+                        <Button onClick={()=>{setLocation(currentLocation.parent)}}>Leave {AreaOneLocations[currentLocation.id].title}</Button> : null}
             </div>
         </div>
     )
