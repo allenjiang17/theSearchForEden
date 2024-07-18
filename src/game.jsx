@@ -64,9 +64,6 @@ function getLocal(obj) {
   return(JSON.parse(localStorage.getItem(obj)))
 }
 function useStateLocal(obj, initialval = null) {
-  if(!(localStorage.getItem(obj) === null)) {
-    console.log(obj + " : " + getLocal(obj));
-  }
   return(useState(checkLocal(obj) ? getLocal(obj) : initialval))
 }
 function effectHook(objname, obj) {
@@ -77,13 +74,14 @@ function effectHook(objname, obj) {
 
 
 function Game() {
-  // const [currentEvent, setCurrentEvent] = useStateLocal("currentEvent", null)
-  const [currentEvent, setCurrentEvent] = useState(null)
-  // effectHook("currentEvent", currentEvent);
-  // const [location, setLocation] = useStateLocal("location", "beginning")
-  const [location, setLocation] = useState("beginning")
-  // effectHook("location", location);
-  const [map, setMap] = useState(initialMap);
+
+  const [location, setLocation] = useStateLocal("location", "beginning")
+  //const [location, setLocation] = useState("beginning")
+  effectHook("location", location);
+
+  const [map, setMap] = useStateLocal("map", initialMap);
+  effectHook("map", map);
+
   const [character, setCharacter] = useStateLocal("character", initialCharacterTest)
   effectHook("character", character);
   const [inventory, setInventory] = useStateLocal("inventory", initialInventory)
@@ -96,12 +94,13 @@ function Game() {
   const [day, setDay] = useStateLocal("day", 0);
   effectHook("day", day);
 
-  const [page, setPage] = useStateLocal("map", "map");
+  const [page, setPage] = useStateLocal("page", "map");
   effectHook("page", page);
+
+  console.log(page);
 
   return (
     <GameContext.Provider value ={{
-      currentEvent, setCurrentEvent, 
       location, setLocation, 
       map, setMap,
       character, setCharacter, 

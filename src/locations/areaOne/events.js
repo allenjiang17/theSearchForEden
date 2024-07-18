@@ -41,14 +41,14 @@ export const AreaOneEvents = {
             {
                 name: "Put two coins in the treasury",
                 actionType: "setInventory",
-                func: (gameState) => {
+                func: (gameState, event, setCurrentEvent) => {
                     if (gameState.inventory.money >= 2) {
                         gameState.setInventory(produce((newInventory)=>{
                             newInventory.money -= 2;
                         }));
-                        gameState.setCurrentEvent("gainHolinessPointTemple");
+                        setCurrentEvent("gainHolinessPointTemple");
                     } else {
-                        gameState.setCurrentEvent("noMoneyTemple");
+                        setCurrentEvent("noMoneyTemple");
 
                     }
                 }
@@ -56,14 +56,14 @@ export const AreaOneEvents = {
             {
                 name: "Put three coins in the treasury",
                 actionType: "setInventory",
-                func: (gameState) => {
+                func: (gameState, event, setCurrentEvent) => {
                     if (gameState.inventory.money >= 3) {
                         gameState.setInventory(produce((newInventory)=>{
                             newInventory.money -= 3;
                         }));
-                        gameState.setCurrentEvent("showOffTemple");
+                        setCurrentEvent("showOffTemple");
                     } else {
-                        gameState.setCurrentEvent("noMoneyTemple");
+                        setCurrentEvent("noMoneyTemple");
 
                     }
                 }
@@ -106,11 +106,11 @@ export const AreaOneEvents = {
         actions: [{
             name: "Rest",
             actionType: "setCharCondition",
-            func: (gameState) => {
+            func: (gameState, event, setCurrentEvent) => {
                     gameState.setCharCondition(produce((newCharCondition)=>{
                         newCharCondition.hp = 100;
                     }));
-                    gameState.setCurrentEvent("finishRestBedroom");
+                    setCurrentEvent("finishRestBedroom");
             }
         }]
     },
@@ -129,11 +129,11 @@ export const AreaOneEvents = {
         actions: [{
             name: "Pray",
             actionType: "setCharCondition",
-            func: (gameState) => {
+            func: (gameState, event, setCurrentEvent) => {
                     gameState.setCharCondition(produce((newCharCondition)=>{
                         newCharCondition.spiritualHp = 100;
                     }));
-                    gameState.setCurrentEvent("finishprayCloset");
+                    setCurrentEvent("finishprayCloset");
             }
         }]
     },
@@ -152,14 +152,14 @@ export const AreaOneEvents = {
         actions: [{
             name: "Search",
             actionType: "setInventory",
-            func: (gameState) => {
+            func: (gameState, event, setCurrentEvent) => {
                 if (Math.random() < 0.5) {
                     gameState.setInventory(produce((newInventory)=>{
                         newInventory.money += 1;
                     }));
-                    gameState.setCurrentEvent("gainedCoinBedroom");
+                    setCurrentEvent("gainedCoinBedroom");
                 } else {
-                    gameState.setCurrentEvent("nothingFoundBedroom");
+                    setCurrentEvent("nothingFoundBedroom");
 
                 }
         }
@@ -227,11 +227,11 @@ export const AreaOneEvents = {
         actions: [{
             name: "Be Healed",
             actionType: "setCharCondition",
-            func: (gameState) => {
+            func: (gameState, event, setCurrentEvent) => {
                     gameState.setCharCondition(produce((newCharCondition)=>{
                         newCharCondition.hp = 100;
                     }));
-                    gameState.setCurrentEvent("finishLookBronzeSerpent");
+                    setCurrentEvent("finishLookBronzeSerpent");
             }
         }]
     },
@@ -257,11 +257,11 @@ export const AreaOneEvents = {
         actions: [{
             name: "Sleep on the Stone",
             actionType: "setCharCondition",
-            func: (gameState) => {
+            func: (gameState, event, setCurrentEvent) => {
                     gameState.setCharCondition(produce((newCharCondition)=>{
                         newCharCondition.spiritualHp = 100;
                     }));
-                    gameState.setCurrentEvent("finishSleepOnStone");
+                    setCurrentEvent("finishSleepOnStone");
             }
         }]
     },

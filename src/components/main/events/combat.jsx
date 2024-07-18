@@ -11,15 +11,15 @@ import { updateInventory } from "../../../utils/misc";
 
 
 
-export default function CombatEvent() {
+export default function CombatEvent({event, setCurrentEvent}) {
 
     const {location} = useContext(GameContext);
     const [enemy, setEnemy] = useState(getRandomEnemy(AreaOneLocations[location].enemies));
-    return <Combat enemy={AreaOneEnemies[enemy]} />
+    return <Combat enemy={AreaOneEnemies[enemy]} event={event} setCurrentEvent={setCurrentEvent} />
 
 }
 
-export function Combat({enemy}) {
+export function Combat({enemy, event, setCurrentEvent}) {
 
     const gameState = useContext(GameContext);
 
@@ -194,7 +194,7 @@ export function Combat({enemy}) {
                 loseCombat={loseCombat}
             />
         </Fragment>
-    const buttonLeave = <Button onClick={()=>{gameState.setCurrentEvent(null); gameState.setLocation(AreaOneLocations[gameState.location].parent)}}>Go back to {AreaOneLocations[AreaOneLocations[gameState.location].parent].title}</Button>;
+    const buttonLeave = <Button onClick={()=>{setCurrentEvent(null); gameState.setLocation(AreaOneLocations[gameState.location].parent)}}>Go back to {AreaOneLocations[AreaOneLocations[gameState.location].parent].title}</Button>;
     
     return (
         <div className="p-8 border-2 flex flex-col justify-start items-center gap-3">

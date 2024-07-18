@@ -3,13 +3,14 @@ import CombatEvent from "./combat";
 import GenericEvent from "./generic";
 
 
-export default function Event({event}) {
+export default function Event({event, setCurrentEvent}) {
+
+    const eventObj = AreaOneEvents[event];
 
     if (event === "combat") {
-        return <CombatEvent />
+        return <CombatEvent event={eventObj} setCurrentEvent={setCurrentEvent} />
     } else {
-        const eventObj = AreaOneEvents[event];
-        return <GenericEvent event={eventObj} />
+        return <GenericEvent event={eventObj} setCurrentEvent={setCurrentEvent}/>
     }
 }
 

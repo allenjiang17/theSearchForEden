@@ -3,38 +3,35 @@ import { AreaOneEvents } from "../locations/areaOne/events";
 import { AreaOneEnemies } from "../locations/areaOne/enemies";
 import Button from "./elements/button";
 import Event from "./main/events/event";
-import { useContext, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { GameContext } from "../game";
 
 
 export default function Location() {
 
-    const {location, setLocation, currentEvent, setCurrentEvent, map, setMap} = useContext(GameContext);
-    
+    const {location, setLocation, map, setMap} = useContext(GameContext);
+
     const currentLocation = AreaOneLocations[location];
-
-    let currentEventToShow = currentEvent ?? getRandomEvent(currentLocation);
-
-    // I feel like this event listener is not great if we change locations outside of the context
-    // of the game (i.e., because of loading in)
-    useEffect(()=>{
-        if (typeof currentLocation != 'undefined') {
-            setCurrentEvent(getRandomEvent(AreaOneLocations[location]));
-        }
-    },[location]);
+    const [currentEvent, setCurrentEvent] = useState(getRandomEvent(currentLocation));
+    
 
     const locationOptions = currentLocation.children.map((location)=>(map[location]?.unlocked ? 
             <Button onClick={()=>{setLocation(location)}}>{AreaOneLocations[location].title}</Button>
         : null
     ));
 
+    useEffect(()=>{
+        setCurrentEvent(getRandomEvent(currentLocation));
+    },[location]);
+
+
     return (
         <div className="flex flex-col justify-center items-start gap-3">
             <span>{currentLocation.description}</span>
-            {currentEventToShow ? <Event event={currentEventToShow}/> : null}
+            {currentEvent ? <Event event={currentEvent} setCurrentEvent={setCurrentEvent}/> : null}
             <div className="flex flex-col justify-start items-start gap-3">
                 {locationOptions}
-                {currentLocation.parent && currentEventToShow !== "combat" ? <Button onClick={()=>{setLocation(currentLocation.parent)}}>Leave {AreaOneLocations[currentLocation.id].title}</Button> : null}
+                {currentLocation.parent && currentEvent !== "combat" ? <Button onClick={()=>{setLocation(currentLocation.parent)}}>Leave {AreaOneLocations[currentLocation.id].title}</Button> : null}
             </div>
         </div>
     )

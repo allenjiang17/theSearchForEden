@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef } from "react";
 import { GameContext } from "../../../game";
 
 
-export default function GenericEvent({event}) {
+export default function GenericEvent({event, setCurrentEvent}) {
     const gameState = useContext(GameContext);
     const loaded = useRef(false);
 
@@ -22,7 +22,7 @@ export default function GenericEvent({event}) {
 
     const buttons = actions.map((action)=>(
         <Button onClick={()=>{
-            action.func(gameState);
+            action.func(gameState, event, setCurrentEvent);
         }}>{action.name}</Button>
     ));
     
