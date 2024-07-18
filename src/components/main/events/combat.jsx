@@ -42,21 +42,26 @@ export function Combat({enemy, event, setCurrentEvent}) {
         const damage = Math.ceil(charWeapon.power * (charAttack / enemy.defense) * (0.5*Math.random() + 0.75));
         const enemyDamage = Math.ceil((enemy.attack / charDefense) * 0.5*Math.random() + 0.75);
 
+        const enemyHp = Math.max(0, enemyCondition.hp - damage);
+        const charHp = isPhysicalBattle ? Math.max(0, gameState.charCondition.hp - enemyDamage) : gameState.charCondition.hp;
+        const charSpiritualHp = isPhysicalBattle ? gameState.charCondition.spiritualHp : Math.max(0, gameState.charCondition.spiritualHp - enemyDamage);
+
         setEnemyCondition(produce((enemyCondition)=>{
-            enemyCondition.hp = Math.max(0, enemyCondition.hp - damage);
+            enemyCondition.hp = enemyHp;
+            //other conditions could be set here
         }));      
             
         gameState.setCharCondition(produce((charCondition)=>{
-            isPhysicalBattle ? charCondition.hp = Math.max(0, gameState.charCondition.hp - enemyDamage) 
-            : charCondition.spiritualHp = Math.max(0, gameState.charCondition.spiritualHp - enemyDamage);
+            charCondition.hp = charHp
+            charCondition.spiritualHp = charSpiritualHp;
         }));
 
         setCombatMessage(`You dealt ${damage} damage. ${enemy.name} dealt ${enemyDamage} damage.`);
 
-        if (enemyCondition.hp === 0) {
+        if (enemyHp === 0) {
             setCombatStatus("won");
             winCombat();
-        } else if (gameState.charCondition.hp === 0 || gameState.charCondition.spiritualHp === 0) {
+        } else if (charHp === 0 || charSpiritualHp === 0) {
             setCombatStatus("lost");
             loseCombat();
         }
