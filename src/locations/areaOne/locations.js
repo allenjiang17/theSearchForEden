@@ -23,7 +23,7 @@ export const AreaOneLocations = {
         id: "world",
         description: "This is the great big world. You take a deep breath and look around. Where should you go?\n\nLarry\'s Note: These places will be reassigned elsewhere later.",
         events: [],
-        children: ["cityOfDestruction", "wilderness", "landOfThePatriarchs", "landOfTheJudges", "landOfTheKings", "landOfThePoets", "landOfTheProphets", "landOfTheApostles", "heavenlyPlaces",],
+        children: ["cityOfDestruction", "wilderness", "landOfThePatriarchs", "landOfTheJudges"],
         parent: null
     },
     "house":{
@@ -152,9 +152,9 @@ export const AreaOneLocations = {
     "landOfThePatriarchs": {
         title: "Land of the Patriarchs",
         id: "landOfThePatriarchs",
-        description: "You try to go to the Land of the Patriarchs, but you can't figure out how to get there. Seems like you need somebody to guide you there. \n\nLarry\'s Note: The following places will be unlocked after you finish The Lost Man quest.",
+        description: "You try to go to the Land of the Patriarchs, but you can't figure out how to get there. Seems like you need somebody to guide you there.",
         events: [],
-        children: ["bethel", "valleyOfSiddim", "cityOfSodom"],
+        children: [],
         parent: "world"
     },
     "landOfTheJudges": {
