@@ -2,6 +2,7 @@
 import './App.css'
 import MainBody from './components/mainBody.jsx'
 import NavBar from './components/navBar.jsx';
+import { AreaOneLocations } from './locations/areaOne/locations.js';
 import { createContext, useState, useEffect } from 'react';
 
 
@@ -42,7 +43,19 @@ const initialCharCondition = {
     hands: null,
     trinkets: []
   }
-}
+};
+
+
+//this holds the map state as experienced by the player -- distinct from the static data in locations.js
+let initialMap = {};
+Object.keys(AreaOneLocations).forEach((location)=>{
+  initialMap[location] = {
+    unlocked: AreaOneLocations[location].initialUnlocked ?? false,
+    state: "default",
+  }
+})
+
+console.log(initialMap);
 
 function checkLocal(obj) {
   return(!(localStorage.getItem(obj) === null))
@@ -70,6 +83,7 @@ function Game() {
   // const [location, setLocation] = useStateLocal("location", "beginning")
   const [location, setLocation] = useState("beginning")
   // effectHook("location", location);
+  const [map, setMap] = useState(initialMap);
   const [character, setCharacter] = useStateLocal("character", initialCharacterTest)
   effectHook("character", character);
   const [inventory, setInventory] = useStateLocal("inventory", initialInventory)
@@ -89,6 +103,7 @@ function Game() {
     <GameContext.Provider value ={{
       currentEvent, setCurrentEvent, 
       location, setLocation, 
+      map, setMap,
       character, setCharacter, 
       inventory, setInventory, 
       charCondition, setCharCondition, 

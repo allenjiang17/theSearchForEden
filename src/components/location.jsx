@@ -9,10 +9,10 @@ import { GameContext } from "../game";
 
 export default function Location() {
 
-    const {location, setLocation, currentEvent, setCurrentEvent} = useContext(GameContext);
-    console.log(currentEvent);
+    const {location, setLocation, currentEvent, setCurrentEvent, map, setMap} = useContext(GameContext);
     
     const currentLocation = AreaOneLocations[location];
+
     let currentEventToShow = currentEvent ?? getRandomEvent(currentLocation);
 
     // I feel like this event listener is not great if we change locations outside of the context
@@ -23,9 +23,10 @@ export default function Location() {
         }
     },[location]);
 
-    const locationOptions = currentLocation.children.map((location)=>(
-        <Button onClick={()=>{setLocation(location)}}>{AreaOneLocations[location].title}</Button>
-    ))
+    const locationOptions = currentLocation.children.map((location)=>(map[location]?.unlocked ? 
+            <Button onClick={()=>{setLocation(location)}}>{AreaOneLocations[location].title}</Button>
+        : null
+    ));
 
     return (
         <div className="flex flex-col justify-center items-start gap-3">

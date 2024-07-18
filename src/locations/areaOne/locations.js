@@ -16,15 +16,18 @@ export const AreaOneLocations = {
         title: "Beginnings",
         id: "beginning",
         events: ["beginnings"],
-        children:[]
+        children:[],
+        parent: null,
+        initialUnlocked: true,
     },
     "world": {
         title: "World",
         id: "world",
         description: "This is the great big world. You take a deep breath and look around. Where should you go?\n\nLarry\'s Note: These places will be reassigned elsewhere later.",
         events: [],
-        children: ["cityOfDestruction", "wilderness", "landOfThePatriarchs", "landOfTheJudges"],
-        parent: null
+        children: ["cityOfDestruction", "wilderness", "landOfThePatriarchs", "landOfTheJudges", "landOfTheKings", "landOfThePoets", "landOfTheProphets", "landOfTheApostles", "heavenlyPlaces",],
+        parent: null,
+        initialUnlocked: true,
     },
     "house":{
         title: "Your House",
@@ -32,7 +35,9 @@ export const AreaOneLocations = {
         description: "You look around at your humble abode. Where would you like to go?",
         events: [],
         children: ["bedroom", "prayerCloset", "livingRoom"],
-        parent: "cityOfDestruction"
+        parent: "cityOfDestruction",
+        initialUnlocked: true,
+
     },
     "bedroom":{
         title: "Bedroom",
@@ -40,7 +45,9 @@ export const AreaOneLocations = {
         description: "You walk into your neat, nice bedroom and see a soft plush bed.",
         events: ["restBedroom"],
         children: [],
-        parent: "house"
+        parent: "house",
+        initialUnlocked: true,
+
     },
     "prayerCloset":{
         title: "Prayer closet",
@@ -48,7 +55,9 @@ export const AreaOneLocations = {
         description: "You walk into your prayer closet and close your eyes.",
         events: ["prayCloset"],
         children: [],
-        parent: "house"
+        parent: "house",
+        initialUnlocked: true,
+
     },
     "livingRoom": {
         title: "Living room",
@@ -57,7 +66,9 @@ export const AreaOneLocations = {
         events: ["searchForCoinsBedroom"],
         enemies: ["mothAndRust", "commonSloth"],
         children: [],
-        parent: "house"
+        parent: "house",
+        initialUnlocked: true,
+
     },
     "cityOfDestruction": {
         title: "City of Destruction",
@@ -65,7 +76,9 @@ export const AreaOneLocations = {
         description: "You venture out into the City of Destruction. It's a somewhat foreboding name, but you didn't choose it. You just happen to live here. Where would you like to go?",
         events: [],
         children: ["house", "townTailor", "brokenCistern", "emptyLand"],
-        parent: "world"
+        parent: "world",
+        initialUnlocked: true,
+
     },
     "townTailor": {
         title: "Town Tailor",
@@ -73,7 +86,9 @@ export const AreaOneLocations = {
         description: "You stroll into the Tailor's Shop and see a crusty, old man at his workbench.",
         events: ["getSomeClothes"],
         children: [],
-        parent: "cityOfDestruction"
+        parent: "cityOfDestruction",
+        initialUnlocked: true,
+
     },
     "brokenCistern": {
         title: "Broken Cistern",
@@ -81,7 +96,9 @@ export const AreaOneLocations = {
         description: "You look into the broken cistern. It doesn’t seem like it holds much water. You try to grab the water in the cistern with your hand, but it slips through your fingers.",
         events: [],
         children: [],
-        parent: "cityOfDestruction"
+        parent: "cityOfDestruction",
+        initialUnlocked: true,
+
     },
     "emptyLand": {
         title: "Empty Land",
@@ -89,7 +106,17 @@ export const AreaOneLocations = {
         description: "You see a large plot of land, covered with thorns and thistles. It looks cursed.",
         events: [],
         children: [],
-        parent: "cityOfDestruction"
+        states: {
+            "redeemed": {
+                title: "Redeemed Land",
+                id: "redeemedLand",
+                description: "You see a large pot of land, covered with fruitful trees. It looks peaceful.",
+                events: []
+            }
+        },
+        parent: "cityOfDestruction",
+        initialUnlocked: true,
+
     },
     "wilderness": {
         title: "The Wilderness",
@@ -97,7 +124,9 @@ export const AreaOneLocations = {
         description: "You walk out into the Wilderness. You hear a faint voice crying out, \"Prepare the way of the Lord; make his paths straight.\"\n\nYou look around but don't see any paths. Maybe these paths are not literal but metaphorical?",
         events: [],
         children: ["theLostMan", "fieldOfManna", "valleyOfStones", "desertOfWandering", "bronzeSerpent", "yamSuph"],
-        parent: "world"
+        parent: "world",
+        initialUnlocked: true,
+
     },
     "theLostMan": {
         title: "The Lost Man",
@@ -105,7 +134,9 @@ export const AreaOneLocations = {
         description: "You meet a man aimlessly wandering around. You ask him what\'s going on.\n\n\"I\'m not sure,\" he says, \"Someone told me that there was this magical place called Eden out here, where nothing is cursed and everything is living. It didn\'t seem possible, but something inside of me told me to go look for it. So I went out to find it, and now I\'m completely lost. I have no idea where I am.\"\n\n\"Where did you come from?\" you ask.\n\n\"I live in the Land of the Patriarchs. But I don\'t know how to get there. I don\'t really have a sense of direction.\"",
         events: [],
         children: [],
-        parent: "wilderness"
+        parent: "wilderness",
+        initialUnlocked: true,
+
     },
     "fieldOfManna": {
         title: "Field of Manna",
@@ -113,7 +144,9 @@ export const AreaOneLocations = {
         description: "You see a field filled with some sort of bread.",
         events: ["gotManna"],
         children: [],
-        parent: "wilderness"
+        parent: "wilderness",
+        initialUnlocked: true,
+
     },
     "valleyOfStones": {
         title: "Valley of Stones",
@@ -122,7 +155,9 @@ export const AreaOneLocations = {
         events: [],
         enemies: ["waterStone", "breadStone", "ancientBoundaryStone"],
         children: [],
-        parent: "wilderness"
+        parent: "wilderness",
+        initialUnlocked: true,
+
     },
     "desertOfWandering": {
         title: "Desert of Wandering",
@@ -131,7 +166,9 @@ export const AreaOneLocations = {
         events: [],
         enemies: ["commonGluttony", "grumblingOrgan", "fierySerpent"],
         children: [],
-        parent: "wilderness"
+        parent: "wilderness",
+        initialUnlocked: true,
+
     },
     "bronzeSerpent": {
         title: "The Bronze Serpent",
@@ -163,8 +200,10 @@ export const AreaOneLocations = {
         id: "landOfThePatriarchs",
         description: "You try to go to the Land of the Patriarchs, but you can't figure out how to get there. Seems like you need somebody to guide you there.",
         events: [],
-        children: [],
-        parent: "world"
+        children: ["bethel", "valleyOfSiddim", "cityOfSodom"],
+        parent: "world",
+        initialUnlocked: true,
+
     },
     "landOfTheJudges": {
         title: "Land of the Judges",
@@ -172,7 +211,9 @@ export const AreaOneLocations = {
         description: "As you approach the Land of the Judges, you notice that all the people there are of great size. You seem like a grasshopper in their eyes. Immediately, you are stricken by fear, and you run back to the Wilderness.",
         events: [],
         children: [],
-        parent: "world"
+        parent: "world",
+        initialUnlocked: true,
+
     },
     "landOfTheKings": {
         title: "Land of the Kings",
