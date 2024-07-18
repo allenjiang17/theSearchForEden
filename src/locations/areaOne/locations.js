@@ -144,8 +144,17 @@ export const AreaOneLocations = {
     "yamSuph": {
         title: "Yam Suph",
         id: "yamSuph",
-        description: "You see a large body of water before you. Some say that the water is red, while others say that the water is filled with reeds. You\'re not quite sure. Either way, you sense that something extraordinary happened here long ago.",
-        events: ["greatFear"],
+        description: "You see a large body of water before you. Some say that the water is red, while others say that the water is filled with reeds. You\'re not quite sure. But that\'s the last thing on your mind right now.\n\nAt once, terror and dread descend on your body. A thundering voice speaks, \"Was it because there were no graves in the City of Destruction that you have come to the desert to die?\"\n\nYou brace yourself for an epic battle of the mind.",
+        events: [],
+        children: ["fightGreatFear"],
+        parent: "wilderness"
+    },
+    "fightGreatFear": {
+        title: "Fight the Great Fear",
+        id: "fightGreatFear",
+        description: "This is the most frightening thing you've ever faced. Your mind is filled with hideous images that are too terrifying to write here.",
+        events: [],
+        enemies: ["greatFear"],
         children: [],
         parent: "wilderness"
     },

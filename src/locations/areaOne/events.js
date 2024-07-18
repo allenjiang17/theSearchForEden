@@ -242,13 +242,6 @@ export const AreaOneEvents = {
         description: "Your Physical HP is back to full!",
         actions: []
     },
-    "greatFear":{        
-        title: "Great Fear",
-        id: "greatFear",
-        encounterRate: 1,
-        description: "Your body shivers. Terror and dread descend on your body. A thundering voice speaks, \"Was it because there were no graves in the City of Destruction that you have come to the desert to die?\" Larry\'s Note: Give option to fight Great Fear or run away.",
-        actions: []
-    },
     "rescueTheCaptives":{        
         title: "Rescue the Captives",
         id: "rescueTheCaptives",
@@ -256,7 +249,6 @@ export const AreaOneEvents = {
         description: "You see an exhausted man with terror on his face running over to you. \"What\'s the matter?\" you ask.\n\nWith tears in his eyes, the man takes a few large breaths and responds, \"Our cities have been attacked and plundered, and our people have been taken captive.\"\n\n\"Take courage,\" you say, \"I will rescue them!\"",
         actions: []
     },
-
     "sleepOnStone":{        
         title: "Sleep on the Stone",
         id: "sleepOnStone",

@@ -138,11 +138,11 @@ export const AreaOneEnemies = {
         type: "spiritual",
         description: "You encounter a Great Fear. Legend has it that long ago, this spirit seized a crowd of people that was being chased down by an army of chariots. It continues to terrorize people today.",
         hp: 100,
-        attack: 5,
-        defense: 5,
+        attack: 8,
+        defense: 8,
         statReward: [
-            {stat: "zeal", amount: 1, chance: 0.5},
-            {stat: "resilience", amount: 1, chance: 0.5},
+            {stat: "zeal", amount: 1, chance: 1},
+            {stat: "resilience", amount: 1, chance: 1},
         ],
         itemDrop: [
           {item: "imperfectLovePotion", chance: 1}
