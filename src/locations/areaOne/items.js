@@ -12,8 +12,13 @@ export const AreaOneItems = {
     "manna": {
         name: "Manna",
         description: "\"What is it?\" you wonder. It tastes like wafers made with honey.",
-        battle: true,
-        battleAction: null,
+        battleItem: true,
+        battleAction: {
+            type: "heal", //heal, damage, buff, inflict status 
+            amount: 5,
+            description: "You ate some Manna. It tasted pretty good, and you feel a bit better (healed 5 Hp)"
+            //status: "poison"
+        },
         price: 0
     },
     "locust": {

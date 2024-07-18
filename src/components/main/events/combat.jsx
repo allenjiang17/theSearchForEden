@@ -23,8 +23,11 @@ export function Combat({enemy}) {
 
     const gameState = useContext(GameContext);
 
-    const [enemyHp, setEnemyHp] = useState(enemy.hp);
-    const [itemUsed, setItemUsed] = useState(null);
+    const [enemyCondition, setEnemyCondition] = useState({
+        hp: enemy.hp,
+        affliction: null,
+        buff: null
+    });
     const [combatMessage, setCombatMessage] = useState("");
     const [combatStatus, setCombatStatus] = useState("ongoing"); //ongoing, won, lost
 
@@ -39,16 +42,18 @@ export function Combat({enemy}) {
         const damage = Math.ceil(charWeapon.power * (charAttack / enemy.defense) * (0.5*Math.random() + 0.75));
         const enemyDamage = Math.ceil((enemy.attack / charDefense) * 0.5*Math.random() + 0.75);
 
-        setEnemyHp(Math.max(0, enemyHp - damage));
-        gameState.setCharCondition(produce((charCondition)=>{
+        setEnemyCondition(produce((enemyCondition)=>{
+            enemyCondition.hp = Math.max(0, enemyCondition.hp - damage);
+        }));      
             
+        gameState.setCharCondition(produce((charCondition)=>{
             isPhysicalBattle ? charCondition.hp = Math.max(0, gameState.charCondition.hp - enemyDamage) 
             : charCondition.spiritualHp = Math.max(0, gameState.charCondition.spiritualHp - enemyDamage);
-
         }));
+
         setCombatMessage(`You dealt ${damage} damage. ${enemy.name} dealt ${enemyDamage} damage.`);
 
-        if (enemyHp === 0) {
+        if (enemyCondition.hp === 0) {
             setCombatStatus("won");
             winCombat();
         } else if (gameState.charCondition.hp === 0 || gameState.charCondition.spiritualHp === 0) {
@@ -95,30 +100,106 @@ export function Combat({enemy}) {
         setCombatMessage(`Ouch. You were defeated by ${enemy.name}. Perhaps you should go home and take a nap.`);
 
     }
-    const battleItems = Object.keys(gameState.inventory.items).map((itemName)=>{
 
-        const item = AreaOneItems[itemName];
-        if (item.battle) {
-            <Option value={item}>{item.name}</Option>
+    function BattleItemComponent() {
+
+        const [itemUsed, setItemUsed] = useState(null);
+    
+        function useItem() {
+    
+            if(!itemUsed) {
+                console.log('no item selected')
+                return
+            }
+
+            const item = AreaOneItems[itemUsed];
+                
+            //calculate enemy damage
+            const charDefense = isPhysicalBattle ? gameState.character.stats.defense : gameState.character.stats.resilience;
+            const enemyDamage = Math.ceil((enemy.attack / charDefense) * 0.5*Math.random() + 0.75);
+    
+            gameState.setCharCondition(produce((charCondition)=>{
+                isPhysicalBattle ? 
+                    charCondition.hp = Math.max(0, gameState.charCondition.hp - enemyDamage) 
+                    : charCondition.spiritualHp = Math.max(0, gameState.charCondition.spiritualHp - enemyDamage);
+            }));
+    
+            //calculate item effect
+            if (item.battleAction.type === "heal") {
+                gameState.setCharCondition(produce((charCondition)=>{
+                    charCondition.hp = charCondition.hp + item.battleAction.amount
+                }));
+            }
+    
+            if (item.battleAction.type === "damage") {
+                setEnemyCondition(produce((enemyCondition)=>{
+                    enemyCondition.hp = enemyCondition.hp - item.battleAction.amount
+                }));
+            }
+    
+                //implement for damage, status effects, etc.
+
+            //use up item
+            gameState.setInventory(produce((newInventory)=>{
+                newInventory.items[itemUsed] = Math.max(0, newInventory.items[itemUsed] - 1);
+                if (newInventory.items[itemUsed] === 0) {
+                    delete newInventory.items[itemUsed];
+                }
+            }))
+            setCombatMessage(`${item.battleAction.description}. ${enemy.name} dealt ${enemyDamage} damage.`);
+
+            if (enemyCondition.hp === 0) {
+                setCombatStatus("won");
+                winCombat();
+            } else if (gameState.charCondition.hp === 0 || gameState.charCondition.spiritualHp === 0) {
+                setCombatStatus("lost");
+                loseCombat();
+            }
+    
         }
-    });
+    
+        const battleItems = Object.keys(gameState.inventory.items).map((itemId)=>{
+    
+            const item = AreaOneItems[itemId];
+            if (item.battleItem) {
+                return <option value={itemId}>{item.name}</option>
+            }
+        });
+    
+        return (
+            <div>
+                <div>
+                    Item: 
+                    <select value={itemUsed} onChange={(event)=>{setItemUsed(event.target.value)}}>
+                        <option value={null}>Select</option>
+                        {battleItems}
+                    </select> 
+                    <Button onClick={useItem}>Use</Button>
+                </div>
+            </div>
+        )
+    }
 
     const buttonActions = 
         <Fragment>
             <Button onClick={calculateCombatTurn}>Attack with {gameState.charCondition.weapon ?? "your bare hands"}!</Button> 
-            Item: 
-            <select value={itemUsed} onChange={setItemUsed}>
-                {battleItems}
-            </select> 
-
-        
+            <BattleItemComponent 
+                gameState={gameState} 
+                enemyCondition={enemyCondition} 
+                setEnemyCondition={setEnemyCondition} 
+                setCombatStatus={setCombatStatus} 
+                setCombatMessage={setCombatMessage} 
+                isPhysicalBattle={isPhysicalBattle}
+                winCombat={winCombat} 
+                loseCombat={loseCombat}
+            />
         </Fragment>
     const buttonLeave = <Button onClick={()=>{gameState.setCurrentEvent(null); gameState.setLocation(AreaOneLocations[gameState.location].parent)}}>Go back to {AreaOneLocations[AreaOneLocations[gameState.location].parent].title}</Button>;
     
     return (
         <div className="p-8 border-2 flex flex-col justify-start items-center gap-3">
             <span>{enemy.name}</span>
-            <span>Hp: {enemyHp}/{enemy.hp}</span>
+            <span>Hp: {enemyCondition.hp}/{enemy.hp}</span>
             <span>{enemy.description}</span>
             <span>{combatMessage}</span>
             {isPhysicalBattle ? 
@@ -126,12 +207,15 @@ export function Combat({enemy}) {
             : 
                 <span>Your Spiritual Hp: {gameState.charCondition.spiritualHp}/{gameState.character.stats.spiritualHp}</span>
             }          
-            <div className="flex flex-row justify-center items-center gap-3">
+            <div className="flex flex-col justify-center items-center gap-3">
                {combatStatus === "ongoing" ? buttonActions : null}
                {combatStatus === "won" || combatStatus === "lost" ? buttonLeave : null}
             </div>
         </div>
     )
+
+
+
 }
 
 function getRandomEnemy(enemies) {
