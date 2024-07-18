@@ -74,7 +74,6 @@ function Game() {
   effectHook("character", character);
   const [inventory, setInventory] = useStateLocal("inventory", initialInventory)
   effectHook("inventory", inventory);
-
   const [charCondition, setCharCondition] = useStateLocal("charCondition", initialCharCondition);
   effectHook("charCondition", charCondition);
 
