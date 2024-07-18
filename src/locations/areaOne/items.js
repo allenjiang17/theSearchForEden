@@ -12,6 +12,8 @@ export const AreaOneItems = {
     "manna": {
         name: "Manna",
         description: "\"What is it?\" you wonder. It tastes like wafers made with honey.",
+        battle: true,
+        battleAction: null,
         price: 0
     },
     "locust": {

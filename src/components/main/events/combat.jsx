@@ -95,8 +95,12 @@ export function Combat({enemy}) {
         setCombatMessage(`Ouch. You were defeated by ${enemy.name}. Perhaps you should go home and take a nap.`);
 
     }
-    const battleItems = Object.keys(gameState.inventory.items).map((item)=>{
-        <Option value={item}>{item.name}</Option>
+    const battleItems = Object.keys(gameState.inventory.items).map((itemName)=>{
+
+        const item = AreaOneItems[itemName];
+        if (item.battle) {
+            <Option value={item}>{item.name}</Option>
+        }
     });
 
     const buttonActions = 
