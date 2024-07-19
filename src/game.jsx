@@ -25,9 +25,9 @@ const initialCharacterTest = {
 };
 
 const initialInventory = {
-  money: 0,
+  money: 3,
   keyItems: [],
-  items: {},
+  items: {"chewedUpGarments": 5},
   equipment: [],
   weapons: []
 }
@@ -36,6 +36,14 @@ const initialCharCondition = {
   hp: 100,
   spiritualHp: 100,
   states: [],
+  statEffects: {
+    hp: 0,
+    strength: 0,
+    defense: 0,
+    spiritualHp: 0,
+    zeal: 0,
+    resilience: 0
+  },
   weapon: null,
   equipment: {
     head: null,

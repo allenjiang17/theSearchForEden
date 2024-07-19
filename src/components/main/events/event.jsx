@@ -8,9 +8,9 @@ export default function Event({event, setCurrentEvent}) {
     const eventObj = AreaOneEvents[event];
 
     if (event === "combat") {
-        return <CombatEvent event={eventObj} setCurrentEvent={setCurrentEvent} />
+        return <CombatEvent key={event} event={eventObj} setCurrentEvent={setCurrentEvent} />
     } else {
-        return <GenericEvent event={eventObj} setCurrentEvent={setCurrentEvent}/>
+        return <GenericEvent key={event}event={eventObj} setCurrentEvent={setCurrentEvent}/>
     }
 }
 

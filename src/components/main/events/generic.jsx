@@ -14,7 +14,7 @@ export default function GenericEvent({event, setCurrentEvent}) {
     useEffect(()=>{
         //load auto action upon component mount
         if (event.autoAction && !loaded.current) {
-            event.autoAction.func(gameState);
+            event.autoAction.func(gameState, event, setCurrentEvent);
         }
 
         loaded.current = true

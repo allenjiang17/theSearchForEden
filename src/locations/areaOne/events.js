@@ -184,6 +184,58 @@ export const AreaOneEvents = {
         id: "getSomeClothes",
         encounterRate: 1, 
         description: '\"Whoa! Whoa! You can\'t walk in here without clothes! What in the world are you thinking?\"\n\n\"I am so sorry,\" you say, \"You see, that\'s why I\'m here. I need some clothes."\n\n\“Ah, I see,\” the Tailor says. \“Tell you what—I\'ll help you out. If you get me 5 pieces of garment, I\'ll make you something to wear. It\'ll cost you 2 Earthly Coins though.\"',
+        autoAction: {
+            name: "Check Inventory",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                if (gameState.inventory.items["chewedUpGarments"] >= 5 && gameState.inventory.money >= 2) {
+                    setCurrentEvent("getSomeClothesCompleteStep1");
+                } else {
+                    setCurrentEvent("getSomeClothesIncomplete");
+                }
+            }
+        },
+        actions: []
+    },
+    "getSomeClothesIncomplete":{
+        title: "Get Some Clothes Incomplete",
+        id: "getSomeClothesIncomplete",
+        encounterRate: 1, 
+        description: 'The Tailor looks up from his workbench. \n“Do you have 5 garment pieces and 2 Earthly Coins yet? No? Come back when you get them.”',
+        actions: []
+    },
+    "getSomeClothesCompleteStep1":{
+        title: "Get Some Clothes Complete",
+        id: "getSomeClothesCompleteStep1",
+        encounterRate: 1, 
+        description: 'The Tailor looks up from his workbench. “You got the stuff? Good. Give them here”',
+        actions: [{
+            name: "Give 5 Chewed-up Garments and 2 Earthly Coins",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.money = Math.max(0, newInventory.money - 2);
+                        newInventory.items["chewedUpGarments"] = Math.max(0, newInventory.items["chewedUpGarments"] - 5); 
+                    }));
+                    setCurrentEvent("getSomeClothesCompleteStep2");
+
+            }
+        }]
+    },   
+    "getSomeClothesCompleteStep2":{
+        title: "Get Some Clothes Complete Step 2",
+        id: "getSomeClothesCompleteStep2",
+        encounterRate: 1, 
+        description: 'What the—where did you get this stuff from? Moths? Well, I’ll suppose they’ll have to do. Here you go.\n You gained Garment of Skin (+2 Defense Body)',
+        autoAction: {
+            name: "Gain Garment of Skin",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.equipment.push("garmentOfSkin");
+                    }));
+            }
+        },
         actions: []
     },
     "gotManna":{
