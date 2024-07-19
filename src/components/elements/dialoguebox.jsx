@@ -17,6 +17,7 @@ export default function DialogueBox({text, speed=30, ...props}) {
         clearInterval(interval);
       };
     }, [text]);
+
     return (
         <span {...props}>
             {displayText}
