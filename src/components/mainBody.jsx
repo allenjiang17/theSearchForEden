@@ -14,7 +14,7 @@ export default function MainBody({page}) {
             <div>
                 <Map/>
                 <Sound 
-                    url="./src/sounds/Nothing_but_the_blood.mp3"
+                    url="/sounds/Nothing_but_the_blood.mp3"
                     playStatus={Sound.status.PLAYING}
                     volume={30}
                     loop={true} />
