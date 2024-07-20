@@ -7,17 +7,18 @@ import Settings from "./main/navigation/settings";
 import Sound from "./elements/sound";
 
 
-export default function MainBody({page}) {
+export default function MainBody({page, settings}) {
 
     if (page === "map") {
         return (
             <div>
                 <Map/>
-                <Sound 
+                {settings.music ? <Sound 
                     url="/theSearchForEden/sounds/Nothing_but_the_blood.mp3"
                     playStatus={Sound.status.PLAYING}
                     volume={30}
                     loop={true} />
+                : null}
             </div>
         )
     } else if (page === "character") {

@@ -97,6 +97,10 @@ function Game() {
   const [charCondition, setCharCondition] = useStateLocal("charCondition", initialCharCondition);
   effectHook("charCondition", charCondition);
 
+  const [settings, setSettings] = useStateLocal("settings", {
+    music: true
+  })
+
   const [ntask, setNtask] = useStateLocal("ntask", 24);
   effectHook("ntask", ntask);
   const [day, setDay] = useStateLocal("day", 0);
@@ -114,11 +118,12 @@ function Game() {
       character, setCharacter, 
       inventory, setInventory, 
       charCondition, setCharCondition, 
+      settings, setSettings,
       ntask, setNtask,
       day, setDay}}>
       <div className="flex flex-col justify-start items-start w-full max-w-[1000px] mx-auto p-8 gap-5">
         <NavBar setPage={setPage}/>
-        <MainBody page={page}/>
+        <MainBody page={page} settings={settings}/>
       </div>
     </GameContext.Provider>
   )

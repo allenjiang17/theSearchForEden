@@ -1,13 +1,13 @@
 export function Toggle({active, ...props}) {
 
     const outerContainerStyles = [
-        "w-[5rem]",
-        "h-[2.5rem]",
+        "w-[3.2rem]",
+        "h-[1.8rem]",
         "flex",
         "flex-row",
         "rounded-full",
         "p-[0.2rem]",
-        active ? "bg-Slate500" : "bg-Slate100",
+        active ? "bg-black" : "bg-gray-400",
         active ? "justify-end" : "justify-start"
     ];
 
