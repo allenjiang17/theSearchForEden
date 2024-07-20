@@ -4,7 +4,7 @@ import Map from "./location";
 import Character from "./main/navigation/character";
 import Inventory from "./main/navigation/inventory";
 import Settings from "./main/navigation/settings";
-import Sound from 'react-sound';
+import Sound from "./elements/sound";
 
 
 export default function MainBody({page}) {
