@@ -148,7 +148,7 @@ export const AreaOneEvents = {
         title: "Search for Coins",
         id: "searchForCoinsBedroom",
         encounterRate: 1,
-        description: "You've lost a number of coins in this space in the past...perhaps a careful search will turn up fruitful?",
+        description: "You've lost a number of coins in this space in the past... perhaps a careful search will turn up fruitful?",
         actions: [{
             name: "Search",
             actionType: "setInventory",
@@ -169,26 +169,58 @@ export const AreaOneEvents = {
         title: "You gained a coin!",
         id: "gainedCoinBedroom",
         encounterRate: 1, 
-        description: "You searched carefully and found a lost coin! You rejoice! (Money +1)",
+        description: "You searched carefully and found a lost coin! You call your friends and neighbors together and says, \"Rejoice with me; I have found my lost coin.\"",
         actions: []
     },
     "nothingFoundBedroom":{
         title: "Nothing found",
         id: "nothingFoundBedroom",
         encounterRate: 1, 
-        description: "You searched carefully but did not find anything",
+        description: "You searched carefully but did not find anything. Maybe next time.",
+        actions: []
+    },
+    "getResolve":{
+        title: "Get Resolve",
+        id: "getResolve",
+        encounterRate: 1, 
+        description: "\"Hello there\", you say. \n\n\"Ah, yes,\" the woman says, \"You are just the one I seek.\"\n\n\"Me? Why?\"\n\n\"Because you, young sleeper, have woken up. And your journey to Eden has begun.\"\n\n\"What are you talking about?\" you ask, with bewilderment and confusion in your eyes.\n\n\"All will make sense one day. For now, take this. You will need it if you are to stand a chance in  spiritual battles. I will see you soon.\"\n\nThe old woman hands you Spirit of Resolve, and she continues on her way. \n\n(+1 Spirit of Resolve)",
+        autoAction: {
+            name: "Get Resolve",
+            actionType: "setInventory",
+            func: (gameState) => {
+                    gameState.setInventory(produce((newInventory)=>{
+                        updateInventory(newInventory, "spiritOfResolve");
+                    }));            
+            }
+        },
+        actions: []
+    },
+    "getFigLeaf":{
+        title: "Get Fig Leaf",
+        id: "getFigLeaf",
+        encounterRate: 1, 
+        description: "You grab a fig leaf and pull it off the fig tree. \n\n(+1 Fig Leaf)",
+        autoAction: {
+            name: "Get Fig Leaf",
+            actionType: "setInventory",
+            func: (gameState) => {
+                    gameState.setInventory(produce((newInventory)=>{
+                        updateInventory(newInventory, "figLeaf");
+                    }));            
+            }
+        },
         actions: []
     },
     "getSomeClothes":{
         title: "Get Some Clothes",
         id: "getSomeClothes",
         encounterRate: 1, 
-        description: '\"Whoa! Whoa! You can\'t walk in here without clothes! What in the world are you thinking?\"\n\n\"I am so sorry,\" you say, \"You see, that\'s why I\'m here. I need some clothes."\n\n\“Ah, I see,\” the Tailor says. \“Tell you what—I\'ll help you out. If you get me 5 pieces of garment, I\'ll make you something to wear. It\'ll cost you 2 Earthly Coins though.\"',
+        description: '\"Whoa! Whoa! You can\'t walk in here without clothes! What in the world are you thinking?\"\n\n\"I am so sorry,\" you say, \"You see, that\'s why I\'m here. I need some clothes."\n\n\“Ah, I see,\” the Tailor says. \“Tell you what—I\'ll help you out. If you get me 10 pieces of garment, I\'ll make you something to wear. It\'ll cost you 3 Earthly Coins though.\"',
         autoAction: {
             name: "Check Inventory",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
-                if (gameState.inventory.items["chewedUpGarments"] >= 5 && gameState.inventory.money >= 2) {
+                if (gameState.inventory.items["chewedUpGarments"] >= 10 && gameState.inventory.money >= 3) {
                     setCurrentEvent("getSomeClothesCompleteStep1");
                 } else {
                     setCurrentEvent("getSomeClothesIncomplete");
@@ -201,7 +233,7 @@ export const AreaOneEvents = {
         title: "Get Some Clothes Incomplete",
         id: "getSomeClothesIncomplete",
         encounterRate: 1, 
-        description: 'The Tailor looks up from his workbench. \n“Do you have 5 garment pieces and 2 Earthly Coins yet? No? Come back when you get them.”',
+        description: 'The Tailor looks up from his workbench. \n“Do you have 10 garment pieces and 3 Earthly Coins yet? No? Come back when you get them.”',
         actions: []
     },
     "getSomeClothesCompleteStep1":{
@@ -210,12 +242,12 @@ export const AreaOneEvents = {
         encounterRate: 1, 
         description: 'The Tailor looks up from his workbench. “You got the stuff? Good. Give them here”',
         actions: [{
-            name: "Give 5 Chewed-up Garments and 2 Earthly Coins",
+            name: "Give 10 Chewed-up Garments and 3 Earthly Coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                     gameState.setInventory(produce((newInventory)=>{
-                        newInventory.money = Math.max(0, newInventory.money - 2);
-                        newInventory.items["chewedUpGarments"] = Math.max(0, newInventory.items["chewedUpGarments"] - 5); 
+                        newInventory.money = Math.max(0, newInventory.money - 3);
+                        newInventory.items["chewedUpGarments"] = Math.max(0, newInventory.items["chewedUpGarments"] - 10); 
                     }));
                     setCurrentEvent("getSomeClothesCompleteStep2");
 
@@ -226,7 +258,7 @@ export const AreaOneEvents = {
         title: "Get Some Clothes Complete Step 2",
         id: "getSomeClothesCompleteStep2",
         encounterRate: 1, 
-        description: 'What the—where did you get this stuff from? Moths? Well, I’ll suppose they’ll have to do. Here you go.\n You gained Garment of Skin (+2 Defense Body)',
+        description: "\"What the—-where did you get this stuff from? Moths? Well, I’ll suppose they’ll have to do. Here you go.\" \n\n(+1 Garment of Skin)",
         autoAction: {
             name: "Gain Garment of Skin",
             actionType: "setInventory",
@@ -242,7 +274,7 @@ export const AreaOneEvents = {
         title: "Got Manna?",
         id: "gotManna",
         encounterRate: 1, 
-        description: "You wonder, \"What is it?\" You take it and give it a little lick, and it tastes like wafers made with honey. You put some in your bag.",
+        description: "You wonder, \"What is it?\" You take it and give it a little lick, and it tastes like wafers made with honey. You put some in your bag. \n\n(+1 Manna)",
         autoAction: {
             name: "Get Manna",
             actionType: "setInventory",
@@ -258,7 +290,7 @@ export const AreaOneEvents = {
         title: "Got Locust?",
         id: "gotLocust",
         encounterRate: 1, 
-        description: "You find a wild locust! You patiently wait for the right opportunity... and then you reach out and grab it! Very dextrous of you.",
+        description: "You find a wild locust! You patiently wait for the right opportunity... and then you reach out and grab it! Very dextrous of you. \n\n+1 Locust",
         autoAction: {
             name: "Get Locust",
             actionType: "setInventory",
@@ -270,12 +302,11 @@ export const AreaOneEvents = {
         },
         actions: []
     },
-
     "lookBronzeSerpent":{        
         title: "Look at the Bronze Serpent",
         id: "lookBronzeSerpent",
         encounterRate: 1,
-        description: "Would you like to be healed? It will cost 5 Heavenly Coins.",
+        description: "Would you like to be healed?",
         actions: [{
             name: "Be Healed",
             actionType: "setCharCondition",
