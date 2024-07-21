@@ -270,15 +270,11 @@ export const AreaOneEvents = {
         title: "Get Some Clothes Complete Step 2",
         id: "getSomeClothesCompleteStep2",
         encounterRate: 1, 
-<<<<<<< HEAD
-        description: 'What the—where did you get this stuff from? Moths? Well, I’ll suppose they’ll have to do. Here you go.\n You gained Garment of Skin (+2 Defense Body)',
-        quests: [{
+description: "\"What the—-where did you get this stuff from? Moths? Well, I’ll suppose they’ll have to do. Here you go.\" \n\n(+1 Garment of Skin)",
+quests: [{
             id: "getSomeClothes",
             action: "complete",
         }],
-=======
-        description: "\"What the—-where did you get this stuff from? Moths? Well, I’ll suppose they’ll have to do. Here you go.\" \n\n(+1 Garment of Skin)",
->>>>>>> 452a39bee0ef95b35ab891a572e19534bf28f56e
         autoAction: {
             name: "Gain Garment of Skin",
             actionType: "setInventory",
