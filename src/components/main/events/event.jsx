@@ -10,7 +10,7 @@ export default function Event({event, setCurrentEvent}) {
     if (event === "combat") {
         return <CombatEvent key={event} event={eventObj} setCurrentEvent={setCurrentEvent} />
     } else {
-        return <GenericEvent key={event}event={eventObj} setCurrentEvent={setCurrentEvent}/>
+        return <GenericEvent key={event} event={eventObj} setCurrentEvent={setCurrentEvent}/>
     }
 }
 

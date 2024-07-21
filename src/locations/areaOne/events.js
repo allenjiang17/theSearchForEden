@@ -183,15 +183,28 @@ export const AreaOneEvents = {
         title: "Get Some Clothes",
         id: "getSomeClothes",
         encounterRate: 1, 
-        description: '\"Whoa! Whoa! You can\'t walk in here without clothes! What in the world are you thinking?\"\n\n\"I am so sorry,\" you say, \"You see, that\'s why I\'m here. I need some clothes."\n\n\“Ah, I see,\” the Tailor says. \“Tell you what—I\'ll help you out. If you get me 5 pieces of garment, I\'ll make you something to wear. It\'ll cost you 2 Earthly Coins though.\"',
+        description: '\"Whoa! Whoa! You can\'t walk in here without clothes! What in the world are you thinking?\"\n\n\"I am so sorry,\" you say, \"You see, that\'s why I\'m here. I need some clothes."\n\n\“Ah, I see,\” the Tailor says. \“Tell you what—I\'ll help you out. If you get me 5 pieces of garment, I\'ll make you something to wear. It\'ll cost you 2 Earthly Coins though.',
+        quests: [{
+            id: "getSomeClothes",
+            action: "start",
+        }],
         autoAction: {
             name: "Check Inventory",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
-                if (gameState.inventory.items["chewedUpGarments"] >= 5 && gameState.inventory.money >= 2) {
-                    setCurrentEvent("getSomeClothesCompleteStep1");
-                } else {
-                    setCurrentEvent("getSomeClothesIncomplete");
+
+                const questState = gameState.quests["getSomeClothes"];
+
+                if (questState && questState.progress !== "complete") {
+                    if (gameState.inventory.items["chewedUpGarments"] >= 5 && gameState.inventory.money >= 2) {
+                        setCurrentEvent("getSomeClothesCompleteStep1");
+                    } else {
+                        setCurrentEvent("getSomeClothesIncomplete");
+                    }
+                }
+
+                if (questState && questState.progress === "complete") {
+                    setCurrentEvent("townTailorShop");
                 }
             }
         },
@@ -218,7 +231,6 @@ export const AreaOneEvents = {
                         newInventory.items["chewedUpGarments"] = Math.max(0, newInventory.items["chewedUpGarments"] - 5); 
                     }));
                     setCurrentEvent("getSomeClothesCompleteStep2");
-
             }
         }]
     },   
@@ -227,6 +239,10 @@ export const AreaOneEvents = {
         id: "getSomeClothesCompleteStep2",
         encounterRate: 1, 
         description: 'What the—where did you get this stuff from? Moths? Well, I’ll suppose they’ll have to do. Here you go.\n You gained Garment of Skin (+2 Defense Body)',
+        quests: [{
+            id: "getSomeClothes",
+            action: "complete",
+        }],
         autoAction: {
             name: "Gain Garment of Skin",
             actionType: "setInventory",
@@ -236,6 +252,13 @@ export const AreaOneEvents = {
                     }));
             }
         },
+        actions: []
+    },
+    "townTailorShop": {
+        title: "Town Tailor Shop",
+        id: "townTailorShop",
+        encounterRate: 1, 
+        description: `He looks up from his work and says, "What do you want? You can buy and sell clothing here, but not right now, I'm not ready yet."\n `,
         actions: []
     },
     "gotManna":{

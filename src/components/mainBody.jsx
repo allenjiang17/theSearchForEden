@@ -4,6 +4,7 @@ import Map from "./location";
 import Character from "./main/navigation/character";
 import Inventory from "./main/navigation/inventory";
 import Settings from "./main/navigation/settings";
+import Quests from "./main/navigation/quests";
 import Sound from "./elements/sound";
 
 
@@ -27,6 +28,8 @@ export default function MainBody({page, settings}) {
         return <Inventory/>
     } else if (page === "settings") {
         return <Settings/>
+    } else if (page === "quests") {
+        return <Quests/>
     }
     //and so on...
 

@@ -97,9 +97,16 @@ function Game() {
   const [charCondition, setCharCondition] = useStateLocal("charCondition", initialCharCondition);
   effectHook("charCondition", charCondition);
 
+  const [quests, setQuests] = useStateLocal("quests", {});
+  effectHook("quests", quests);
+
   const [settings, setSettings] = useStateLocal("settings", {
     music: true
-  })
+  });
+  effectHook("settings", settings);
+
+
+
 
   const [ntask, setNtask] = useStateLocal("ntask", 24);
   effectHook("ntask", ntask);
@@ -117,11 +124,12 @@ function Game() {
       map, setMap,
       character, setCharacter, 
       inventory, setInventory, 
+      quests, setQuests,
       charCondition, setCharCondition, 
       settings, setSettings,
       ntask, setNtask,
       day, setDay}}>
-      <div className="flex flex-col justify-start items-start w-full max-w-[1000px] mx-auto p-8 gap-5">
+      <div className="flex flex-col justify-start items-start whitespace-pre-wrap w-full max-w-[1000px] mx-auto p-8 gap-5">
         <NavBar setPage={setPage}/>
         <MainBody page={page} settings={settings}/>
       </div>
