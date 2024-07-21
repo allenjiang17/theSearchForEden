@@ -9,14 +9,24 @@ export const AreaOneItems = {
         description: "A small amount of energy, taken away from someone who succumbed to Sloth.",
         price: 0
     },
+    "figLeaf": {
+        name: "Fig Leaf",
+        description: "A large fig leaf, taken from a fig tree.",
+        price: 0
+    },
+    "spiritOfResolve": {
+        name: "Spirit of Resolve",
+        description: "This allows to do the things you want to do, instead of blindly following your wayward gut.",
+        price: 0
+    },
     "manna": {
         name: "Manna",
         description: "\"What is it?\" you wonder. It tastes like wafers made with honey.",
         battleItem: true,
         battleAction: {
             type: "heal", //heal, damage, buff, inflict status 
-            amount: 5,
-            description: "You ate some Manna. It tasted pretty good, and you feel a bit better (healed 5 Hp)"
+            amount: 50,
+            description: "You ate some Manna. It tasted pretty good, and you feel a bit better (healed 5 HP)"
             //status: "poison"
         },
         price: 0
