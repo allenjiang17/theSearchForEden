@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function DialogueBox({text, speed=30, ...props}) {
+export default function DialogueBox({text, speed=15, callBack, ...props}) {
     if (typeof text === 'undefined') {
         return(<span></span>)
     }
@@ -12,6 +12,10 @@ export default function DialogueBox({text, speed=30, ...props}) {
       const interval = setInterval(() => {
           i = i + 1;
           setDisplayText(text.slice(0, i));
+
+          if (i >= text.length) {
+            callBack();
+          }
       }, speed);
       return () => {
         clearInterval(interval);
@@ -19,7 +23,7 @@ export default function DialogueBox({text, speed=30, ...props}) {
     }, [text]);
 
     return (
-        <span {...props}>
+        <span className="w-full text-left" {...props}>
             {displayText}
         </span>
     )

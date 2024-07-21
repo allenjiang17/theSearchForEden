@@ -61,21 +61,21 @@ export default function Inventory() {
     return(
         <div className="w-full flex flex-row justify-between items-start gap-3">
             <div className="w-full flex flex-col gap-4">
-                <span>Inventory</span>
+                <span className="font-semibold">Inventory</span>
                 <div>
                     <span>Coins: </span>
                     <span>{inventory.money}</span>
                 </div>
                 <div>
-                    <span>Items</span>
+                    <span className="font-semibold">Items</span>
                     {items}
                 </div>
                 <div>
-                    <span>Weapons</span>
+                    <span className="font-semibold">Weapons</span>
                     {weapons}
                 </div>
                 <div>
-                    <span>Equipment</span>
+                    <span className="font-semibold">Equipment</span>
                     {equipment}
                 </div>
             </div>
