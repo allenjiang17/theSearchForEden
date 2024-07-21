@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { GameContext } from "../game";
+import TaskDisplay from './elements/taskDisplay'
 
 
 
@@ -17,8 +18,8 @@ export default function NavBar({setPage}) {
 
             </div>
             <div className="flex flex-row gap-5 justify-end">
-                <span>Tasks: {ntask}</span>
-                <span>Day: {day}</span>
+                <span>Day {day}</span>
+                <TaskDisplay/>
             </div>
         </div>
     )
