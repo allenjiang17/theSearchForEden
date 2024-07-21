@@ -37,7 +37,7 @@ export default function GenericEvent({event, setCurrentEvent}) {
         }
 
         loaded.current = true
-    },[])
+    },[]);
 
     const questTexts = event.quests ? event.quests.map((quest)=>(
         <span className="font-semibold">

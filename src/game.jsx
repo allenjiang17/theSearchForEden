@@ -59,7 +59,9 @@ let initialMap = {};
 Object.keys(AreaOneLocations).forEach((location)=>{
   initialMap[location] = {
     unlocked: AreaOneLocations[location].initialUnlocked ?? false,
-    state: "default",
+    state: "default", //potential different variations of the location
+    currentEvent: null
+
   }
 })
 

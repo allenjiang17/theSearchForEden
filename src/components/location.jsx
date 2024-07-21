@@ -5,6 +5,7 @@ import Button from "./elements/button";
 import Event from "./main/events/event";
 import { useContext, useState, useEffect } from "react";
 import { GameContext } from "../game";
+import {produce} from "immer";
 
 
 export default function Location() {
@@ -12,9 +13,8 @@ export default function Location() {
     const {location, setLocation, map, setMap} = useContext(GameContext);
 
     const currentLocation = AreaOneLocations[location];
-    const [currentEvent, setCurrentEvent] = useState(getRandomEvent(currentLocation));
+    const [currentEvent, setCurrentEvent] = useState(map[location]?.currentEvent ?? getRandomEvent(currentLocation));
     
-
     const locationOptions = currentLocation.children.map((location)=>(map[location]?.unlocked ? 
             <Button onClick={()=>{setLocation(location)}}>{AreaOneLocations[location].title}</Button>
         : null
@@ -23,6 +23,10 @@ export default function Location() {
     useEffect(()=>{
         setCurrentEvent(getRandomEvent(currentLocation));
     },[location]);
+
+    useEffect(()=>{
+        setMap(produce((map)=>{map[location].currentEvent = currentEvent}));
+    },[currentEvent]);
 
 
     // If you don't like the dynamic text, switch dialoguebox back to a static span

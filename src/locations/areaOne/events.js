@@ -270,8 +270,8 @@ export const AreaOneEvents = {
         title: "Get Some Clothes Complete Step 2",
         id: "getSomeClothesCompleteStep2",
         encounterRate: 1, 
-description: "\"What the—-where did you get this stuff from? Moths? Well, I’ll suppose they’ll have to do. Here you go.\" \n\n(+1 Garment of Skin)",
-quests: [{
+        description: "\"What the—-where did you get this stuff from? Moths? Well, I’ll suppose they’ll have to do. Here you go.\" \n\n(+1 Garment of Skin)",
+        quests: [{
             id: "getSomeClothes",
             action: "complete",
         }],
