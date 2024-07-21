@@ -5,7 +5,6 @@ import Button from "./elements/button";
 import Event from "./main/events/event";
 import { useContext, useState, useEffect } from "react";
 import { GameContext } from "../game";
-import DialogueBox from "./elements/dialoguebox";
 
 
 export default function Location() {
@@ -28,8 +27,8 @@ export default function Location() {
 
     // If you don't like the dynamic text, switch dialoguebox back to a static span
     return (
-        <div className="flex flex-col justify-center items-start gap-3">
-            <DialogueBox text={currentLocation.description}/>
+        <div className="w-full flex flex-col justify-center items-start gap-3">
+            <span>{currentLocation.description}</span>
             {currentEvent ? <Event event={currentEvent} setCurrentEvent={setCurrentEvent}/> : null}
             <div className="flex flex-col justify-start items-start gap-3">
                 {locationOptions}

@@ -12,7 +12,7 @@ export default function MainBody({page, settings}) {
 
     if (page === "map") {
         return (
-            <div>
+            <div className="w-full">
                 <Map/>
                 {settings.music ? <Sound 
                     url="/theSearchForEden/sounds/Nothing_but_the_blood.mp3"
