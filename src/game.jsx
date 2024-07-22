@@ -104,10 +104,11 @@ function Game() {
   effectHook("quests", quests);
 
   const [settings, setSettings] = useStateLocal("settings", {
-    music: true
+      music: true,
+      volume: 30,
+      bgm: 'NothingButTheBlood'
   });
   effectHook("settings", settings);
-
 
 
 
@@ -131,7 +132,8 @@ function Game() {
       charCondition, setCharCondition, 
       settings, setSettings,
       ntask, setNtask,
-      day, setDay}}>
+      day, setDay,
+    }}>
       <div className="flex flex-col justify-start items-start whitespace-pre-wrap w-full max-w-[1000px] mx-auto p-8 gap-5">
         <NavBar setPage={setPage}/>
         <MainBody page={page} settings={settings}/>
