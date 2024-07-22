@@ -5,7 +5,7 @@ import Character from "./main/navigation/character";
 import Inventory from "./main/navigation/inventory";
 import Settings from "./main/navigation/settings";
 import Quests from "./main/navigation/quests";
-import Sound from "./elements/sound";
+import Bgm from "./elements/bgm";
 
 
 export default function MainBody({page, settings}) {
@@ -14,12 +14,7 @@ export default function MainBody({page, settings}) {
         return (
             <div className="w-full">
                 <Map/>
-                {settings.music ? <Sound 
-                    url="/theSearchForEden/sounds/Nothing_but_the_blood.mp3"
-                    playStatus={Sound.status.PLAYING}
-                    volume={30}
-                    loop={true} />
-                : null}
+                <Bgm/>
             </div>
         )
     } else if (page === "character") {
