@@ -57,7 +57,6 @@ export default function Inventory() {
         )
     });
 
-    console.log(items);
     return(
         <div className="w-full flex flex-row justify-between items-start gap-3">
             <div className="w-full flex flex-col gap-4">

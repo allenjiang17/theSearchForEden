@@ -77,7 +77,7 @@ export const AreaOneEnemies = {
             {stat: "defense", amount: 1, chance: 0.5},
         ],
         itemDrop: [            
-            {item: "senseOfDirection", chance: 0.2}
+            {item: "senseOfDirection", chance: 0.3}
         ]
     },
     "commonGluttony": {

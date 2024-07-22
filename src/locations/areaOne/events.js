@@ -377,5 +377,16 @@ export const AreaOneEvents = {
         encounterRate: 1,
         description: "You have a dream, and behold, you see a ladder set up on the earth, with the top of it reaching to heaven. And behold, you see the angels of God ascending and descending on it!\n\nYou wake up with wonder and think, \"Surely the Lord is in this place, and I did not know it.\"\n\nYour Spiritual HP is back to full!",
         actions: []
+    },
+    "theLostMan": {
+        title: "The Lost Man",
+        id: "theLostMan",
+        encounterRate: 1,
+        description: "You ask him what\'s going on.\n\n\"I\'m not sure,\" he says, \"Someone told me that there was this magical place called Eden out here, where nothing is cursed and everything is living. It didn\'t seem possible, but something inside of me told me to go look for it. So I went out to find it, and now I\'m completely lost. I have no idea where I am.\"\n\n\"Where did you come from?\" you ask.\n\n\"I live in the Land of the Patriarchs. But I don\'t know how to get there. I don\'t really have a sense of direction.\"",
+        quests: [{
+            id: "senseOfDirection",
+            action: "start",
+        }],
+        actions: [],
     }
 }

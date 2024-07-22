@@ -22,7 +22,8 @@ export default function Settings() {
             </div>
             <div className="flex flex-row justify-center items-center gap-2">
                 <span>Music On?</span>
-                <Toggle active={settings.music} onClick={()=>{setSettings((produce((settings)=>{settings.music = !settings.music})))}}/>
+                <Toggle active={settings.music} 
+                    onClick={()=>{setSettings((produce((settings)=>{settings.music = !settings.music})))}}/>
             </div>
         </div>
     )
