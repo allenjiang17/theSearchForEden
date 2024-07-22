@@ -2,6 +2,7 @@
 import './App.css'
 import MainBody from './components/mainBody.jsx'
 import NavBar from './components/navBar.jsx';
+import BottomBar from './components/bottomBar.jsx';
 import { AreaOneLocations } from './locations/areaOne/locations.js';
 import { createContext, useState, useEffect } from 'react';
 import { QuestsDict } from './locations/quests.js';
@@ -145,6 +146,7 @@ function Game() {
       <div className="flex flex-col justify-start items-start whitespace-pre-wrap w-full max-w-[1000px] mx-auto p-8 gap-5">
         <NavBar setPage={setPage}/>
         <MainBody page={page} settings={settings}/>
+        <BottomBar/>
       </div>
     </GameContext.Provider>
   )

@@ -9,15 +9,14 @@ export default function NavBar({setPage}) {
 
     return (
         <div className="w-full flex flex-row justify-between">
-            <div className="flex flex-row gap-5 justify-start">
-                <button className="hover:underline" onClick={()=>{setPage("map")}}>Main Map</button>
+            <div className="flex flex-row gap-3 md:gap-5 justify-start">
+                <button className="hover:underline" onClick={()=>{setPage("map")}}>Map</button>
                 <button className="hover:underline" onClick={()=>{setPage("character")}}>Character</button>
                 <button className="hover:underline" onClick={()=>{setPage("inventory")}}>Inventory</button>
                 <button className="hover:underline" onClick={()=>{setPage("quests")}}>Quests</button>
                 <button className="hover:underline" onClick={()=>{setPage("settings")}}>Settings</button>
-
             </div>
-            <div className="flex flex-row gap-5 justify-end">
+            <div className="hidden md:flex flex-row gap-5 justify-end">
                 <span>Day {day}</span>
                 <TaskDisplay/>
             </div>
