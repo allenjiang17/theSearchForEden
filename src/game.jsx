@@ -10,7 +10,8 @@ import { produce } from 'immer';
 
 export const GameContext = createContext();
 
-//this will be set by the user in the future
+// We should move all of the defaults into a separate file
+// this will be set by the user in the future
 const initialCharacterTest = {
   name: "username",
   class: "seeker",
@@ -109,7 +110,7 @@ function Game() {
   });
   effectHook("settings", settings);
 
-  const [ntask, setNtask] = useStateLocal("ntask", 24);
+  const [ntask, setNtask] = useStateLocal("ntask", 18);
   effectHook("ntask", ntask);
   const [day, setDay] = useStateLocal("day", 0);
   effectHook("day", day);
