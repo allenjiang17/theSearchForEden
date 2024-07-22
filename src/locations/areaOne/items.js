@@ -36,6 +36,11 @@ export const AreaOneItems = {
         description: "This is a rare delicacy. Some say that it pairs well with wild honey.",
         price: 0
     },
+    "handfulOfDirt": {
+        name: "Handful of Dirt",
+        description: "This is a handful of dirt. When you hold it in your hand, your hand becomes dirty.",
+        price: 0
+    },
     "waterOfMeribah": {
         name: "Water of Meribah",
         description: "When you look at this water, you start to feel quarrelsome.",

@@ -71,7 +71,7 @@ export const AreaOneLocations = {
         id: "cityOfDestruction",
         description: "You venture out into the City of Destruction. It's a somewhat foreboding name, but you didn't choose it. You just happen to live here. Where would you like to go?",
         events: [],
-        children: ["house", "travelingProphetess", "townTailor", "cursedFigTree", "brokenCistern", "emptyLand"],
+        children: ["house", "travelingProphetess", "craftyFellow", "cursedFigTree", "brokenCistern", "emptyLand"],
         parent: "world",
         initialUnlocked: true
     },
@@ -84,10 +84,10 @@ export const AreaOneLocations = {
         parent: "cityOfDestruction",
         initialUnlocked: true
     },
-    "townTailor": {
-        title: "Town Tailor",
-        id: "townTailor",
-        description: "You stroll into the Tailor's Shop and see a crusty, old man at his workbench.",
+    "craftyFellow": {
+        title: "The Crafty Fellow",
+        id: "craftyFellow",
+        description: "You stroll into the Crafty Fellow's Shop and see a crusty, old man at his workbench.",
         events: ["getSomeClothes"],
         children: [],
         parent: "cityOfDestruction",
@@ -96,7 +96,7 @@ export const AreaOneLocations = {
     "cursedFigTree": {
         title: "Cursed Fig Tree",
         id: "cursedFigTree",
-        description: "You walk by a cursed fig tree. It hasn't bore fruit in years, but there are still leave on it. Would you like to gather a fig leaf?",
+        description: "You walk by a cursed fig tree. It hasn't bore fruit in years, but there are still leaves on it.",
         events: ["getFigLeaf"],
         children: [],
         parent: "cityOfDestruction",

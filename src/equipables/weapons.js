@@ -4,5 +4,11 @@ export const Weapons = {
         power: 1,
         description: "When you have nothing...at least you got this",
         price: 0
+    },
+    "debasedMind" : {
+        name: "Debased Mind",
+        power: 1,
+        description: "When you have nothing...at least you got this",
+        price: 0
     }
 }
