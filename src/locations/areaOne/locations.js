@@ -148,8 +148,8 @@ export const AreaOneLocations = {
     "theLostMan": {
         title: "The Lost Man",
         id: "theLostMan",
-        description: "You meet a man aimlessly wandering around. You ask him what\'s going on.\n\n\"I\'m not sure,\" he says, \"Someone told me that there was this magical place called Eden out here, where nothing is cursed and everything is living. It didn\'t seem possible, but something inside of me told me to go look for it. So I went out to find it, and now I\'m completely lost. I have no idea where I am.\"\n\n\"Where did you come from?\" you ask.\n\n\"I live in the Land of the Patriarchs. But I don\'t know how to get there. I don\'t really have a sense of direction.\"",
-        events: [],
+        description: "You meet a man aimlessly wandering around.",
+        events: ["theLostMan"],
         children: [],
         parent: "wilderness",
         initialUnlocked: true

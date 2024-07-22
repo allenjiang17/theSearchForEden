@@ -4,6 +4,8 @@ import MainBody from './components/mainBody.jsx'
 import NavBar from './components/navBar.jsx';
 import { AreaOneLocations } from './locations/areaOne/locations.js';
 import { createContext, useState, useEffect } from 'react';
+import { QuestsDict } from './locations/quests.js';
+import { produce } from 'immer';
 
 
 export const GameContext = createContext();
@@ -107,9 +109,6 @@ function Game() {
   });
   effectHook("settings", settings);
 
-
-
-
   const [ntask, setNtask] = useStateLocal("ntask", 24);
   effectHook("ntask", ntask);
   const [day, setDay] = useStateLocal("day", 0);
@@ -118,7 +117,14 @@ function Game() {
   const [page, setPage] = useStateLocal("page", "map");
   effectHook("page", page);
 
-  console.log(page);
+  //TODO: feels clunky but the only way to check quests that have inventory satisfaction conditions
+  useEffect(() => {
+    for (let quest of Object.keys(quests)) {
+      if (quest.progress !== "complete" && QuestsDict[quest].conditionType === "inventory") {
+        QuestsDict[quest].conditionFunc({inventory, setInventory, map, setMap, quests, setQuests});
+      }
+    } 
+  }, [inventory])
 
   return (
     <GameContext.Provider value ={{
