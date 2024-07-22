@@ -95,7 +95,7 @@ export const AreaOneLocations = {
     },
     "cursedFigTree": {
         title: "Cursed Fig Tree",
-        id: "figTree",
+        id: "cursedFigTree",
         description: "You walk by a cursed fig tree. It hasn't bore fruit in years, but there are still leave on it. Would you like to gather a fig leaf?",
         events: ["getFigLeaf"],
         children: [],
