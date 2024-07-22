@@ -1,0 +1,1 @@
+export const TOTAL_TASKS_PER_DAY = 18;

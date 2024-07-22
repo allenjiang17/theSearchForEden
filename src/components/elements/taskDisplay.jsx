@@ -26,6 +26,9 @@ const taskMap = {
 
 export default function TaskDisplay() {
     const {ntask} = useContext(GameContext);
+
+    console.log(ntask);
+
     if(taskMap[ntask]) {
         return <span>{taskMap[ntask]}</span>
     } else {

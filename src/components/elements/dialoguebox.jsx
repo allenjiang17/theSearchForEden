@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function DialogueBox({text, speed=15, callBack, ...props}) {
+export default function DialogueBox({text, speed=20, callBack, ...props}) {
     if (typeof text === 'undefined') {
         return(<span></span>)
     }

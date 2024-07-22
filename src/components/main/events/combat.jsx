@@ -97,12 +97,13 @@ export function Combat({enemy, event, setCurrentEvent}) {
         }
 
         setCombatMessage(`You defeated ${enemy.name}! You gained ${joinList(statMessage)}, and you found ${joinList(lootMessage)}.`);
-
+        gameState.setNtask(gameState.ntask - 1);
     }
 
     function loseCombat() {
 
         setCombatMessage(`Ouch. You were defeated by ${enemy.name}. Perhaps you should go home and take a nap.`);
+        gameState.setNtask(gameState.ntask - 1);
 
     }
 

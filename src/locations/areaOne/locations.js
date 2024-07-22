@@ -42,7 +42,7 @@ export const AreaOneLocations = {
         title: "Bedroom",
         id: "bedroom",
         description: "You walk into your neat, nice bedroom and see a soft plush bed.",
-        events: ["restBedroom"],
+        events: ["nightRest"],
         children: [],
         parent: "house",
         initialUnlocked: true

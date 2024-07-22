@@ -112,6 +112,7 @@ function Game() {
 
   const [ntask, setNtask] = useStateLocal("ntask", 18);
   effectHook("ntask", ntask);
+  
   const [day, setDay] = useStateLocal("day", 0);
   effectHook("day", day);
 

@@ -36,7 +36,7 @@ export default function Location() {
             {currentEvent ? <Event event={currentEvent} setCurrentEvent={setCurrentEvent}/> : null}
             <div className="flex flex-col justify-start items-start gap-3">
                 {locationOptions}
-                {currentLocation.parent && currentEvent !== "combat" ? 
+                {currentLocation.parent ? 
                         <Button onClick={()=>{setLocation(currentLocation.parent)}}>Leave {AreaOneLocations[currentLocation.id].title}</Button> : null}
             </div>
         </div>

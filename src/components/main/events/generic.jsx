@@ -21,6 +21,7 @@ export default function GenericEvent({event, setCurrentEvent}) {
         //load auto action upon component mount
         if (event.autoAction && !loaded.current) {
             event.autoAction.func(gameState, event, setCurrentEvent);
+            gameState.setNtask(gameState.ntask - 1);
         }
 
         //if event has a quest trigger
@@ -48,6 +49,8 @@ export default function GenericEvent({event, setCurrentEvent}) {
     const buttons = actions.map((action)=>(
         <Button onClick={()=>{
             action.func(gameState, event, setCurrentEvent);
+            gameState.setNtask(gameState.ntask - 1);
+
         }}>{action.name}</Button>
     ));
     

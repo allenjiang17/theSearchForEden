@@ -32,6 +32,12 @@ export const AreaOneEvents = {
             }
         }]
     },
+    "nightRest": {
+        title: "",
+        id: "nightRest",
+        encounterRate: 1,
+        description: "",
+    },
     "donatingMoneyTemple":{
         title: "Donating Money",
         id: "donatingMoneyTemple",
