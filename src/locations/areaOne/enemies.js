@@ -28,7 +28,7 @@ export const AreaOneEnemies = {
             {stat: "resilience", amount: 1, chance: 0.5},
         ],
         itemDrop: [            
-            {item: "capturedEnergy", chance: 0.25}
+            {item: "breadOfIdleness", chance: 0.25}
         ]
     },
     "waterStone": {

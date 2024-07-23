@@ -71,7 +71,16 @@ export const AreaOneLocations = {
         id: "cityOfDestruction",
         description: "You venture out into the City of Destruction. It's a somewhat foreboding name, but you didn't choose it. You just happen to live here. Where would you like to go?",
         events: [],
-        children: ["house", "travelingProphetess", "craftyFellow", "cursedFigTree", "brokenCistern", "emptyLand"],
+        children: ["house", "townSquare", "travelingProphetess", "craftyFellow", "cursedFigTree", "brokenCistern", "emptyLand"],
+        parent: "world",
+        initialUnlocked: true
+    },
+    "townSquare": {
+        title: "Town Square",
+        id: "townSquare",
+        description: "You walk into a busy town square. You hear a cacophany of voices and musical instruments.",
+        events: [],
+        children: ["craftySirPenn", "simpleBabbler", "travelingProphetess"],
         parent: "world",
         initialUnlocked: true
     },
@@ -84,13 +93,31 @@ export const AreaOneLocations = {
         parent: "cityOfDestruction",
         initialUnlocked: true
     },
-    "craftyFellow": {
-        title: "The Crafty Fellow",
-        id: "craftyFellow",
-        description: "You stroll into the Crafty Fellow's Shop and see a crusty, old man at his workbench.",
+    "craftySirPenn": {
+        title: "The Crafty Sir Penn",
+        id: "craftySirPenn",
+        description: "You stroll into the Crafty Sir Penn's Shop and see a crusty, old man at his workbench.",
         events: ["getSomeClothes"],
         children: [],
         parent: "cityOfDestruction",
+        initialUnlocked: true
+    },
+    "simpleBabbler": {
+        title: "The Simple Babbler",
+        id: "simpleBabbler",
+        description: "You notice a friendly man who is starting conversations with everybody. He almost seems too friendly. He is babbling on and on about how this person did this and that person did that.",
+        events: [],
+        children: ["babbleWithBabbler"],
+        parent: "cityOfDestruction",
+        initialUnlocked: true
+    },
+    "babbleWithBabbler": {
+        title: "Babble with the Babbler",
+        id: "babbleWithBabbler",
+        description: "\"I know all of the secrets of everybody in this town. Tell you what--if you give me something of use, I'll tell you some hot gossip.\"\n\n\"Okay, maybe,\" you say, \"What can you use?\"\n\n\"Hmm... well I am pretty hungry. Can you get me some Bread of Idleness?\"",
+        events: ["talkWithBabbler"],
+        children: [],
+        parent: "simpleBabbler",
         initialUnlocked: true
     },
     "cursedFigTree": {
@@ -199,7 +226,6 @@ export const AreaOneLocations = {
         events: [],
         children: ["fightGreatFear"],
         parent: "wilderness",
-        initialUnlocked: true
     },
     "fightGreatFear": {
         title: "Fight the Great Fear",

@@ -3,25 +3,25 @@ import { useContext } from "react";
 import { GameContext } from "../../game";
 
 const taskMap = {
-    18: 'Dawn',
-    17: 'First Hour',
-    16: 'Second Hour',
-    15: 'Third Hour',
-    14: 'Fourth Hour',
-    13: 'Fifth Hour',
-    12: 'Sixth Hour',
-    11: 'Seventh Hour',
-    10: 'Eighth Hour',
-    9: 'Ninth Hour',
-    8: 'Tenth Hour',
-    7: 'Eleventh Hour',
-    6: 'Twelfth Hour',
-    5: 'First Hour of the Night',
-    4: 'Second Hour of the Night',
-    3: 'Third Hour of the Night',
-    2: 'Fourth Hour of the Night',
-    1: 'Fifth Hour of the Night',
-    0: 'Sixth Hour of the Night' // this is midnight so we stop here?
+    18: 'The First Hour of the Day',
+    17: 'The Second Hour of the Day',
+    16: 'The Third Hour of the Day',
+    15: 'The Fourth Hour of the Day',
+    14: 'The Fifth Hour of the Day',
+    13: 'The Sixth Hour of the Day',
+    12: 'The Seventh Hour of the Day',
+    11: 'The Eighth Hour of the Day',
+    10: 'The Ninth Hour of the Day',
+    9: 'The Tenth Hour of the Day',
+    8: 'The Eleventh Hour of the Day',
+    7: 'The Twelfth Hour of the Day',
+    6: 'The First Hour of the Night',
+    5: 'The Second Hour of the Night',
+    4: 'The Third Hour of the Night',
+    3: 'The Fourth Hour of the Night',
+    2: 'The Fifth Hour of the Night',
+    1: 'The Sixth Hour of the Night', // this is midnight so we stop here?
+    0: 'The Seventh Hour of the Night' 
 }
 
 export default function TaskDisplay() {
