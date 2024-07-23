@@ -15,7 +15,8 @@ export default function NightRestEvent() {
 
     const gameState = useContext(GameContext);
 
-    const description = "Would you like to go to sleep for the night? You'll restore your physical health and start a brand new day.";
+    const description = `Would you like to go to sleep for the night? You'll restore your physical 
+                         health and start a brand new day.`;
 
     function restoreHealth() {
 
@@ -25,7 +26,7 @@ export default function NightRestEvent() {
             newCharCondition.hp = 100;
         }));
 
-        gameState.setNtask(TOTAL_TASKS_PER_DAY);
+        gameState.taskFunc.sleep();
 
         gameState.setDay(gameState.day + 1);
     }

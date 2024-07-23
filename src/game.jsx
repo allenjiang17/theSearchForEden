@@ -113,10 +113,12 @@ function Game() {
   });
   effectHook("settings", settings);
 
-  const [ntask, setNtask] = useStateLocal("ntask", 36);
+  const MAXTASK = 36;
+  const [ntask, setNtask] = useStateLocal("ntask", MAXTASK);
   effectHook("ntask", ntask);
   const taskFunc = {
       "set": setNtask,
+      "sleep": () => setNtask(MAXTASK),
       "check": (cost = 1) => (ntask >= cost),
       "use": (cost = 1) => (setNtask(ntask - cost)),
   }
