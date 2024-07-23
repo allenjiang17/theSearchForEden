@@ -21,18 +21,16 @@ export default function GenericEvent({event, setCurrentEvent}) {
         //load auto action upon component mount
         if (event.autoAction && !loaded.current) {
             event.autoAction.func(gameState, event, setCurrentEvent);
-            gameState.setNtask(gameState.ntask - 1);
+            gameState.taskFunc.use();
         }
 
         //if event has a quest trigger
         if (event.quests && !loaded.current) {
             for (let quest of event.quests) {
                 if (quest.action === "start" && !gameState.quests[quest.id]) {
-                    gameState.setQuests(produce((newQuests)=>{newQuests[quest.id] = {progress: "started"}}));                       
-
+                    gameState.setQuests(produce((newQuests)=>{newQuests[quest.id] = {progress: " started"}}));
                 } else if (quest.action === "complete") {
-                    gameState.setQuests(produce((newQuests)=>{newQuests["getSomeClothes"] = {progress: "complete"}}));                       
-
+                    gameState.setQuests(produce((newQuests)=>{newQuests["getSomeClothes"] = {progress: " complete"}}));
                 }
             }
         }
@@ -41,17 +39,19 @@ export default function GenericEvent({event, setCurrentEvent}) {
     },[]);
 
     const questTexts = event.quests ? event.quests.map((quest)=>(
-        <span className="font-semibold">
-            Quest: {QuestsDict[quest.id].title} {quest.action === "start" ? "started" : quest.action === "complete" ? "completed" : null}
+        <span className="font-semibold" key={quest.id}>
+            Quest: {QuestsDict[quest.id].title} 
+            {quest.action === "start" ? "started" : quest.action === "complete" ? "completed" : null}
         </span>
     )) : null
 
     const buttons = actions.map((action)=>(
         <Button onClick={()=>{
             action.func(gameState, event, setCurrentEvent);
-            gameState.setNtask(gameState.ntask - 1);
-
-        }}>{action.name}</Button>
+            gameState.taskFunc.use();
+        }} key={action.name}>
+            {action.name}
+        </Button>
     ));
     
     return (

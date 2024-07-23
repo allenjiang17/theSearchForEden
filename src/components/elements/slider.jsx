@@ -1,5 +1,3 @@
-import { useContext } from "react";
-
 
 export default function Slider(props) {
     // Takes in min, max, value, onChange

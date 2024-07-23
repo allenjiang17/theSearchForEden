@@ -109,7 +109,7 @@ export function Combat({enemy, event, setCurrentEvent}) {
 
     function BattleItemComponent() {
 
-        const [itemUsed, setItemUsed] = useState(null);
+        const [itemUsed, setItemUsed] = useState("");
     
         function useItem() {
     
