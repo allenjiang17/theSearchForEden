@@ -4,9 +4,9 @@ export const AreaOneItems = {
         description: "A pair of old, worn clothes. They have been chewed up and are in need of repair.",
         price: 0
     },
-    "diligentHand": {
-        name: "Diligent Hand",
-        description: "Lazy hands make for poverty, but diligent hands bring wealth.",
+    "breadOfIdleness": {
+        name: "Bread of Idleness",
+        description: "Eating this will cause you to waste away three hours of your life.",
         price: 0
     },
     "figLeaf": {
@@ -54,6 +54,11 @@ export const AreaOneItems = {
     "locust": {
         name: "Locust",
         description: "This locust seems lonely. It longs to be with its locust friends.",
+        price: 0
+    },
+    "handfulOfDirt": {
+        name: "Handful of Dirt",
+        description: "This is a handful of dirt. When you hold it in your hand, your hand becomes dirty.",
         price: 0
     },
     "waterOfMeribah": {

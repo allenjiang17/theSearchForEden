@@ -2,7 +2,7 @@ export const Equipment = {
     "figLeafLoincloth": {
         name: "Fig Leaf Loincloth",
         type: "body",
-        description: "Some loincloths sewn together by a crafty fellow. It's not great, but it's better than nothing.\n\n (+3 Defense)",
+        description: "Some fig leaves sewn together into loincloths. It's not very sturdy, but it's better than being naked.\n\n (+3 Defense)",
         effects: [{
             stat: "defense",
             effect: 3
@@ -12,7 +12,7 @@ export const Equipment = {
     "garmentOfSkin": {
         name: "Garment of Skin",
         type: "body",
-        description: "Some animal skin sewn together by a crafty fellow. It's a bit better than fig leaves--that's for sure.\n (+6 Defense)",
+        description: "A garment put together from animal skin. It's a bit itchy, but it provides some protection. \n\n (+6 Defense)",
         effects: [{
             stat: "defense",
             effect: 6
