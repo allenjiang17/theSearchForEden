@@ -48,7 +48,7 @@ export const AreaOneLocations = {
         initialUnlocked: true
     },
     "prayerCloset":{
-        title: "Prayer closet",
+        title: "Prayer Closet",
         id: "prayerCloset",
         description: "You walk into your prayer closet and close your eyes.",
         events: ["prayCloset"],
@@ -57,7 +57,7 @@ export const AreaOneLocations = {
         initialUnlocked: true
     },
     "livingRoom": {
-        title: "Living room",
+        title: "Living Room",
         id: "livingRoom",
         description: "You walk into your living room, your go-to place for shenanigans and hangouts.",
         events: ["searchForCoinsBedroom"],
@@ -105,35 +105,17 @@ export const AreaOneLocations = {
     "simpleBabbler": {
         title: "The Simple Babbler",
         id: "simpleBabbler",
-        description: "You notice a friendly man who is starting conversations with everybody. He almost seems too friendly. He is babbling on and on about how this person did this and that person did that.",
-        events: [],
-        children: ["babbleWithBabbler"],
-        parent: "townSquare",
-        initialUnlocked: true
-    },
-    "babbleWithBabbler": {
-        title: "Babble with the Babbler",
-        id: "babbleWithBabbler",
-        description: "\"I know all of the secrets of everybody in this town. Tell you what--if you give me something of use, I'll tell you some hot gossip.\"\n\n\"Okay, maybe,\" you say, \"What can you use?\"\n\n\"Hmm... well I am pretty hungry. Can you get me some Bread of Idleness?\"",
-        events: ["talkWithBabbler"],
+        description: "You notice a jolly man who is starting up conversations with everybody. He almost seems... too friendly. He is babbling on and on about how this person did this and that person did that.",
+        events: ["babbleWithBabbler"],
         children: [],
-        parent: "simpleBabbler",
+        parent: "townSquare",
         initialUnlocked: true
     },
     "wickedDeceiver": {
         title: "The Wicked Deceiver",
         id: "wickedDeceiver",
         description: "You notice a shadowy figure in a large cloak, mischievously shifting his eyes.",
-        events: [],
-        children: ["chatWithDeceiver"],
-        parent: "townSquare",
-        initialUnlocked: true
-    },
-    "chatWithDeceiver": {
-        title: "Chat with the Wicked Deceiver",
-        id: "chatWithDeceiver",
-        description: "\"Hi there, what are you up to?\" you ask.\n\n\"Oh, you wouldn\'t want to know,\" the Wicked Deceiver says, \"You don\'t seem to be the type of person who would want what I have.\"\n\n\"Well, what do you have?\" you ask.\n\nThe Deceiver studies you for a moment, and then says, \"The Land of the Judges is flowing with magical milk and honey. If you drink of it, all your ailments will disappear forever. Do you believe me?\"\n\n\"I\'m not sure,\" you say.\n\n\"Well, I just happen to have some on me. If you\'d like some, I\'ll give you a bucket full of this magical milk and honey for 5 coins. What do you think?\"",
-        events: ["tradeWithDeceiver"],
+        events: ["chatWithDeceiver"],
         children: [],
         parent: "townSquare",
         initialUnlocked: true

@@ -16,7 +16,7 @@ export default function Event({event, setCurrentEvent}) {
     if (ntask === 0 && event !== "nightRest") {
         return (
             <div>
-                <span>You're too tired and it's way too late. You should go home and sleep.</span>
+                <span>You're too tired, and it's way too late. You should go home and sleep.</span>
             </div>)
     }
 

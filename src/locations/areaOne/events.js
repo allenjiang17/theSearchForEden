@@ -196,7 +196,10 @@ export const AreaOneEvents = {
             func: (gameState) => {
                     gameState.setInventory(produce((newInventory)=>{
                         updateInventory(newInventory, "spiritOfResolve");
-                    }));            
+                    }));     
+                    gameState.setMap(produce((newMap)=>{
+                        newMap["travelingProphetess"].unlocked = false;
+                    }));       
             }
         },
         actions: []
@@ -239,11 +242,11 @@ export const AreaOneEvents = {
         description: "You gently pull a large fig leaf off of the tree.\n\n+1 Fig Leaf",
         actions: []
     },
-    "talkWithBabbler":{
-        title: "Talk with Babbler",
-        id: "talkWithBabbler",
-        encounterRate: 1, 
-        description: "Would you like to exchange a Bread of Idleness for some hot gossip?",
+    "babbleWithBabbler": {
+        title: "Babble with the Babbler",
+        id: "babbleWithBabbler",
+        encounterRate: 1,
+        description: "\"I know all of the secrets of everybody in this town. Tell you what--if you give me something of use, I'll tell you some hot gossip.\"\n\n\"Okay, maybe,\" you say, \"What can you use?\"\n\n\"Hmm... well I am pretty hungry. Can you get me some Bread of Idleness?\"",
         actions: [{
             name: "Give Bread of Idleness",
                 actionType: "setInventory",
@@ -254,11 +257,11 @@ export const AreaOneEvents = {
                             newInventory.items["breadOfIdleness"] = newInventory.items["breadOfIdleness"] - 1; 
                         }));
                         if (Math.random() > 0.7) {
-                            setCurrentEvent("talkWithBabbler1");
+                            setCurrentEvent("babbleWithBabbler3");
                         } else if (Math.random() > 0.5) {
-                            setCurrentEvent("talkWithBabbler2");
+                            setCurrentEvent("babbleWithBabbler4");
                         } else {
-                            setCurrentEvent("talkWithBabbler3");
+                            setCurrentEvent("babbleWithBabbler5");
                         }
                     } else {
                         setCurrentEvent("talkWithBabblerNoBread");
@@ -267,13 +270,12 @@ export const AreaOneEvents = {
             }
         ]
     },
-    "talkWithBabbler1":{
-        title: "Talk with Babbler 1",
-        id: "talkWithBabbler1",
+    "babbleWithBabbler3":{
+        title: "Babble with Babbler 4",
         encounterRate: 1, 
-        description: 'Did you know? The traveling prophetess drops into town sometimes. If you visit the town square on the right days, you\'ll be able to meet her.\n\n(-5 Spiritual HP)',
+        description: 'Have you met the traveling prophetess yet? If you visit the town square on the right days, you\'ll be able to meet her. On other days, she\'s traveling around in other places around the world.\n\n(-5 Spiritual HP)',
         autoAction: [{
-            name: "Talk with Babbler 1",
+            name: "Talk with Babbler 3",
             actionType: "setCharCondition",
             func: (gameState, event, setCurrentEvent) => {
                     gameState.setCharCondition(produce((newCharCondition)=>{
@@ -283,13 +285,13 @@ export const AreaOneEvents = {
             }
         ]
     },
-    "talkWithBabbler2":{
-        title: "Talk with Babbler 2",
-        id: "talkWithBabbler2",
+    "babbleWithBabbler4":{
+        title: "Babble with Babbler 4",
+        id: "babbleWithBabbler4",
         encounterRate: 1, 
         description: 'Did you hear the legend of the powerful sorceror? I heard he once turned his staff into a serpent. Or did he turn his serpent into a staff? I forget.\n\n(-5 Spiritual HP)',
         autoAction: [{
-            name: "Talk with Babbler 1",
+            name: "Talk with Babbler 4",
             actionType: "setCharCondition",
             func: (gameState, event, setCurrentEvent) => {
                     gameState.setCharCondition(produce((newCharCondition)=>{
@@ -299,13 +301,13 @@ export const AreaOneEvents = {
             }
         ]
     },
-    "talkWithBabbler3":{
-        title: "Talk with Babbler 3",
-        id: "talkWithBabbler3",
+    "babbleWithBabbler5":{
+        title: "Babble with Babbler 5",
+        id: "babbleWithBabbler5",
         encounterRate: 1, 
         description: '\"A traveler once told me that he faced a terrifying spirit of fear in this place called Yam Suph, located in the wilderness. I asked him where it was, but he was too afraid to say. But he did draw this map for me.\"\n\nThe babbler pulls a crinkled map out of his coat pocket. \"You know what? I don\'t really need this map anymore. Why don\'t you have it?\"\n\n(-5 Spiritual HP) (+1 Map to Yam Suph)',
         autoAction: [{
-            name: "Talk with Babbler 1",
+            name: "Talk with Babbler 5",
             actionType: "setCharCondition",
             func: (gameState, event, setCurrentEvent) => {
                     gameState.setCharCondition(produce((newCharCondition)=>{
@@ -326,51 +328,51 @@ export const AreaOneEvents = {
         description: "You don't have any Bread of Idleness",
         actions: []
     },
-    "tradeWithDeceiver":{
-        title: "Trade with Deceiver",
-        id: "tradeWithDeceiver",
-        encounterRate: 1, 
-        description: "Would you like to exchange 5 earthly coins for some milk and honey?",
+    "chatWithDeceiver": {
+        title: "Chat with the Wicked Deceiver",
+        id: "chatWithDeceiver",
+        encounterRate:1,
+        description: "\"Hi there, what are you up to?\" you ask.\n\n\"Oh, you wouldn\'t want to know,\" the Wicked Deceiver says, \"You don\'t seem to be the type of person who would want what I have.\"\n\n\"Well, what do you have?\" you ask.\n\nThe Deceiver studies you for a moment, and then says, \"The Land of the Judges is flowing with magical milk and honey. If you drink of it, all your ailments will disappear forever. Do you believe me?\"\n\n\"I\'m not sure,\" you say.\n\n\"Well, I just happen to have some on me. If you\'d like some, I\'ll give you a bucket full of this magical milk and honey for 5 coins. What do you think?\"",
         actions: [{
-            name: "Yes",
+            name: "Trade 5 Earthly Coins for Milk and Honey",
                 actionType: "setInventory",
                 func: (gameState, event, setCurrentEvent) => {
                     if (gameState.inventory.money < 5) 
                         {
-                        setCurrentEvent("tradeWithDeceiverNoMoney");                        
+                        setCurrentEvent("chatWithDeceiverNoMoney");                        
                     } else if (gameState.inventory.items["bucket"] >= 1) {
                         gameState.setInventory(produce((newInventory)=>{
                             newInventory.money -= 5;
                             updateInventory(newInventory, "bucket");
                         }));
-                        setCurrentEvent("tradeWithDeceiver2");
+                        setCurrentEvent("chatWithDeceiver2");
                     } else {
                         gameState.setInventory(produce((newInventory)=>{
                             newInventory.money -= 5;
                         }));
-                        setCurrentEvent("tradeWithDeceiver3");
+                        setCurrentEvent("chatWithDeceiver3");
                     }
                 } 
             }
         ]
     },
-    "tradeWithDeceiver2":{
+    "chatWithDeceiver2":{
         title: "Talk with Deceiver 2",
-        id: "tradeWithDeceiver2",
+        id: "chatWithDeceiver2",
         encounterRate: 1, 
         description: 'The deceiver takes your coins and sneakily hands you a bucket. You look inside the bucket and see that it\'s empty.\n\n\"Um, this bucket is empty,\" you tell the Deceiver.\n\n\"Is that so?\" the Deceiver says, \"That\'s odd. It was full of milk and honey when I handed it to you.\"\n\nLooks like you got deceived. Oh well. At least you have an empty bucket.\n\n(+1 Bucket)',
         actions: [],
     }, 
-    "tradeWithDeceiver3":{
+    "chatWithDeceiver3":{
         title: "Talk with Deceiver 3",
-        id: "tradeWithDeceiver3",
+        id: "chatWithDeceiver3",
         encounterRate: 1, 
         description: 'The deceiver takes your coins and sneakily hands you nothing. You look inside your nothing and see nothing.\n\n\"Um, you didn\'t give me anything at all,\" you tell the Deceiver.\n\n\"Is that so?\" the Deceiver says, \"That\'s odd. It was definitely something when I handed it to you.\"\n\nLooks like you got deceived again.',
         actions: [],
     },   
-    "tradeWithDeceiverNoMoney":{
+    "chatWithDeceiverNoMoney":{
         title: "No Money",
-        id: "tradeWithDeceiverNoMoney",
+        id: "chatWithDeceiverNoMoney",
         encounterRate: 1, 
         description: "You don't have enough coins.",
         actions: []
