@@ -369,6 +369,7 @@ export const AreaOneEvents = {
             name: "Check Inventory",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
+                console.log("getSomeClothes");
 
                 const questState = gameState.quests["getSomeClothes"];
 

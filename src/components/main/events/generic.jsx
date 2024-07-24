@@ -28,9 +28,9 @@ export default function GenericEvent({event, setCurrentEvent}) {
         if (event.quests && !loaded.current) {
             for (let quest of event.quests) {
                 if (quest.action === "start" && !gameState.quests[quest.id]) {
-                    gameState.setQuests(produce((newQuests)=>{newQuests[quest.id] = {progress: " started"}}));
+                    gameState.setQuests(produce((newQuests)=>{newQuests[quest.id] = {progress: "started"}}));
                 } else if (quest.action === "complete") {
-                    gameState.setQuests(produce((newQuests)=>{newQuests["getSomeClothes"] = {progress: " complete"}}));
+                    gameState.setQuests(produce((newQuests)=>{newQuests["getSomeClothes"] = {progress: "complete"}}));
                 }
             }
         }

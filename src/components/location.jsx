@@ -28,6 +28,7 @@ export default function Location() {
     }, [location]);
 
     useEffect(()=>{
+        console.log(map);
         setMap(produce((map)=>{map[location].currentEvent = currentEvent}));
     }, [currentEvent]);
 
