@@ -80,8 +80,8 @@ export const AreaOneLocations = {
         id: "townSquare",
         description: "You walk into a busy town square. You hear a cacophany of voices and musical instruments.",
         events: [],
-        children: ["craftySirPenn", "simpleBabbler", "travelingProphetess"],
-        parent: "world",
+        children: ["craftySirPenn", "simpleBabbler", "wickedDeceiver", "travelingProphetess"],
+        parent: "cityOfDestruction",
         initialUnlocked: true
     },
     "travelingProphetess": {
@@ -90,7 +90,7 @@ export const AreaOneLocations = {
         description: "You see an old holy woman talking a walk. She doesn't seem to be from here, but there's something about her that intrigues you.",
         events: ["getResolve"],
         children: [],
-        parent: "cityOfDestruction",
+        parent: "townSquare",
         initialUnlocked: true
     },
     "craftySirPenn": {
@@ -99,7 +99,7 @@ export const AreaOneLocations = {
         description: "You stroll into the Crafty Sir Penn's Shop and see a crusty, old man at his workbench.",
         events: ["getSomeClothes"],
         children: [],
-        parent: "cityOfDestruction",
+        parent: "townSquare",
         initialUnlocked: true
     },
     "simpleBabbler": {
@@ -108,7 +108,7 @@ export const AreaOneLocations = {
         description: "You notice a friendly man who is starting conversations with everybody. He almost seems too friendly. He is babbling on and on about how this person did this and that person did that.",
         events: [],
         children: ["babbleWithBabbler"],
-        parent: "cityOfDestruction",
+        parent: "townSquare",
         initialUnlocked: true
     },
     "babbleWithBabbler": {
@@ -116,6 +116,24 @@ export const AreaOneLocations = {
         id: "babbleWithBabbler",
         description: "\"I know all of the secrets of everybody in this town. Tell you what--if you give me something of use, I'll tell you some hot gossip.\"\n\n\"Okay, maybe,\" you say, \"What can you use?\"\n\n\"Hmm... well I am pretty hungry. Can you get me some Bread of Idleness?\"",
         events: ["talkWithBabbler"],
+        children: [],
+        parent: "simpleBabbler",
+        initialUnlocked: true
+    },
+    "wickedDeceiver": {
+        title: "The Wicked Deceiver",
+        id: "wickedDeceiver",
+        description: "You notice a shadowy figure in a large cloak, mischievously shifting his eyes.",
+        events: [],
+        children: ["chatWithDeceiver"],
+        parent: "townSquare",
+        initialUnlocked: true
+    },
+    "chatWithDeceiver": {
+        title: "Chat with the Wicked Deceiver",
+        id: "chatWithDeceiver",
+        description: "\"Hi there, what are you up to?\" you ask.\n\n\"Oh, you wouldn\'t want to know,\" the Wicked Deceiver says, \"You don\'t seem to be the type of person who would want what I have.\"\n\n\"Well, what do you have?\" you ask.\n\nThe Deceiver studies you for a moment, and then says, \"The Land of the Judges is flowing with magical milk and honey. If you drink of it, all your ailments will disappear forever. Do you believe me?\"\n\n\"I\'m not sure,\" you say.\n\n\"Well, I just happen to have some on me. If you\'d like some, I\'ll give you a bucket full of this magical milk and honey for 5 coins. What do you think?\"",
+        events: ["tradeWithDeceiver"],
         children: [],
         parent: "simpleBabbler",
         initialUnlocked: true

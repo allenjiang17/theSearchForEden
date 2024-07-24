@@ -253,17 +253,13 @@ export const AreaOneEvents = {
                         gameState.setInventory(produce((newInventory)=>{
                             newInventory.items["breadOfIdleness"] = newInventory.items["breadOfIdleness"] - 1; 
                         }));
-                        if (Math.random() > 0.8) {
+                        if (Math.random() > 0.7) {
                             setCurrentEvent("talkWithBabbler1");
-                        } else if (Math.random() > 0.75) {
-                            setCurrentEvent("talkWithBabbler2");
-                        } else if (Math.random() > 0.67) {
-                            setCurrentEvent("talkWithBabbler3");
                         } else if (Math.random() > 0.5) {
-                            setCurrentEvent("talkWithBabbler4");
+                            setCurrentEvent("talkWithBabbler2");
                         } else {
-                            setCurrentEvent("talkToBabbler5");
-                        } 
+                            setCurrentEvent("talkWithBabbler3");
+                        }
                     } else {
                         setCurrentEvent("talkWithBabblerNoBread");
                     }
@@ -281,7 +277,7 @@ export const AreaOneEvents = {
             actionType: "setCharCondition",
             func: (gameState, event, setCurrentEvent) => {
                     gameState.setCharCondition(produce((newCharCondition)=>{
-                        newCharCondition.spiritualHp = newCharCondition.spiritualHp - 5;
+                        newCharCondition.spiritualHp = Math.max(0,newCharCondition.spiritualHp - 5);
                     }));
                 }
             }
@@ -297,7 +293,7 @@ export const AreaOneEvents = {
             actionType: "setCharCondition",
             func: (gameState, event, setCurrentEvent) => {
                     gameState.setCharCondition(produce((newCharCondition)=>{
-                        newCharCondition.spiritualHp = newCharCondition.spiritualHp - 5;
+                        newCharCondition.spiritualHp = Math.max(0,newCharCondition.spiritualHp - 5);
                     }));
                 }
             }
@@ -313,7 +309,7 @@ export const AreaOneEvents = {
             actionType: "setCharCondition",
             func: (gameState, event, setCurrentEvent) => {
                     gameState.setCharCondition(produce((newCharCondition)=>{
-                        newCharCondition.spiritualHp = newCharCondition.spiritualHp - 5;
+                        newCharCondition.spiritualHp = Math.max(0,newCharCondition.spiritualHp - 5);
                     }));
                     gameState.setMap(produce((newMap)=>{
                         newMap["yamSuph"].unlocked = true;
@@ -323,38 +319,63 @@ export const AreaOneEvents = {
             }
         ]
     },
-    "talkWithBabbler4":{
-        title: "Talk with Babbler 4",
-        id: "talkWithBabbler4",
+    "talkWithBabblerNoBread":{
+        title: "No Bread",
+        id: "talkWithBabblerNoBread",
         encounterRate: 1, 
-        description: 'blah blah blah v4',
-        autoAction: [{
-            name: "Talk with Babbler 1",
-            actionType: "setCharCondition",
-            func: (gameState, event, setCurrentEvent) => {
-                    gameState.setCharCondition(produce((newCharCondition)=>{
-                        newCharCondition.spiritualHp = newCharCondition.spiritualHp - 5;
-                    }));
-                }
+        description: "You don't have any Bread of Idleness",
+        actions: []
+    },
+    "tradeWithDeceiver":{
+        title: "Trade with Deceiver",
+        id: "tradeWithDeceiver",
+        encounterRate: 1, 
+        description: "Would you like to exchange 5 earthly coins for some milk and honey?",
+        actions: [{
+            name: "Yes",
+                actionType: "setInventory",
+                func: (gameState, event, setCurrentEvent) => {
+                    if (gameState.inventory.money < 5) 
+                        {
+                        setCurrentEvent("tradeWithDeceiverNoMoney");                        
+                    } else if (gameState.inventory.items["bucket"] >= 1) {
+                        gameState.setInventory(produce((newInventory)=>{
+                            newInventory.money -= 5;
+                            updateInventory(newInventory, "bucket");
+                        }));
+                        setCurrentEvent("tradeWithDeceiver2");
+                    } else {
+                        gameState.setInventory(produce((newInventory)=>{
+                            newInventory.money -= 5;
+                        }));
+                        setCurrentEvent("tradeWithDeceiver3");
+                    }
+                } 
             }
         ]
     },
-    "talkWithBabbler5":{
-        title: "Talk with Babbler 5",
-        id: "talkWithBabbler5",
+    "tradeWithDeceiver2":{
+        title: "Talk with Deceiver 2",
+        id: "tradeWithDeceiver2",
         encounterRate: 1, 
-        description: 'blah blah blah v5',
-        autoAction: [{
-            name: "Talk with Babbler 1",
-            actionType: "setCharCondition",
-            func: (gameState, event, setCurrentEvent) => {
-                    gameState.setCharCondition(produce((newCharCondition)=>{
-                        newCharCondition.spiritualHp = newCharCondition.spiritualHp - 5;
-                    }));
-                }
-            }
-        ]
+        description: 'The deceiver takes your coins and sneakily hands you a bucket. You look inside the bucket and see that it\'s empty.\n\n\"Um, this bucket is empty,\" you tell the Deceiver.\n\n\"Is that so?\" the Deceiver says, \"That\'s odd. It was full of milk and honey when I handed it to you.\"\n\nLooks like you got deceived. Oh well. At least you have an empty bucket.\n\n(+1 Bucket)',
+        actions: [],
+    }, 
+    "tradeWithDeceiver3":{
+        title: "Talk with Deceiver 3",
+        id: "tradeWithDeceiver3",
+        encounterRate: 1, 
+        description: 'The deceiver takes your coins and sneakily hands you nothing. You look inside your nothing and see nothing.\n\n\"Um, you didn\'t give me anything at all,\" you tell the Deceiver.\n\n\"Is that so?\" the Deceiver says, \"That\'s odd. It was definitely something when I handed it to you.\"\n\nLooks like you got deceived again.',
+        actions: [],
+    },   
+    "tradeWithDeceiverNoMoney":{
+        title: "No Money",
+        id: "tradeWithDeceiverNoMoney",
+        encounterRate: 1, 
+        description: "You don't have enough coins.",
+        actions: []
     },
+
     "getSomeClothes":{
         title: "Get Some Clothes",
         id: "getSomeClothes",
