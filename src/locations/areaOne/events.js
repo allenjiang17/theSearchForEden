@@ -23,7 +23,7 @@ export const AreaOneEvents = {
         title: "Beginnings",
         id: "beginnings",
         encounterRate: 1,
-        description: "You wake up, and you feel strange. Something like scales falls from your eyes, and it is as if you can see for the first time. Everything that felt familiar to you now feels distant. Your thinking still feels futile, and your foolish heart still feels darkened. But you have this sense that eternity has been set on your heart. And it calls to you to go from your country, your people, and your father’s household, and to a new land.",
+        description: "You wake up, and you feel strange. Something like scales falls from your eyes, and it is as if you can see for the first time. Everything that felt familiar to you now feels distant.\n\nYour thinking still feels futile, and your foolish heart still feels darkened. But you have this sense that eternity has been set on your heart. And it calls to you to go from your country, your people, and your father’s household, and to a new land.",
         actions: [{
             name: "Begin your adventure",
             actionType: "setLocation",
@@ -175,7 +175,7 @@ export const AreaOneEvents = {
         title: "You gained a coin!",
         id: "gainedCoinBedroom",
         encounterRate: 1, 
-        description: "You searched carefully and found a lost coin! You call your friends and neighbors together and says, \"Rejoice with me; I have found my lost coin.\"",
+        description: "You searched carefully and found a lost coin! You call your friends and neighbors together and says, \"Rejoice with me; I have found my lost coin.\"\n\n(+1 Earthly Coin)",
         actions: []
     },
     "nothingFoundBedroom":{

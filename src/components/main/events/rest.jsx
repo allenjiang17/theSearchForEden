@@ -15,8 +15,7 @@ export default function NightRestEvent() {
 
     const gameState = useContext(GameContext);
 
-    const description = `Would you like to go to sleep for the night? You'll restore your physical 
-                         health and start a brand new day.`;
+    const description = `Would you like to go to sleep for the night? You'll restore your Physical HP and start a brand new day.`;
 
     function restoreHealth() {
 
