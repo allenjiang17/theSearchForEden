@@ -40,8 +40,7 @@ export default function GenericEvent({event, setCurrentEvent}) {
 
     const questTexts = event.quests ? event.quests.map((quest)=>(
         <span className="font-semibold" key={quest.id}>
-            Quest: {QuestsDict[quest.id].title} 
-            {quest.action === "start" ? "started" : quest.action === "complete" ? "completed" : null}
+            Quest: {QuestsDict[quest.id].title} {quest.action === "start" ? "started" : quest.action === "complete" ? "completed" : null}
         </span>
     )) : null
 
