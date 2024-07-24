@@ -369,20 +369,14 @@ export const AreaOneEvents = {
             name: "Check Inventory",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
-                console.log("getSomeClothes");
 
                 const questState = gameState.quests["getSomeClothes"];
-
                 if (questState && questState.progress !== "complete") {
                     if (gameState.inventory.items["figLeaf"] >= 10 && gameState.inventory.money >= 2) {
                         setCurrentEvent("getSomeClothesCompleteStep1");
                     } else {
                         setCurrentEvent("getSomeClothesIncomplete");
                     }
-                }
-
-                if (questState && questState.progress === "complete") {
-                    setCurrentEvent("getSomeBetterClothes");
                 }
             }
         },
@@ -392,6 +386,15 @@ export const AreaOneEvents = {
         id: "getSomeClothesIncomplete",
         encounterRate: 1, 
         description: 'The Crafty Sir Penn looks up from his workbench. \n\n“Do you have 10 fig leaves and 2 earthly coins yet? No? Then come back when you get them.”',
+        autoAction: {
+            name: "Check Inventory",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                if (gameState.inventory.items["figLeaf"] >= 10 && gameState.inventory.money >= 2) {
+                    setCurrentEvent("getSomeClothesCompleteStep1");
+                }
+            }
+        },
         actions: []
     },
     "getSomeClothesCompleteStep1":{
@@ -427,6 +430,10 @@ export const AreaOneEvents = {
                     gameState.setInventory(produce((newInventory)=>{
                         newInventory.equipment.push("figLeafLoincloth");
                     }));
+
+                    if (gameState.quests["getSomeClothes"].progress === "complete") {
+                        setCurrentEvent("getSomeBetterClothes");
+                    }
             }
         },
         actions: []
@@ -446,17 +453,12 @@ export const AreaOneEvents = {
             func: (gameState, event, setCurrentEvent) => {
 
                 const questState = gameState.quests["getSomeBetterClothes"];
-
                 if (questState && questState.progress !== "complete") {
                     if (gameState.inventory.items["chewedUpGarments"] >= 8 && gameState.inventory.money >= 4) {
                         setCurrentEvent("getSomeBetterClothesCompleteStep1");
                     } else {
                         setCurrentEvent("getSomeBetterClothesIncomplete");
                     }
-                }
-
-                if (questState && questState.progress === "complete") {
-                    setCurrentEvent("craftySirPennShop");
                 }
             }
         },
@@ -467,6 +469,15 @@ export const AreaOneEvents = {
         id: "getSomeBetterClothesIncomplete",
         encounterRate: 1, 
         description: 'The Crafty Sir Penn up from his workbench. \n“Do you have 8 garment pieces and 4 Earthly Coins yet? No? Then come back when you get them.”',
+        autoAction: {
+            name: "Check Inventory",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                if (gameState.inventory.items["chewedUpGarments"] >= 8 && gameState.inventory.money >= 4) {
+                    setCurrentEvent("getSomeBetterClothesCompleteStep1");
+                } 
+            }
+        },
         actions: []
     },
     "getSomeBetterClothesCompleteStep1":{
@@ -502,7 +513,11 @@ export const AreaOneEvents = {
                     gameState.setInventory(produce((newInventory)=>{
                         newInventory.equipment.push("garmentOfSkin");
                     }));
-            }
+
+                    if (gameState.quests["getSomeBetterClothes"].progress === "complete") {
+                        setCurrentEvent("craftySirPennShop");
+                    }
+                }
         },
         actions: []
     },

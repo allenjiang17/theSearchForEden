@@ -24,7 +24,7 @@ export default function Location() {
     ));
 
     useEffect(()=>{
-        setCurrentEvent(getRandomEvent(currentLocation));
+        setCurrentEvent(map[location]?.currentEvent ?? getRandomEvent(currentLocation));
     }, [location]);
 
     useEffect(()=>{
