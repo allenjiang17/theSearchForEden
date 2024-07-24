@@ -71,7 +71,7 @@ export const AreaOneLocations = {
         id: "cityOfDestruction",
         description: "You venture out into the City of Destruction. It's a somewhat foreboding name, but you didn't choose it. You just happen to live here. Where would you like to go?",
         events: [],
-        children: ["house", "townSquare", "craftyFellow", "cursedFigTree", "brokenCistern", "emptyLand"],
+        children: ["house", "townSquare", "craftySirPenn", "cursedFigTree", "brokenCistern", "emptyLand"],
         parent: "world",
         initialUnlocked: true
     },
