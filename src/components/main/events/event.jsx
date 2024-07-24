@@ -11,12 +11,13 @@ export default function Event({event, setCurrentEvent}) {
     const eventObj = AreaOneEvents[event];
 
     //all events take up one unit of time
-    const {ntask, setNtask} = useContext(GameContext);
+    const {ntask} = useContext(GameContext);
 
     if (ntask === 0 && event !== "nightRest") {
-        return (<div>
-            <span>You're too tired and it's way too late. You should go home and sleep.</span>
-        </div>)
+        return (
+            <div>
+                <span>You're too tired and it's way too late. You should go home and sleep.</span>
+            </div>)
     }
 
     if (event === "combat") {

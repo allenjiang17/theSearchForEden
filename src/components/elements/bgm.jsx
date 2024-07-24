@@ -7,6 +7,10 @@ const bgmMap = {
     "combat": "theSearchForEden/sounds/combatTheme.mp3"
 };
 
+/*
+ * React component that plays background music; uses the bgmMap above to map a bgm string to a path
+ * and plays it in a loop.
+ */
 export default function Bgm() {
     const {settings} = useContext(GameContext);
 

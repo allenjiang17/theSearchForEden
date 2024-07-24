@@ -15,21 +15,23 @@ export default function Location() {
     const currentLocation = AreaOneLocations[location];
     const [currentEvent, setCurrentEvent] = useState(map[location]?.currentEvent ?? getRandomEvent(currentLocation));
     
+    // key removes the key warning
     const locationOptions = currentLocation.children.map((location)=>(map[location]?.unlocked ? 
-            <Button onClick={()=>{setLocation(location)}}>{AreaOneLocations[location].title}</Button>
+            (<Button onClick={()=>{setLocation(location)}} key={location}>
+                {AreaOneLocations[location].title}
+            </Button>)
         : null
     ));
 
     useEffect(()=>{
         setCurrentEvent(getRandomEvent(currentLocation));
-    },[location]);
+    }, [location]);
 
     useEffect(()=>{
         setMap(produce((map)=>{map[location].currentEvent = currentEvent}));
-    },[currentEvent]);
+    }, [currentEvent]);
 
 
-    // If you don't like the dynamic text, switch dialoguebox back to a static span
     return (
         <div className="w-full flex flex-col justify-center items-start gap-3">
             <span>{currentLocation.description}</span>

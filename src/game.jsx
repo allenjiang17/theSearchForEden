@@ -113,8 +113,15 @@ function Game() {
   });
   effectHook("settings", settings);
 
-  const [ntask, setNtask] = useStateLocal("ntask", 18);
+  const MAXTASK = 36;
+  const [ntask, setNtask] = useStateLocal("ntask", MAXTASK);
   effectHook("ntask", ntask);
+  const taskFunc = {
+      "set": setNtask,
+      "sleep": () => setNtask(MAXTASK),
+      "check": (cost = 1) => (ntask >= cost),
+      "use": (cost = 1) => (setNtask(ntask - cost)),
+  }
   
   const [day, setDay] = useStateLocal("day", 0);
   effectHook("day", day);
@@ -140,7 +147,7 @@ function Game() {
       quests, setQuests,
       charCondition, setCharCondition, 
       settings, setSettings,
-      ntask, setNtask,
+      ntask, taskFunc,
       day, setDay,
     }}>
       <div className="flex flex-col justify-start items-start whitespace-pre-wrap w-full max-w-[1000px] mx-auto p-8 gap-5">

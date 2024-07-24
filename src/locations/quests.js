@@ -15,10 +15,9 @@ export const QuestsDict = {
     },
     "senseOfDirection": {
         title: "A Sense of Direction",
-        description: "You met a lost man who came from the Land of the Patriarchs. Unfortunately, he doesn't know how to get there, but maybe if you got a sense of direction you'd be able to.",
+        description: `You met a lost man who came from the Land of the Patriarchs. Unfortunately, he doesn't know how to get there, but maybe if you got a sense of direction you'd be able to.`,
         conditionType: "inventory",
         conditionFunc: (gameState) => {
-
             console.log(gameState);
             if (gameState.inventory.items["senseOfDirection"]) {
                 gameState.setMap(produce((newMap)=>{

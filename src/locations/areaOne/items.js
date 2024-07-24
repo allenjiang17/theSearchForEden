@@ -26,14 +26,34 @@ export const AreaOneItems = {
         battleAction: {
             type: "heal", //heal, damage, buff, inflict status 
             amount: 50,
-            description: "You ate some Manna. It tasted pretty good, and you feel a bit better (healed 5 HP)"
+            description: "You ate some Manna. It tasted pretty good, and you feel a bit better. (+50 Physical HP, +50 Spiritual HP)"
             //status: "poison"
         },
         price: 0
     },
     "locust": {
         name: "Locust",
-        description: "This is a rare delicacy. Some say that it pairs well with wild honey.",
+        description: "This locust seems lonely. It longs to be with its locust friends.",
+        price: 0
+    },
+    "pairOfLocusts": {
+        name: "Pair of Locusts",
+        description: "These two locusts seem happier together. But they still seem a bit lonely. They long for more locust friends.",
+        price: 0
+    },
+    "crowdOfLocusts": {
+        name: "Crowd of Locusts",
+        description: "Three locusts make a crowd. But the locusts still feel a bit incomplete. They long for another locust friend.",
+        price: 0
+    },
+    "swarmOfLocusts": {
+        name: "Swarm of Locusts",
+        description: "The swarm of locusts has been completed. They are feeling antsy now. They want to go on a raid.",
+        price: 0
+    },
+    "locust": {
+        name: "Locust",
+        description: "This locust seems lonely. It longs to be with its locust friends.",
         price: 0
     },
     "handfulOfDirt": {
@@ -58,7 +78,7 @@ export const AreaOneItems = {
     },
     "timeOfFasting": {
         name: "Time of Fasting",
-        description: "This item makes you physically hungry but spiritually satiated. -10 Physical HP, +100 Spiritual HP.",
+        description: "This item makes you physically hungry but spiritually satiated. -20 Physical HP, +50 Spiritual HP.",
         price: 0
     },
     "literalQuail": {

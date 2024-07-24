@@ -15,7 +15,7 @@ export const Equipment = {
         description: "A garment put together from animal skin. It's a bit itchy, but it provides some protection. \n\n (+6 Defense)",
         effects: [{
             stat: "defense",
-            effect: 3
+            effect: 6
         }],
         price: 0
     }

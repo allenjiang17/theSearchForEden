@@ -1,9 +1,10 @@
 import Button from "../../elements/button";
-import { Toggle } from "../../elements/toggle";
+import Toggle from "../../elements/toggle";
+import Slider from "../../elements/slider";
+
 import { useContext } from "react";
 import { GameContext } from "../../../game";
 import { produce } from "immer";
-import Slider from "../../elements/slider"
 
 export default function Settings() {
 
@@ -20,7 +21,7 @@ export default function Settings() {
 
     return(
         <div className="flex flex-col justify-center items-start gap-3">
-            <span>Settings</span>
+            <span className="font-semibold">Settings</span>
             <div className="flex flex-row justify-between items-center gap-2">
                 <span>Start Over? </span>
                 <Button onClick={clearGameData}>Clear Game Data</Button>

@@ -1,4 +1,4 @@
-export function Toggle({active, ...props}) {
+export default function Toggle({active, ...props}) {
 
     const outerContainerStyles = [
         "w-[3.2rem]",
