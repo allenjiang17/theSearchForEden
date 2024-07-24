@@ -132,8 +132,8 @@ export const AreaOneLocations = {
     "brokenCistern": {
         title: "Broken Cistern",
         id: "brokenCistern",
-        description: "You look into the broken cistern. It doesn’t seem like it holds much water. You try to grab the water in the cistern with your hand, but it slips through your fingers.",
-        events: [],
+        description: "You look into the broken cistern. There seems to be a little bit of water inside.",
+        events: ["getWaterFromCistern"],
         children: [],
         states: {
             "redeemedCistern": {
@@ -168,7 +168,7 @@ export const AreaOneLocations = {
         id: "wilderness",
         description: "You walk out into the Wilderness. You hear a faint voice crying out, \"Prepare the way of the Lord; make his paths straight.\"\n\nYou look around but don't see any paths. Maybe these paths are not literal but metaphorical?",
         events: [],
-        children: ["theLostMan", "fieldOfManna", "valleyOfStones", "desertOfWandering", "bronzeSerpent", "yamSuph"],
+        children: ["theLostMan", "fieldOfManna", "valleyOfStones", "desertOfWandering", "heapOfRuins", "bronzeSerpent", "yamSuph"],
         parent: "world",
         initialUnlocked: true
     },
@@ -205,7 +205,17 @@ export const AreaOneLocations = {
         id: "desertOfWandering",
         description: "It\'s blistering hot. You\'re tired, thirsty, and hungry. This is the type of place where you might see a mirage of an oasis.",
         events: [],
-        enemies: ["commonGluttony", "grumblingOrgan", "fierySerpent"],
+        enemies: ["commonGluttony", "grumblingOrgan"],
+        children: [],
+        parent: "wilderness",
+        initialUnlocked: true
+    },
+    "heapOfRuins": {
+        title: "Heap of Ruins",
+        id: "heapOfRuins",
+        description: "A thriving city once stood here, long ago. But now it is a heap of ruins, a haunt of jackals, and a place of desolation. Only wild animals reside here now.",
+        events: ["captureLocust", "getCamelHair"],
+        enemies: ["fierySerpent"],
         children: [],
         parent: "wilderness",
         initialUnlocked: true
