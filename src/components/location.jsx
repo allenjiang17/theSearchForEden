@@ -11,6 +11,8 @@ import {produce} from "immer";
 export default function Location({location, setLocation, map, setMap}) {
 
     const currentLocation = AreaOneLocations[location];
+    console.log(location);
+    
     const [currentEvent, setCurrentEvent] = useState(map[location]?.currentEvent ?? getRandomEvent(currentLocation));
     
     // key removes the key warning
