@@ -30,6 +30,11 @@ export const AreaOneItems = {
         description: "This is a rope. Pretty self-explanatory.",
         price: 0
     },
+    "bucket": {
+        name: "Bucket",
+        description: "This is a bucket. Pretty self-explanatory.",
+        price: 0
+    },
     
     "manna": {
         name: "Manna",
