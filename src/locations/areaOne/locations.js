@@ -48,7 +48,7 @@ export const AreaOneLocations = {
         initialUnlocked: true
     },
     "prayerCloset":{
-        title: "Prayer closet",
+        title: "Prayer Closet",
         id: "prayerCloset",
         description: "You walk into your prayer closet and close your eyes.",
         events: ["prayCloset"],
@@ -57,7 +57,7 @@ export const AreaOneLocations = {
         initialUnlocked: true
     },
     "livingRoom": {
-        title: "Living room",
+        title: "Living Room",
         id: "livingRoom",
         description: "You walk into your living room, your go-to place for shenanigans and hangouts.",
         events: ["searchForCoinsBedroom"],
@@ -71,7 +71,7 @@ export const AreaOneLocations = {
         id: "cityOfDestruction",
         description: "You venture out into the City of Destruction. It's a somewhat foreboding name, but you didn't choose it. You just happen to live here. Where would you like to go?",
         events: [],
-        children: ["house", "townSquare", "craftyFellow", "cursedFigTree", "brokenCistern", "emptyLand"],
+        children: ["house", "townSquare", "craftySirPenn", "cursedFigTree", "brokenCistern", "emptyLand"],
         parent: "world",
         initialUnlocked: true
     },
@@ -80,8 +80,8 @@ export const AreaOneLocations = {
         id: "townSquare",
         description: "You walk into a busy town square. You hear a cacophany of voices and musical instruments.",
         events: [],
-        children: ["craftySirPenn", "simpleBabbler", "travelingProphetess"],
-        parent: "world",
+        children: ["craftySirPenn", "simpleBabbler", "wickedDeceiver", "travelingProphetess"],
+        parent: "cityOfDestruction",
         initialUnlocked: true
     },
     "travelingProphetess": {
@@ -90,7 +90,7 @@ export const AreaOneLocations = {
         description: "You see an old holy woman talking a walk. She doesn't seem to be from here, but there's something about her that intrigues you.",
         events: ["getResolve"],
         children: [],
-        parent: "cityOfDestruction",
+        parent: "townSquare",
         initialUnlocked: true
     },
     "craftySirPenn": {
@@ -99,25 +99,25 @@ export const AreaOneLocations = {
         description: "You stroll into the Crafty Sir Penn's Shop and see a crusty, old man at his workbench.",
         events: ["getSomeClothes"],
         children: [],
-        parent: "cityOfDestruction",
+        parent: "townSquare",
         initialUnlocked: true
     },
     "simpleBabbler": {
         title: "The Simple Babbler",
         id: "simpleBabbler",
-        description: "You notice a friendly man who is starting conversations with everybody. He almost seems too friendly. He is babbling on and on about how this person did this and that person did that.",
-        events: [],
-        children: ["babbleWithBabbler"],
-        parent: "cityOfDestruction",
+        description: "You notice a jolly man who is starting up conversations with everybody. He almost seems... too friendly. He is babbling on and on about how this person did this and that person did that.",
+        events: ["babbleWithBabbler"],
+        children: [],
+        parent: "townSquare",
         initialUnlocked: true
     },
-    "babbleWithBabbler": {
-        title: "Babble with the Babbler",
-        id: "babbleWithBabbler",
-        description: "\"I know all of the secrets of everybody in this town. Tell you what--if you give me something of use, I'll tell you some hot gossip.\"\n\n\"Okay, maybe,\" you say, \"What can you use?\"\n\n\"Hmm... well I am pretty hungry. Can you get me some Bread of Idleness?\"",
-        events: ["talkWithBabbler"],
+    "wickedDeceiver": {
+        title: "The Wicked Deceiver",
+        id: "wickedDeceiver",
+        description: "You notice a shadowy figure in a large cloak, mischievously shifting his eyes.",
+        events: ["chatWithDeceiver"],
         children: [],
-        parent: "simpleBabbler",
+        parent: "townSquare",
         initialUnlocked: true
     },
     "cursedFigTree": {
@@ -132,8 +132,8 @@ export const AreaOneLocations = {
     "brokenCistern": {
         title: "Broken Cistern",
         id: "brokenCistern",
-        description: "You look into the broken cistern. It doesn’t seem like it holds much water. You try to grab the water in the cistern with your hand, but it slips through your fingers.",
-        events: [],
+        description: "You look into the broken cistern. There seems to be a little bit of water inside.",
+        events: ["getWaterFromCistern"],
         children: [],
         states: {
             "redeemedCistern": {
@@ -168,7 +168,7 @@ export const AreaOneLocations = {
         id: "wilderness",
         description: "You walk out into the Wilderness. You hear a faint voice crying out, \"Prepare the way of the Lord; make his paths straight.\"\n\nYou look around but don't see any paths. Maybe these paths are not literal but metaphorical?",
         events: [],
-        children: ["theLostMan", "fieldOfManna", "valleyOfStones", "desertOfWandering", "bronzeSerpent", "yamSuph"],
+        children: ["theLostMan", "fieldOfManna", "valleyOfStones", "desertOfWandering", "heapOfRuins", "bronzeSerpent", "yamSuph"],
         parent: "world",
         initialUnlocked: true
     },
@@ -205,7 +205,17 @@ export const AreaOneLocations = {
         id: "desertOfWandering",
         description: "It\'s blistering hot. You\'re tired, thirsty, and hungry. This is the type of place where you might see a mirage of an oasis.",
         events: [],
-        enemies: ["commonGluttony", "grumblingOrgan", "fierySerpent"],
+        enemies: ["commonGluttony", "grumblingOrgan"],
+        children: [],
+        parent: "wilderness",
+        initialUnlocked: true
+    },
+    "heapOfRuins": {
+        title: "Heap of Ruins",
+        id: "heapOfRuins",
+        description: "A thriving city once stood here, long ago. But now it is a heap of ruins, a haunt of jackals, and a place of desolation. Only wild animals reside here now.",
+        events: ["captureLocust", "getCamelHair"],
+        enemies: ["fierySerpent"],
         children: [],
         parent: "wilderness",
         initialUnlocked: true

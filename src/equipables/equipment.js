@@ -18,5 +18,25 @@ export const Equipment = {
             effect: 6
         }],
         price: 0
+    },
+    "garmentOfCamelsHair": {
+        name: "Garment of Camel\'s Hair",
+        type: "body",
+        description: "A garment put together from camel's hair. It's super itchy, but it makes you more holy.\n\n (+6 Resilience)",
+        effects: [{
+            stat: "resilience",
+            effect: 6
+        }],
+        price: 0
+    },
+    "serpentScalesArmor": {
+        name: "Serpent Scales Armor",
+        type: "body",
+        description: "An armor put together from serpent scales. It's a bit gross, but it's pretty sturdy. \n\n (+10 Defense)",
+        effects: [{
+            stat: "defense",
+            effect: 10
+        }],
+        price: 0
     }
 }

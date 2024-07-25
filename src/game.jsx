@@ -29,9 +29,9 @@ const initialCharacterTest = {
 };
 
 const initialInventory = {
-  money: 3,
+  money: 0,
   keyItems: [],
-  items: {"chewedUpGarments": 5, "figLeaf": 10},
+  items: {"chewedUpGarments": 0, "figLeaf": 0},
   equipment: [],
   weapons: []
 }

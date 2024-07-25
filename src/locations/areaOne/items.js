@@ -14,11 +14,23 @@ export const AreaOneItems = {
         description: "A large fig leaf, taken from a fig tree.",
         price: 0
     },
+    "dyingWater": {
+        name: "Dying Water",
+        description: "Water that provides temporary nourishment to the body. When you drink of this, you will thirst again.",
+        price: 0
+    },
+
     "spiritOfResolve": {
         name: "Spirit of Resolve",
         description: "This allows to do the things you want to do, instead of blindly following your wayward gut.",
         price: 0
     },
+    "rope": {
+        name: "Rope",
+        description: "This is a rope. Pretty self-explanatory.",
+        price: 0
+    },
+    
     "manna": {
         name: "Manna",
         description: "\"What is it?\" you wonder. It tastes like wafers made with honey.",
@@ -29,6 +41,11 @@ export const AreaOneItems = {
             description: "You ate some Manna. It tasted pretty good, and you feel a bit better. (+50 Physical HP, +50 Spiritual HP)"
             //status: "poison"
         },
+        price: 0
+    },
+    "camelHair": {
+        name: "Bunch of Camel Hair",
+        description: "This is a bunch of hair from a camel. Maybe it can be crafted into something.",
         price: 0
     },
     "locust": {
@@ -109,6 +126,11 @@ export const AreaOneItems = {
     "serpentEyes": {
         name: "Serpent Eyes",
         description: "These are the eyes of a serpent. They\'re very beady. Some people have confused these with covert ninja commandos, but they\'re actually quite different.",
+        price: 0
+    },
+    "serpentTaxidermy": {
+        name: "Serpent Taxidermy",
+        description: "This looks just like a serpent, except that it's not living.",
         price: 0
     },
     "imperfectLovePotion": {

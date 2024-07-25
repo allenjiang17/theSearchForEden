@@ -127,7 +127,7 @@ export const AreaOneEnemies = {
         ],
         itemDrop: [
           {item: "serpentTeeth", chance: 0.2},
-          {item: "serpentSkin", chance: 0.2},
+          {item: "serpentSkin", chance: 0.8},
           {item: "serpentGuts", chance: 0.2},
           {item: "serpentEyes", chance: 0.2}
         ]
