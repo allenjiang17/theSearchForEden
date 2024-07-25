@@ -80,7 +80,7 @@ export const AreaOneLocations = {
         id: "townSquare",
         description: "You walk into a busy town square. You hear a cacophany of voices and musical instruments.",
         events: [],
-        children: ["craftySirPenn", "simpleBabbler", "wickedDeceiver", "travelingProphetess"],
+        children: ["craftySirPenn", "simpleBabbler", "wickedDeceiver", "dishonestMerchant", "travelingProphetess"],
         parent: "cityOfDestruction",
         initialUnlocked: true
     },
