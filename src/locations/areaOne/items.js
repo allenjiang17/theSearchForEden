@@ -35,7 +35,6 @@ export const AreaOneItems = {
         description: "This is a bucket. Pretty self-explanatory.",
         price: 0
     },
-    
     "manna": {
         name: "Manna",
         description: "\"What is it?\" you wonder. It tastes like wafers made with honey.",
@@ -71,11 +70,6 @@ export const AreaOneItems = {
     "swarmOfLocusts": {
         name: "Swarm of Locusts",
         description: "The swarm of locusts has been completed. They are feeling antsy now. They want to go on a raid.",
-        price: 0
-    },
-    "locust": {
-        name: "Locust",
-        description: "This locust seems lonely. It longs to be with its locust friends.",
         price: 0
     },
     "handfulOfDirt": {

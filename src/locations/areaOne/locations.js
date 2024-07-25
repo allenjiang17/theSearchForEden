@@ -120,6 +120,15 @@ export const AreaOneLocations = {
         parent: "townSquare",
         initialUnlocked: true
     },
+    "dishonestMerchant": {
+        title: "The Dishonest Merchant",
+        id: "dishonestMerchant",
+        description: "You see a merchant in lavish clothes. He uses dishonest scales and loves to defraud.",
+        events: ["chatWithMerchant"],
+        children: [],
+        parent: "townSquare",
+        initialUnlocked: true
+    },
     "cursedFigTree": {
         title: "Cursed Fig Tree",
         id: "cursedFigTree",

@@ -355,12 +355,22 @@ export const AreaOneEvents = {
         ]
     },
     "talkWithBabblerNoBread":{
-        title: "No Bread",
+        title: "Talk with Babbler No Bread",
         id: "talkWithBabblerNoBread",
         encounterRate: 1, 
-        description: "You don't have any Bread of Idleness",
-        actions: []
+        description: 'Uh... you don\'t have any bread. Go get some first if you want to talk to me.',
+        autoAction: {
+            name: "Talk with Babbler 1",
+            actionType: "setCharCondition",
+            func: (gameState, event, setCurrentEvent) => {
+                if (gameState.inventory.items["breadOfIdleness"] >= 1) {
+                    setCurrentEvent("babbleWithBabbler")
+                }
+            }
+        },
+        actions: [],
     },
+    
     "chatWithDeceiver": {
         title: "Chat with the Wicked Deceiver",
         id: "chatWithDeceiver",
@@ -410,22 +420,182 @@ export const AreaOneEvents = {
         description: "You don't have enough coins.",
         actions: []
     },
-    "talkWithBabblerNoBread":{
-        title: "Talk with Babbler No Bread",
-        id: "talkWithBabblerNoBread",
+    "chatWithMerchant": {
+        title: "Chat with Dishonest Merchant",
+        id: "chatWithMerchant",
         encounterRate: 1, 
-        description: 'Uh....you don\'t have any bread. Go get some first if you want to talk to me.',
-        autoAction: {
-            name: "Talk with Babbler 1",
-            actionType: "setCharCondition",
+        description: "\"Greetings, I am on the search for some items. Here\'s what I am looking for and how much I am willing to pay for them. Are you willing to make an offer?",
+        actions: [{
+            name: "Bread of Idleness, 2 coins",
+            actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (gameState.inventory.items["breadOfIdleness"] >= 1) {
-                    setCurrentEvent("talk")
-
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.money = newInventory.money + 1;
+                        newInventory.items["breadOfIdleness"] = newInventory.items["breadOfIdleness"] - 1; 
+                    }));
+                    setCurrentEvent("sellBreadOfIdleness");
+                } else {
+                    setCurrentEvent("dishonestMerchantFailure")
                 }
             }
         },
-        actions: [],
+        {
+            name: "Ex-stone Bread, 3 coins",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                if (gameState.inventory.items["exStoneBread"] >= 1) {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.money = newInventory.money + 2;
+                        newInventory.items["exStoneBread"] = newInventory.items["exStoneBread"] - 1; 
+                    }));
+                    setCurrentEvent("sellExStoneBread");
+                } else {
+                    setCurrentEvent("dishonestMerchantFailure")
+                }
+            }
+        },
+        {
+            name: "Literal Quail, 3 coins",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                if (gameState.inventory.items["literalQuail"] >= 1) {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.money = newInventory.money + 2;
+                        newInventory.items["literalQuail"] = newInventory.items["literalQuail"] - 1; 
+                    }));
+                    setCurrentEvent("sellLiteralQuail");
+                } else {
+                    setCurrentEvent("dishonestMerchantFailure")
+                }
+            }
+        },
+        {
+            name: "Locust, 3 coins",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                if (gameState.inventory.items["locust"] >= 1) {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.money = newInventory.money + 2;
+                        newInventory.items["locust"] = newInventory.items["locust"] - 1; 
+                    }));
+                    setCurrentEvent("sellLocust");
+                } else {
+                    setCurrentEvent("dishonestMerchantFailure")
+                }
+            }
+        },
+        {
+            name: "Water of Meribah, 3 coins",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                if (gameState.inventory.items["waterOfMeribah"] >= 1) {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.money = newInventory.money + 2;
+                        newInventory.items["waterOfMeribah"] = newInventory.items["waterOfMeribah"] - 1; 
+                    }));
+                    setCurrentEvent("sellWaterOfMeribah");
+                } else {
+                    setCurrentEvent("dishonestMerchantFailure")
+                }
+            }
+        },
+        {
+            name: "Manna, 5 coins",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                if (gameState.inventory.items["manna"] >= 1) {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.money = newInventory.money + 4;
+                        newInventory.items["manna"] = newInventory.items["manna"] - 1; 
+                    }));
+                    setCurrentEvent("sellManna");
+                } else {
+                    setCurrentEvent("dishonestMerchantFailure")
+                }
+            }
+        },
+        {
+            name: "Sense of Direction, 5 coins",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                if (gameState.inventory.items["senseOfDirection"] >= 1) {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.money = newInventory.money + 4;
+                        newInventory.items["senseOfDirection"] = newInventory.items["senseOfDirection"] - 1; 
+                    }));
+                    setCurrentEvent("sellSenseOfDirection");
+                } else {
+                    setCurrentEvent("dishonestMerchantFailure")
+                }
+            }
+        }
+    ]
+    },
+    "sellBreadOfIdleness":{
+        title: "Sell Bread of Idleness",
+        id: "sellBreadOfIdleness",
+        encounterRate: 1, 
+        description: "You hand over a Bread of Idleness, and the Dishonest Merchant gives you 1 coin. \"Great doing business with you,\" he says.\n\n\"Wait,\" you protest, \"I thought you said you would give me 2 coins for this.\"\n\n\"Did I really?\" the Dishonest Merchant asks, \"I am pretty sure I said I would only offer 1. Either way, your Bread of Idleness is the wrong color. It\'s only worth 1.\"\n\nLooks like you were played.\n\n+1 Earthly Coin",
+        actions: []
+    },
+    "sellExStoneBread":{
+        title: "Sell Ex-stone Bread",
+        id: "sellExStoneBread",
+        encounterRate: 1, 
+        description: "You hand over an Ex-stone Bread, and the Dishonest Merchant gives you 2 coins. \"Great doing business with you,\" he says.\n\n\"Wait,\" you protest, \"I thought you said you would give me 3 coins for this.\"\n\n\"Did I really?\" the Dishonest Merchant asks, \"I am pretty sure I said I would only offer 2. Either way, your Ex-stone Bread is too tough to chew. It\'s only worth 2.\"\n\nLooks like you were played.\n\n+2 Earthly Coins",
+        actions: []
+    },
+    "sellLiteralQuail":{
+        title: "Sell Literal Quail",
+        id: "sellLiteralQuail",
+        encounterRate: 1, 
+        description: "You hand over a Literal Quail, and the Dishonest Merchant gives you 2 coins. \"Great doing business with you,\" he says.\n\n\"Wait,\" you protest, \"I thought you said you would give me 3 coins for this.\"\n\n\"Did I really?\" the Dishonest Merchant asks, \"I am pretty sure I said I would only offer 2. Either way, your Literal Quail has too many feathers on it. It\'s only worth 2.\"\n\nLooks like you were played.\n\n+2 Earthly Coins",
+        actions: []
+    },
+    "sellLocust":{
+        title: "Sell Locust",
+        id: "sellLocust",
+        encounterRate: 1,
+        description: "You hand over a Locust, and the Dishonest Merchant gives you 2 coins. \"Great doing business with you,\" he says.\n\n\"Wait,\" you protest, \"I thought you said you would give me 3 coins for this.\"\n\n\"Did I really?\" the Dishonest Merchant asks, \"I am pretty sure I said I would only offer 2. Either way, your Locust jumps too much. It\'s only worth 2.\"\n\nLooks like you were played.\n\n+2 Earthly Coins",
+        actions: []
+    },
+    "sellWaterOfMeribah":{
+        title: "Sell Water of Meribah",
+        id: "sellWaterOfMeribah",
+        encounterRate: 1,
+        description: "You hand over a Water of Meribah, and the Dishonest Merchant gives you 2 coins. \"Great doing business with you,\" he says.\n\n\"Wait,\" you protest, \"I thought you said you would give me 3 coins for this.\"\n\n\"Did I really?\" the Dishonest Merchant asks, \"I am pretty sure I said I would only offer 2. Either way, your Water of Meribah is too wet. It\'s only worth 2.\"\n\nLooks like you were played.\n\n+2 Earthly Coins",
+        actions: []
+    },
+    "sellManna":{
+        title: "Sell Manna",
+        id: "sellManna",
+        encounterRate: 1,
+        description: "You hand over some Manna, and the Dishonest Merchant gives you 4 coins. \"Great doing business with you,\" he says.\n\n\"Wait,\" you protest, \"I thought you said you would give me 5 coins for this.\"\n\n\"Did I really?\" the Dishonest Merchant asks, \"I am pretty sure I said I would only offer 4. Either way, your Manna is too sweet. It\'s only worth 4.\"\n\nLooks like you were played.\n\n+4 Earthly Coins",
+        actions: []
+    },
+    "sellSenseOfDirection":{
+        title: "Sell Sense of Direction",
+        id: "sellSenseOfDirection",
+        encounterRate: 1,
+        description: "You hand over a Sense of Direction, and the Dishonest Merchant gives you 4 coins. \"Great doing business with you,\" he says.\n\n\"Wait,\" you protest, \"I thought you said you would give me 5 coins for this.\"\n\n\"Did I really?\" the Dishonest Merchant asks, \"I am pretty sure I said I would only offer 4. Either way, your Sense of Direction is too abstract of a concept. I can\'t even tell what I\'m looking at. It\'s only worth 4 coins.\"\n\nLooks like you were played.\n\n+4 Earthly Coins",
+        actions: []
+    },
+    "dishonestMerchantFailure":{
+        title: "You Don't Have That",
+        id: "dishonestMerchantFailure",
+        encounterRate: 1, 
+        description: "\"You don\'t even have that! Are you trying to beat me in my own game?\"\n\nYou lose 5 Spiritual HP for being dishonest.",
+        autoAction: {
+            name: "Being Dishonest",
+            actionType: "setCharCondition",
+            func: (gameState, event, setCurrentEvent) => {
+                gameState.setCharCondition(produce((newCharCondition)=>{
+                    newCharCondition.spiritualHp = Math.max(0,newCharCondition.spiritualHp - 5);
+                }));
+                setCurrentEvent("chatWithMerchant")
+            }
+        }
     },
     "getSomeClothes":{
         title: "Get Some Clothes",
@@ -629,6 +799,10 @@ export const AreaOneEvents = {
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (gameState.inventory.items["camelHair"] >= 2 && gameState.inventory.money >= 2) {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.money = Math.max(0, newInventory.money - 2);
+                        newInventory.items["camelHair"] = Math.max(0, newInventory.items["camelHair"] - 2); 
+                    }));
                     setCurrentEvent("getRopeSuccess");
                 } else {
                     setCurrentEvent("craftySirPennShopFailure")
@@ -640,7 +814,7 @@ export const AreaOneEvents = {
         title: "Get Rope Success",
         id: "getRopeSuccess",
         encounterRate: 1, 
-        description: "You give the Crafty Sir Penn 2 Bunches of Camel's Hair and 3 Earthly Coins. In a few moments, he presents you with a rope.\n\n\"I must warn you though,\" he says, \"It isn\'t the sturdiest quality.\"\n\n(+1 Rope)",
+        description: "You give the Crafty Sir Penn 2 Bunches of Camel's Hair and 2 Earthly Coins. In a few moments, he presents you with a rope.\n\n\"I must warn you though,\" he says, \"It isn\'t the sturdiest quality.\"\n\n(+1 Rope)",
         autoAction: {
             name: "Get Rope",
             actionType: "setInventory",
@@ -660,6 +834,10 @@ export const AreaOneEvents = {
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (gameState.inventory.items["camelHair"] >= 5 && gameState.inventory.money >= 5) {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.money = Math.max(0, newInventory.money - 5);
+                        newInventory.items["camelHair"] = Math.max(0, newInventory.items["camelHair"] - 5); 
+                    }));
                     setCurrentEvent("getCamelsHairGarmentSuccess");
                 } else {
                     setCurrentEvent("craftySirPennShopFailure")
@@ -693,6 +871,10 @@ export const AreaOneEvents = {
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (gameState.inventory.items["serpentSkin"] >= 5 && gameState.inventory.money >= 10) {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.money = Math.max(0, newInventory.money - 10);
+                        newInventory.items["serpentSkin"] = Math.max(0, newInventory.items["serpentSkin"] - 5); 
+                    }));
                     setCurrentEvent("getSerpentScalesArmorSuccess");
                 } else {
                     setCurrentEvent("craftySirPennShopFailure")
@@ -726,6 +908,13 @@ export const AreaOneEvents = {
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (gameState.inventory.items["serpentSkin"] >= 1 && gameState.inventory.items["serpentTeeth"] >= 1 && gameState.inventory.items["serpentGuts"] >= 1 && gameState.inventory.items["serpentEyes"] >= 1 && gameState.inventory.money >= 10) {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.money = Math.max(0, newInventory.money - 10);
+                        newInventory.items["serpentSkin"] = Math.max(0, newInventory.items["serpentSkin"] - 1); 
+                        newInventory.items["serpentTeeth"] = Math.max(0, newInventory.items["serpentTeeth"] - 1); 
+                        newInventory.items["serpentGuts"] = Math.max(0, newInventory.items["serpentGuts"] - 1); 
+                        newInventory.items["serpentEyes"] = Math.max(0, newInventory.items["serpentEyes"] - 1); 
+                    }));
                     setCurrentEvent("getSerpentTaxidermySuccess");
                 } else {
                     setCurrentEvent("craftySirPennShopFailure")
