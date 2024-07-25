@@ -393,7 +393,7 @@ export const AreaOneEvents = {
     },
 
     // merchant events
-
+        
     "chatWithMerchant": {
         title: "Chat with Dishonest Merchant",
         id: "chatWithMerchant",
@@ -403,14 +403,14 @@ export const AreaOneEvents = {
             name: "Bread of Idleness:\n2 coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
-                if (gameState.inventory.items["breadOfIdleness"] >= 1) {
+                if (!gameState.inventory.items["breadOfIdleness"] || gameState.inventory.items["breadOfIdleness"] < 1) {
+                    setCurrentEvent("dishonestMerchantFailure");
+                } else {
                     gameState.setInventory(produce((newInventory)=>{
-                        newInventory.money = newInventory.money + 1;
-                        newInventory.items["breadOfIdleness"] = newInventory.items["breadOfIdleness"] - 1; 
+                        newInventory.money += 1;
+                        newInventory.items["breadOfIdleness"] -= 1; 
                     }));
                     setCurrentEvent("sellBreadOfIdleness");
-                } else {
-                    setCurrentEvent("dishonestMerchantFailure")
                 }
             }
         },
@@ -418,14 +418,14 @@ export const AreaOneEvents = {
             name: "Ex-stone Bread:\n3 coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
-                if (gameState.inventory.items["exStoneBread"] >= 1) {
+                if (!gameState.inventory.items["exStoneBread"] || gameState.inventory.items["exStoneBread"] < 1) {
+                    setCurrentEvent("dishonestMerchantFailure");
+                } else {
                     gameState.setInventory(produce((newInventory)=>{
-                        newInventory.money = newInventory.money + 2;
-                        newInventory.items["exStoneBread"] = newInventory.items["exStoneBread"] - 1; 
+                        newInventory.money += 2;
+                        newInventory.items["exStoneBread"] -= 1; 
                     }));
                     setCurrentEvent("sellExStoneBread");
-                } else {
-                    setCurrentEvent("dishonestMerchantFailure")
                 }
             }
         },
@@ -433,14 +433,14 @@ export const AreaOneEvents = {
             name: "Literal Quail:\n3 coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
-                if (gameState.inventory.items["literalQuail"] >= 1) {
+                if (!gameState.inventory.items["literalQuail"] || gameState.inventory.items["literalQuail"] < 1) {
+                    setCurrentEvent("dishonestMerchantFailure");
+                } else {
                     gameState.setInventory(produce((newInventory)=>{
-                        newInventory.money = newInventory.money + 2;
-                        newInventory.items["literalQuail"] = newInventory.items["literalQuail"] - 1; 
+                        newInventory.money += 2;
+                        newInventory.items["literalQuail"] -= 1; 
                     }));
                     setCurrentEvent("sellLiteralQuail");
-                } else {
-                    setCurrentEvent("dishonestMerchantFailure")
                 }
             }
         },
@@ -448,14 +448,14 @@ export const AreaOneEvents = {
             name: "Locust:\n3 coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
-                if (gameState.inventory.items["locust"] >= 1) {
+                if (!gameState.inventory.items["locust"] || gameState.inventory.items["locust"] < 1) {
+                    setCurrentEvent("dishonestMerchantFailure");
+                } else {
                     gameState.setInventory(produce((newInventory)=>{
-                        newInventory.money = newInventory.money + 2;
-                        newInventory.items["locust"] = newInventory.items["locust"] - 1; 
+                        newInventory.money += 2;
+                        newInventory.items["locust"] -= 1; 
                     }));
                     setCurrentEvent("sellLocust");
-                } else {
-                    setCurrentEvent("dishonestMerchantFailure")
                 }
             }
         },
@@ -463,14 +463,14 @@ export const AreaOneEvents = {
             name: "Water of Meribah:\n3 coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
-                if (gameState.inventory.items["waterOfMeribah"] >= 1) {
+                if (!gameState.inventory.items["waterOfMeribah"] || gameState.inventory.items["waterOfMeribah"] < 1) {
+                    setCurrentEvent("dishonestMerchantFailure");
+                } else {
                     gameState.setInventory(produce((newInventory)=>{
-                        newInventory.money = newInventory.money + 2;
-                        newInventory.items["waterOfMeribah"] = newInventory.items["waterOfMeribah"] - 1; 
+                        newInventory.money += 2;
+                        newInventory.items["waterOfMeribah"] -= 1; 
                     }));
                     setCurrentEvent("sellWaterOfMeribah");
-                } else {
-                    setCurrentEvent("dishonestMerchantFailure")
                 }
             }
         },
@@ -478,14 +478,14 @@ export const AreaOneEvents = {
             name: "Manna:\n5 coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
-                if (gameState.inventory.items["manna"] >= 1) {
+                if (!gameState.inventory.items["manna"] || gameState.inventory.items["manna"] < 1) {
+                    setCurrentEvent("dishonestMerchantFailure");
+                } else {
                     gameState.setInventory(produce((newInventory)=>{
-                        newInventory.money = newInventory.money + 4;
-                        newInventory.items["manna"] = newInventory.items["manna"] - 1; 
+                        newInventory.money += 4;
+                        newInventory.items["manna"] -= 1; 
                     }));
                     setCurrentEvent("sellManna");
-                } else {
-                    setCurrentEvent("dishonestMerchantFailure")
                 }
             }
         },
@@ -493,14 +493,14 @@ export const AreaOneEvents = {
             name: "Sense of Direction:\n5 coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
-                if (gameState.inventory.items["senseOfDirection"] >= 1) {
+                if (!gameState.inventory.items["senseOfDirection"] || gameState.inventory.items["senseOfDirection"] < 1) {
+                    setCurrentEvent("dishonestMerchantFailure");
+                } else {
                     gameState.setInventory(produce((newInventory)=>{
-                        newInventory.money = newInventory.money + 4;
-                        newInventory.items["senseOfDirection"] = newInventory.items["senseOfDirection"] - 1; 
+                        newInventory.money += 4;
+                        newInventory.items["senseOfDirection"] -= 1; 
                     }));
                     setCurrentEvent("sellSenseOfDirection");
-                } else {
-                    setCurrentEvent("dishonestMerchantFailure")
                 }
             }
         }
