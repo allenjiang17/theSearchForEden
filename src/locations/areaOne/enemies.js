@@ -69,7 +69,7 @@ export const AreaOneEnemies = {
         encounterRate: 0.5,
         type: "physical",
         description: "You encounter an Ancient Boundary Stone. It doesn\'t seem like it\'s in the right place. It\'s as if it was set up somewhere else by ancestors long ago, but somebody must have moved it here.",
-        hp: 36,
+        hp: 5,
         attack: 5,
         defense: 5,
         statReward: [

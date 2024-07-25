@@ -156,5 +156,10 @@ export const AreaOneItems = {
         name: "Hand of Prayer",
         description: "This is a single hand of prayer. It can be used whenever famine or plague comes to the land, or blight or mildew, locusts or grasshoppers, or when an enemy besieges you in any of your cities.",
         price: 0
+    },
+    "mapPatriarchs": {
+        name: "Map to the Land of the Patriarchs",
+        description: "This guides you to the Land of the Patriarchs. You can find it on the World Map.",
+        price: 0
     }
 }

@@ -132,7 +132,7 @@ export const AreaOneEvents = {
         title: "You gained a coin!",
         id: "gainedCoinBedroom",
         encounterRate: 1, 
-        description: "You searched carefully and found a lost coin! You call your friends and neighbors together and says, \"Rejoice with me; I have found my lost coin.\"\n\n(+1 Earthly Coin)",
+        description: "You searched carefully and found a lost coin! You call your friends and neighbors together and say, \"Rejoice with me; I have found my lost coin.\"\n\n(+1 Earthly Coin)",
         actions: []
     },
     "nothingFoundBedroom":{
@@ -349,24 +349,24 @@ export const AreaOneEvents = {
         description: "\"Hi there, what are you up to?\" you ask.\n\n\"Oh, you wouldn\'t want to know,\" the Wicked Deceiver says, \"You don\'t seem to be the type of person who would want what I have.\"\n\n\"Well, what do you have?\" you ask.\n\nThe Deceiver studies you for a moment, and then says, \"The Land of the Judges is flowing with magical milk and honey. If you drink of it, all your ailments will disappear forever. Do you believe me?\"\n\n\"I\'m not sure,\" you say.\n\n\"Well, I just happen to have some on me. If you\'d like some, I\'ll give you a bucket full of this magical milk and honey for 5 coins. What do you think?\"",
         actions: [{
             name: "Trade 5 Earthly Coins for Milk and Honey",
-                actionType: "setInventory",
-                func: (gameState, event, setCurrentEvent) => {
-                    if (gameState.inventory.money < 5) 
-                        {
-                        setCurrentEvent("chatWithDeceiverNoMoney");                        
-                    } else if (!gameState.inventory.items["bucket"] || gameState.inventory.items["bucket"] < 1) {
-                        gameState.setInventory(produce((newInventory)=>{
-                            newInventory.money -= 5;
-                            updateInventory(newInventory, "bucket");
-                        }));
-                        setCurrentEvent("chatWithDeceiver2");
-                    } else {
-                        gameState.setInventory(produce((newInventory)=>{
-                            newInventory.money -= 5;
-                        }));
-                        setCurrentEvent("chatWithDeceiver3");
-                    }
-                } 
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                if (gameState.inventory.money < 5) 
+                    {
+                    setCurrentEvent("chatWithDeceiverNoMoney");                        
+                } else if (!gameState.inventory.items["bucket"] || gameState.inventory.items["bucket"] < 1) {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.money -= 5;
+                        updateInventory(newInventory, "bucket");
+                    }));
+                    setCurrentEvent("chatWithDeceiver2");
+                } else {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.money -= 5;
+                    }));
+                    setCurrentEvent("chatWithDeceiver3");
+                }
+            } 
             }
         ]
     },
@@ -686,7 +686,7 @@ export const AreaOneEvents = {
         title: "Get Some Better Clothes Incomplete",
         id: "getSomeBetterClothesIncomplete",
         encounterRate: 1, 
-        description: 'The Crafty Sir Penn up from his workbench. \n“Do you have 8 garment pieces and 4 Earthly Coins yet? No? Then come back when you get them.”',
+        description: 'The Crafty Sir Penn looks up from his workbench. \n\n“Do you have 8 garment pieces and 4 Earthly Coins yet? No? Then come back when you get them.”',
         actions: []
     },
     "getSomeBetterClothesCompleteStep1":{
@@ -1042,7 +1042,7 @@ export const AreaOneEvents = {
         description: "Your Physical HP is back to full!",
         actions: []
     },
-    "theLostMan": {
+    "theLostManQuest": {
         title: "The Lost Man",
         id: "theLostMan",
         encounterRate: 1,
@@ -1052,6 +1052,83 @@ export const AreaOneEvents = {
             action: "start",
         }],
         actions: [],
+        autoAction: {
+            name: "Check Inventory",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                const questState = gameState.quests["senseOfDirection"];
+                if (questState && questState.progress !== "complete") {
+                    if (gameState.inventory.items["senseOfDirection"] >= 1) {
+                        setCurrentEvent("senseOfDirectionCompleteStep1");
+                    } else {
+                        setCurrentEvent("senseOfDirectionIncomplete");
+                    }
+                } else {
+                    setCurrentEvent("nobodyIsHere");
+                }
+            }
+        }
+    },
+    "nobodyIsHere":{
+        title: "Nobody Is Here",
+        id: "nobodyIsHere",
+        encounterRate: 1, 
+        description: 'Nobody is here. The lost man has been found.',
+        actions: []
+    },
+    "senseOfDirectionIncomplete":{
+        title: "Sense of Direction Incomplete",
+        id: "senseOfDirectionIncomplete",
+        encounterRate: 1, 
+        description: 'The Lost Man is sitting in dismay in the desert sand. \"It\'s all hopeless,\" he says, \"I am so lost. I\'ll never be able to find my home.\"',
+        actions: []
+    },
+    "senseOfDirectionCompleteStep1":{
+        title: "Sense of Direction Complete",
+        id: "senseOfDirectionCompleteStep1",
+        encounterRate: 1, 
+        description: 'The Lost Man\'s eyes light up when he sees your Sense of Direction. \"Would you please be willing to help me out with your Sense of Direction? I am in such desperate need of it.\"',
+        actions: [{
+            name: "Give Sense of Direction",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                    gameState.setInventory(produce((newInventory)=>{
+                        newInventory.items["senseOfDirection"] -= 1; 
+                    }));
+                    setCurrentEvent("senseOfDirectionCompleteStep2");
+                    gameState.setMap(produce((map)=>{map[gameState.location].currentEvent = "senseOfDirectionCompleteStep2"}));
+
+            }
+        }]
+    },   
+    "senseOfDirectionCompleteStep2":{
+        title: "Sense of Direction Complete Step 2",
+        id: "senseOfDirectionCompleteStep2",
+        encounterRate: 1, 
+        description: "\"Thank you!\" the Formerly Lost Man says, \"Ah yes, I know exactly where I am now. And I know exactly where I live. Now I can go home!\"\n\n\"By the way, whenever you get the chance, I invite you to come pay me a visit in the Land of the Patriarchs! Here--let me write some directions on this sheet of paper.\"\n\nThe Formerly Lost Man scribbles down some notes on a piece of paper and gives it to you, and he tells you, \"If anybody ever gives you a hard time, just tell them that you are friends with the Found Man.\"\n\n+1 Map of the Land of the Patriarchs",
+        quests: [{
+            id: "senseOfDirection",
+            action: "complete",
+        }],
+        autoAction: {
+            name: "Quest Complete", 
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                gameState.setInventory(produce((newInventory)=>{
+                    updateInventory(newInventory, "mapPatriarchs");
+                    gameState.setMap(produce((newMap)=>{
+                        newMap["landOfThePatriarchs"].unlocked = true;
+                        newMap["theLostMan"].unlocked = false;
+                    }));
+                }));
+                gameState.setMap(produce((map)=>{
+                    map[gameState.location].currentEvent = "nobodyIsHere";  
+                }));
+                }
+            },
+
+        actions: []
+
     },
 
     //future events that haven't been implemented yet

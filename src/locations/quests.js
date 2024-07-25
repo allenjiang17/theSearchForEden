@@ -22,6 +22,7 @@ export const QuestsDict = {
             if (gameState.inventory.items["senseOfDirection"]) {
                 gameState.setMap(produce((newMap)=>{
                     newMap["landOfThePatriarchs"].unlocked = true;
+                    newMap["theLostMan"].unlocked = false;
                 }));
                 gameState.setQuests(produce((newQuests)=>{
                     newQuests["senseOfDirection"] = {progress: "complete"};

@@ -22,7 +22,7 @@ export default function Location({location, setLocation, map, setMap}) {
             </Button>)
         : null
     ));
-
+    console.log(map);
     return (
         <div className="w-full flex flex-col justify-center items-start gap-3">
             <span>{currentLocation.description}</span>
