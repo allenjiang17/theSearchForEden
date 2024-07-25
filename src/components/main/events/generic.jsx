@@ -20,17 +20,20 @@ export default function GenericEvent({event, setCurrentEvent}) {
     useEffect(()=>{
         //load auto action upon component mount
         if (event.autoAction && !loaded.current) {
+            console.log("do auto action");
             event.autoAction.func(gameState, event, setCurrentEvent);
             gameState.taskFunc.use();
         }
 
         //if event has a quest trigger
         if (event.quests && !loaded.current) {
+            console.log("look at quests");
             for (let quest of event.quests) {
+                console.log(quest);
                 if (quest.action === "start" && !gameState.quests[quest.id]) {
                     gameState.setQuests(produce((newQuests)=>{newQuests[quest.id] = {progress: "started"}}));
                 } else if (quest.action === "complete") {
-                    gameState.setQuests(produce((newQuests)=>{newQuests["getSomeClothes"] = {progress: "complete"}}));
+                    gameState.setQuests(produce((newQuests)=>{newQuests[quest.id] = {progress: "complete"}}));
                 }
             }
         }
@@ -69,3 +72,4 @@ export default function GenericEvent({event, setCurrentEvent}) {
         </div>
     )
 }
+

@@ -23,12 +23,6 @@ export default function Location({location, setLocation, map, setMap}) {
         : null
     ));
 
-    useEffect(()=>{
-        console.log(map);
-        setMap(produce((map)=>{map[location].currentEvent = currentEvent}));
-    }, [currentEvent]);
-
-
     return (
         <div className="w-full flex flex-col justify-center items-start gap-3">
             <span>{currentLocation.description}</span>
