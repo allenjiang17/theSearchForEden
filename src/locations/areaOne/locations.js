@@ -177,7 +177,7 @@ export const AreaOneLocations = {
         id: "wilderness",
         description: "You walk out into the Wilderness. You hear a faint voice crying out, \"Prepare the way of the Lord; make his paths straight.\"\n\nYou look around but don't see any paths. Maybe these paths are not literal but metaphorical?",
         events: [],
-        children: ["fieldOfManna", "valleyOfStones", "desertOfWandering", "heapOfRuins", "bronzeSerpent", "yamSuph"],
+        children: ["fieldOfManna", "valleyOfStones", "desertOfWandering", "heapOfRuins", "bronzeSerpent", "burningBush", "yamSuph"],
         parent: "world",
         initialUnlocked: true
     },
@@ -245,6 +245,7 @@ export const AreaOneLocations = {
         events: ["approachTheBush"],
         children: [],
         parent: "wilderness",
+        initialUnlocked: true
     },
     "yamSuph": {
         title: "Yam Suph",
