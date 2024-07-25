@@ -8,9 +8,7 @@ import { GameContext } from "../game";
 import {produce} from "immer";
 
 
-export default function Location() {
-
-    const {location, setLocation, map, setMap} = useContext(GameContext);
+export default function Location({location, setLocation, map, setMap}) {
 
     const currentLocation = AreaOneLocations[location];
     const [currentEvent, setCurrentEvent] = useState(map[location]?.currentEvent ?? getRandomEvent(currentLocation));
@@ -22,10 +20,6 @@ export default function Location() {
             </Button>)
         : null
     ));
-
-    useEffect(()=>{
-        setCurrentEvent(map[location]?.currentEvent ?? getRandomEvent(currentLocation));
-    }, [location]);
 
     useEffect(()=>{
         console.log(map);

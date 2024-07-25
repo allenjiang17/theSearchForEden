@@ -355,6 +355,23 @@ export const AreaOneEvents = {
             }
         ]
     },
+    "talkWithBabblerNoBread":{
+        title: "Talk with Babbler No Bread",
+        id: "talkWithBabblerNoBread",
+        encounterRate: 1, 
+        description: 'Uh....you don\'t have any bread. Go get some first if you want to talk to me.',
+        autoAction: {
+            name: "Talk with Babbler 1",
+            actionType: "setCharCondition",
+            func: (gameState, event, setCurrentEvent) => {
+                if (gameState.inventory.items["breadOfIdleness"] >= 1) {
+                    setCurrentEvent("talk")
+
+                }
+            }
+        },
+        actions: [],
+    },
     "getSomeClothes":{
         title: "Get Some Clothes",
         id: "getSomeClothes",
