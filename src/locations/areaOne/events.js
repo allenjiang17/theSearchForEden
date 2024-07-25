@@ -373,7 +373,7 @@ export const AreaOneEvents = {
                     if (gameState.inventory.money < 5) 
                         {
                         setCurrentEvent("chatWithDeceiverNoMoney");                        
-                    } else if (gameState.inventory.items["bucket"] >= 1) {
+                    } else if (!gameState.inventory.items["bucket"] || gameState.inventory.items["bucket"] < 1) {
                         gameState.setInventory(produce((newInventory)=>{
                             newInventory.money -= 5;
                             updateInventory(newInventory, "bucket");
