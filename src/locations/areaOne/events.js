@@ -19,6 +19,26 @@ eventId: {
 
 
 export const AreaOneEvents = {
+    
+    /*Table of Contents
+
+    - beginning event
+    - your house events
+    - cistern events
+    - fig leaf events
+    - travelling prophetess events
+    - babbler events
+    - deceiver events
+    - merchant events
+    - crafty sir penn: quest events
+    - crafty sir penn: shop events
+    - wilderness events
+    - future events that haven't been implemented yet
+
+    */
+
+    //beginning event
+
     "beginnings": {
         title: "Beginnings",
         id: "beginnings",
@@ -32,77 +52,14 @@ export const AreaOneEvents = {
             }
         }]
     },
+
+    //your house events
+
     "nightRest": {
         title: "",
         id: "nightRest",
         encounterRate: 1,
         description: "",
-    },
-    "donatingMoneyTemple":{
-        title: "Donating Money",
-        id: "donatingMoneyTemple",
-        encounterRate: 1,
-        description: "You approach the Temple of Jerusalem, and you see many rich people putting their gifts into the temple treasury. What would you like to do?",
-        actions: [
-            {
-                name: "Put two coins in the treasury",
-                actionType: "setInventory",
-                func: (gameState, event, setCurrentEvent) => {
-                    if (gameState.inventory.money >= 2) {
-                        gameState.setInventory(produce((newInventory)=>{
-                            newInventory.money -= 2;
-                        }));
-                        setCurrentEvent("gainHolinessPointTemple");
-                    } else {
-                        setCurrentEvent("noMoneyTemple");
-
-                    }
-                }
-            }, 
-            {
-                name: "Put three coins in the treasury",
-                actionType: "setInventory",
-                func: (gameState, event, setCurrentEvent) => {
-                    if (gameState.inventory.money >= 3) {
-                        gameState.setInventory(produce((newInventory)=>{
-                            newInventory.money -= 3;
-                        }));
-                        setCurrentEvent("showOffTemple");
-                    } else {
-                        setCurrentEvent("noMoneyTemple");
-
-                    }
-                }
-            }, 
-        ],
-    },
-    "noMoneyTemple":{
-        title: "No Money",
-        id: "noMoneyTemple",
-        encounterRate: 1, 
-        description: "You don't have enough money to do that",
-        actions: []
-    },
-    "gainHolinessPointTemple": {
-        title: "Gain holiness point",
-        id: "gainHolinessPointTemple",
-        encounterRate: 1, 
-        description: "You gained a holiness point! Yay!",
-        actions: []
-    },
-    "showOffTemple": {
-        title: "Show off!",
-        id: "showOffTemple",
-        encounterRate: 1, 
-        description: "You're just showing off at this point.",
-        actions: []
-    },
-    "gotBarleyFieldOfBoaz":{
-        title: "Got Barley? ",
-        id: "gotBarleyFieldOfBoaz",
-        encounterRate: 1, 
-        description: "A kind man walks up to you and tells you that you may follow along his laborers and glean some of his barley for free. You thank him and glean a bundle of barley.",
-        actions: []
     },
     "restBedroom":{        
         title: "Rest",
@@ -185,25 +142,9 @@ export const AreaOneEvents = {
         description: "You searched carefully but did not find anything. Maybe next time.",
         actions: []
     },
-    "getResolve":{
-        title: "Get Resolve",
-        id: "getResolve",
-        encounterRate: 1, 
-        description: "\"Hello there\", you say. \n\n\"Ah, yes,\" the woman says, \"You are just the one I seek.\"\n\n\"Me? Why?\"\n\n\"Because you, young sleeper, have woken up. And your journey to Eden has begun.\"\n\n\"What are you talking about?\" you ask, with bewilderment and confusion in your eyes.\n\n\"All will make sense one day. For now, take this. You will need it if you are to stand a chance in  spiritual battles. I will see you soon.\"\n\nThe old woman hands you Spirit of Resolve, and she continues on her way. \n\n(+1 Spirit of Resolve)",
-        autoAction: {
-            name: "Get Resolve",
-            actionType: "setInventory",
-            func: (gameState) => {
-                    gameState.setInventory(produce((newInventory)=>{
-                        updateInventory(newInventory, "spiritOfResolve");
-                    }));     
-                    gameState.setMap(produce((newMap)=>{
-                        newMap["travelingProphetess"].unlocked = false;
-                    }));       
-            }
-        },
-        actions: []
-    },
+
+    // cistern events
+
     "getWaterFromCistern":{
         title: "Get Water from Cistern",
         id: "getWaterFromCistern",
@@ -237,6 +178,9 @@ export const AreaOneEvents = {
         description: "You try to reach the water at the bottom of the cistern, but it\'s too deep. If only you had something to draw the water with.",
         actions: []
     },
+
+    // fig leaf events
+
     "getFigLeaf":{
         title: "Get Fig Leaf",
         id: "getFigLeaf",
@@ -275,6 +219,31 @@ export const AreaOneEvents = {
         description: "You gently pull a large fig leaf off of the tree.\n\n+1 Fig Leaf",
         actions: []
     },
+
+    //travelling prophetess events
+    
+    "getResolve":{
+        title: "Get Resolve",
+        id: "getResolve",
+        encounterRate: 1, 
+        description: "\"Hello there\", you say. \n\n\"Ah, yes,\" the woman says, \"You are just the one I seek.\"\n\n\"Me? Why?\"\n\n\"Because you, young sleeper, have woken up. And your journey to Eden has begun.\"\n\n\"What are you talking about?\" you ask, with bewilderment and confusion in your eyes.\n\n\"All will make sense one day. For now, take this. You will need it if you are to stand a chance in  spiritual battles. I will see you soon.\"\n\nThe old woman hands you Spirit of Resolve, and she continues on her way. \n\n(+1 Spirit of Resolve)",
+        autoAction: {
+            name: "Get Resolve",
+            actionType: "setInventory",
+            func: (gameState) => {
+                    gameState.setInventory(produce((newInventory)=>{
+                        updateInventory(newInventory, "spiritOfResolve");
+                    }));     
+                    gameState.setMap(produce((newMap)=>{
+                        newMap["travelingProphetess"].unlocked = false;
+                    }));       
+            }
+        },
+        actions: []
+    },
+
+    // babbler events
+
     "babbleWithBabbler": {
         title: "Babble with the Babbler",
         id: "babbleWithBabbler",
@@ -370,6 +339,8 @@ export const AreaOneEvents = {
         },
         actions: [],
     },
+
+    // deceiver events
     
     "chatWithDeceiver": {
         title: "Chat with the Wicked Deceiver",
@@ -420,6 +391,9 @@ export const AreaOneEvents = {
         description: "You don't have enough coins.",
         actions: []
     },
+
+    // merchant events
+
     "chatWithMerchant": {
         title: "Chat with Dishonest Merchant",
         id: "chatWithMerchant",
@@ -597,6 +571,9 @@ export const AreaOneEvents = {
             }
         }
     },
+
+    //crafty sir penn: quest events
+
     "getSomeClothes":{
         title: "Get Some Clothes",
         id: "getSomeClothes",
@@ -758,6 +735,10 @@ export const AreaOneEvents = {
         },
         actions: []
     },
+
+
+    //crafty sir penn: shop events
+
     "craftySirPennShop": {
         title: "Crafty Sir Penn Shop",
         id: "craftySirPennShop",
@@ -943,6 +924,9 @@ export const AreaOneEvents = {
         description: "The old man looks at you with disapproval. You clearly don't have the stuff.",
         actions: []
     },
+
+    // wilderness events
+
     "gotManna":{
         title: "Got Manna?",
         id: "gotManna",
@@ -1058,6 +1042,20 @@ export const AreaOneEvents = {
         description: "Your Physical HP is back to full!",
         actions: []
     },
+    "theLostMan": {
+        title: "The Lost Man",
+        id: "theLostMan",
+        encounterRate: 1,
+        description: "You ask him what\'s going on.\n\n\"I\'m not sure,\" he says, \"Someone told me that there was this magical place called Eden out here, where nothing is cursed and everything is living. It didn\'t seem possible, but something inside of me told me to go look for it. So I went out to find it, and now I\'m completely lost. I have no idea where I am.\"\n\n\"Where did you come from?\" you ask.\n\n\"I live in the Land of the Patriarchs. But I don\'t know how to get there. I don\'t really have a sense of direction.\"",
+        quests: [{
+            id: "senseOfDirection",
+            action: "start",
+        }],
+        actions: [],
+    },
+
+    //future events that haven't been implemented yet
+    
     "rescueTheCaptives":{        
         title: "Rescue the Captives",
         id: "rescueTheCaptives",
@@ -1088,15 +1086,70 @@ export const AreaOneEvents = {
         description: "You have a dream, and behold, you see a ladder set up on the earth, with the top of it reaching to heaven. And behold, you see the angels of God ascending and descending on it!\n\nYou wake up with wonder and think, \"Surely the Lord is in this place, and I did not know it.\"\n\nYour Spiritual HP is back to full!",
         actions: []
     },
-    "theLostMan": {
-        title: "The Lost Man",
-        id: "theLostMan",
+    "donatingMoneyTemple":{
+        title: "Donating Money",
+        id: "donatingMoneyTemple",
         encounterRate: 1,
-        description: "You ask him what\'s going on.\n\n\"I\'m not sure,\" he says, \"Someone told me that there was this magical place called Eden out here, where nothing is cursed and everything is living. It didn\'t seem possible, but something inside of me told me to go look for it. So I went out to find it, and now I\'m completely lost. I have no idea where I am.\"\n\n\"Where did you come from?\" you ask.\n\n\"I live in the Land of the Patriarchs. But I don\'t know how to get there. I don\'t really have a sense of direction.\"",
-        quests: [{
-            id: "senseOfDirection",
-            action: "start",
-        }],
-        actions: [],
+        description: "You approach the Temple of Jerusalem, and you see many rich people putting their gifts into the temple treasury. What would you like to do?",
+        actions: [
+            {
+                name: "Put two coins in the treasury",
+                actionType: "setInventory",
+                func: (gameState, event, setCurrentEvent) => {
+                    if (gameState.inventory.money >= 2) {
+                        gameState.setInventory(produce((newInventory)=>{
+                            newInventory.money -= 2;
+                        }));
+                        setCurrentEvent("gainHolinessPointTemple");
+                    } else {
+                        setCurrentEvent("noMoneyTemple");
+
+                    }
+                }
+            }, 
+            {
+                name: "Put three coins in the treasury",
+                actionType: "setInventory",
+                func: (gameState, event, setCurrentEvent) => {
+                    if (gameState.inventory.money >= 3) {
+                        gameState.setInventory(produce((newInventory)=>{
+                            newInventory.money -= 3;
+                        }));
+                        setCurrentEvent("showOffTemple");
+                    } else {
+                        setCurrentEvent("noMoneyTemple");
+
+                    }
+                }
+            }, 
+        ],
+    },
+    "noMoneyTemple":{
+        title: "No Money",
+        id: "noMoneyTemple",
+        encounterRate: 1, 
+        description: "You don't have enough money to do that",
+        actions: []
+    },
+    "gainHolinessPointTemple": {
+        title: "Gain holiness point",
+        id: "gainHolinessPointTemple",
+        encounterRate: 1, 
+        description: "You gained a holiness point! Yay!",
+        actions: []
+    },
+    "showOffTemple": {
+        title: "Show off!",
+        id: "showOffTemple",
+        encounterRate: 1, 
+        description: "You're just showing off at this point.",
+        actions: []
+    },
+    "gotBarleyFieldOfBoaz":{
+        title: "Got Barley? ",
+        id: "gotBarleyFieldOfBoaz",
+        encounterRate: 1, 
+        description: "A kind man walks up to you and tells you that you may follow along his laborers and glean some of his barley for free. You thank him and glean a bundle of barley.",
+        actions: []
     }
 }
