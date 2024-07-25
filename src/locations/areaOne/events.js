@@ -426,7 +426,7 @@ export const AreaOneEvents = {
         encounterRate: 1, 
         description: "\"Greetings, I am on the search for some items. Here\'s what I am looking for and how much I am willing to pay for them. Are you willing to make an offer?",
         actions: [{
-            name: "Bread of Idleness, 2 coins",
+            name: "Bread of Idleness:\n2 coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (gameState.inventory.items["breadOfIdleness"] >= 1) {
@@ -441,7 +441,7 @@ export const AreaOneEvents = {
             }
         },
         {
-            name: "Ex-stone Bread, 3 coins",
+            name: "Ex-stone Bread:\n3 coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (gameState.inventory.items["exStoneBread"] >= 1) {
@@ -456,7 +456,7 @@ export const AreaOneEvents = {
             }
         },
         {
-            name: "Literal Quail, 3 coins",
+            name: "Literal Quail:\n3 coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (gameState.inventory.items["literalQuail"] >= 1) {
@@ -471,7 +471,7 @@ export const AreaOneEvents = {
             }
         },
         {
-            name: "Locust, 3 coins",
+            name: "Locust:\n3 coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (gameState.inventory.items["locust"] >= 1) {
@@ -486,7 +486,7 @@ export const AreaOneEvents = {
             }
         },
         {
-            name: "Water of Meribah, 3 coins",
+            name: "Water of Meribah:\n3 coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (gameState.inventory.items["waterOfMeribah"] >= 1) {
@@ -501,7 +501,7 @@ export const AreaOneEvents = {
             }
         },
         {
-            name: "Manna, 5 coins",
+            name: "Manna:\n5 coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (gameState.inventory.items["manna"] >= 1) {
@@ -516,7 +516,7 @@ export const AreaOneEvents = {
             }
         },
         {
-            name: "Sense of Direction, 5 coins",
+            name: "Sense of Direction:\n5 coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (gameState.inventory.items["senseOfDirection"] >= 1) {
