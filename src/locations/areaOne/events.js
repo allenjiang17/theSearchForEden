@@ -327,7 +327,7 @@ export const AreaOneEvents = {
         title: "Talk with Babbler No Bread",
         id: "talkWithBabblerNoBread",
         encounterRate: 1, 
-        description: 'Uh... you don\'t have any bread. Go get some first if you want to talk to me.',
+        description: '\"Uh... you don\'t have any bread. Go get some first if you want to talk to me.\"',
         autoAction: {
             name: "Talk with Babbler 1",
             actionType: "setCharCondition",
@@ -659,7 +659,7 @@ export const AreaOneEvents = {
         title: "Get Some Better Clothes",
         id: "getSomeBetterClothes",
         encounterRate: 1, 
-        description: '\"Good, I see you are not naked today. How are you liking your fig leaves?\" the Crafty Sir Penn asks.\n\n"They\'re not bad,\" you say, \"but they don\'t cover a whole lot of my body.\"\n\n"Well, what do you expect? You only gave me 10 leaves."\n\n\"Yes, I understand. But I wonder--is there anything else that you can make that can boost my defense a bit more?\"\n\n\"Of course! They don\'t call me the Crafty Sir Penn for no reason. I\'ll tell you what--give me 8 garments, and I\'ll make you something. This one will cost you 4 Earthly Coins though.',
+        description: '\"Good, I see you are not naked today. How are you liking your fig leaves?\" the Crafty Sir Penn asks.\n\n"They\'re not bad,\" you say, \"but they don\'t cover a whole lot of my body.\"\n\n"Well, what do you expect? You only gave me 10 leaves."\n\n\"Yes, I understand. But I wonder--is there anything else that you can make that can boost my defense a bit more?\"\n\n\"Of course! They don\'t call me the Crafty Sir Penn for no reason. I\'ll tell you what--give me 6 garments, and I\'ll make you something. This one will cost you 4 Earthly Coins though.',
         quests: [{
             id: "getSomeBetterClothes",
             action: "start",
@@ -671,7 +671,7 @@ export const AreaOneEvents = {
 
                 const questState = gameState.quests["getSomeBetterClothes"];
                 if (questState && questState.progress !== "complete") {
-                    if (gameState.inventory.items["chewedUpGarments"] >= 8 && gameState.inventory.money >= 4) {
+                    if (gameState.inventory.items["chewedUpGarments"] >= 6 && gameState.inventory.money >= 4) {
                         setCurrentEvent("getSomeBetterClothesCompleteStep1");
 
                     } else {
@@ -686,7 +686,7 @@ export const AreaOneEvents = {
         title: "Get Some Better Clothes Incomplete",
         id: "getSomeBetterClothesIncomplete",
         encounterRate: 1, 
-        description: 'The Crafty Sir Penn looks up from his workbench. \n\n“Do you have 8 garment pieces and 4 Earthly Coins yet? No? Then come back when you get them.”',
+        description: 'The Crafty Sir Penn looks up from his workbench. \n\n“Do you have 6 garment pieces and 4 Earthly Coins yet? No? Then come back when you get them.”',
         actions: []
     },
     "getSomeBetterClothesCompleteStep1":{
@@ -695,12 +695,12 @@ export const AreaOneEvents = {
         encounterRate: 1, 
         description: 'The Crafty Sir Penn looks up from his workbench. “You got the stuff? Good. Give them here”',
         actions: [{
-            name: "Give 8 Chewed-up Garments and 4 Earthly Coins",
+            name: "Give 6 Chewed-up Garments and 4 Earthly Coins",
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                     gameState.setInventory(produce((newInventory)=>{
                         newInventory.money = Math.max(0, newInventory.money - 4);
-                        newInventory.items["chewedUpGarments"] = Math.max(0, newInventory.items["chewedUpGarments"] - 8); 
+                        newInventory.items["chewedUpGarments"] = Math.max(0, newInventory.items["chewedUpGarments"] - 6); 
                     }));
                     setCurrentEvent("getSomeBetterClothesCompleteStep2");
                     gameState.setMap(produce((map)=>{map[gameState.location].currentEvent = "getSomeBetterClothesCompleteStep2"}));
@@ -890,12 +890,12 @@ export const AreaOneEvents = {
             func: (gameState, event, setCurrentEvent) => {
                 if (gameState.inventory.items["serpentSkin"] >= 1 && gameState.inventory.items["serpentTeeth"] >= 1 && gameState.inventory.items["serpentGuts"] >= 1 && gameState.inventory.items["serpentEyes"] >= 1 && gameState.inventory.money >= 10) {
                     gameState.setInventory(produce((newInventory)=>{
-                        newInventory.money = Math.max(0, newInventory.money - 10);
-                        newInventory.items["serpentSkin"] = Math.max(0, newInventory.items["serpentSkin"] - 1); 
-                        newInventory.items["serpentTeeth"] = Math.max(0, newInventory.items["serpentTeeth"] - 1); 
-                        newInventory.items["serpentGuts"] = Math.max(0, newInventory.items["serpentGuts"] - 1); 
-                        newInventory.items["serpentEyes"] = Math.max(0, newInventory.items["serpentEyes"] - 1); 
-                    }));
+                        newInventory.money -= 10;
+                        newInventory.items["serpentSkin"] -= 1; 
+                        newInventory.items["serpentTeeth"] -= 1; 
+                        newInventory.items["serpentGuts"] -= 1; 
+                        newInventory.items["serpentEyes"] -= 1; 
+                    }));      
                     setCurrentEvent("getSerpentTaxidermySuccess");
                 } else {
                     setCurrentEvent("craftySirPennShopFailure")
@@ -909,10 +909,29 @@ export const AreaOneEvents = {
         encounterRate: 1, 
         description: "You give the Crafty Sir Penn the necessary serpent body parts, and in a few moments, he presents you with a serpent taxidermy.\n\n(+1 Serpent Taxidermy)",
         name: "Get Serpent Taxidermy",
-        autoAction: {
+        actions: {
+            name: "Continue",
             actionType: "setInventory",
-            func: (gameState) => {
-                updateInventory(newInventory, "serpentTaxidermy");    
+            func: (gameState, event, setCurrentEvent) => {
+                gameState.setInventory(produce((newInventory)=>{
+                    updateInventory(newInventory, "serpentTaxidermy");
+                    setCurrentEvent("getSerpentTaxidermySuccess2")
+                }));  
+            }
+        },
+    },
+    "getSerpentTaxidermySuccess2":{
+        title: "Get Serpent Taxidermy Success 2",
+        id: "getSerpentTaxidermySuccess2",
+        encounterRate: 1, 
+        description: "You feel a strange sense of attachment to your new taxidermy. And it beckons you to go into the wilderness.",
+        name: "Get Serpent Taxidermy",
+        autoAction: {
+            actionType: "setMap",
+            func: (gameState, event, setCurrentEvent) => {
+                gameState.setMap(produce((newMap)=>{
+                    newMap["burningBush"].unlocked = true;
+                }));  
             }
         },
         actions: []
@@ -946,7 +965,7 @@ export const AreaOneEvents = {
     "captureLocust":{
         title: "Capture Locust",
         id: "captureLocust",
-        encounterRate: 1, 
+        encounterRate: 0.6, 
         description: "You find a wild locust! Do you want to try to catch it?",
         actions: [{
             name: "Catch the Locust",
@@ -984,7 +1003,7 @@ export const AreaOneEvents = {
     "getCamelHair":{
         title: "Get Camel Hair",
         id: "getCamelHair",
-        encounterRate: 1, 
+        encounterRate: 0.8, 
         description: "You come across a wild camel sleeping in the sun. Do you want to try to grab some camel\'s hair?",
         actions: [{
             name: "Grab Some Camel Hair",
@@ -1042,7 +1061,118 @@ export const AreaOneEvents = {
         description: "Your Physical HP is back to full!",
         actions: []
     },
-    "theLostManQuest": {
+    "approachBurningBush":{        
+        title: "Approach the Burning Bush",
+        id: "approachBurningBush",
+        encounterRate: 1,
+        description: "What would you like to do?",
+        actions: [{
+            name: "Approach the Burning Bush",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                if (!gameState.inventory.items["serpentTaxidermy"] || gameState.inventory.items["serpentTaxidermy"] < 1) {
+                    setCurrentEvent("approachBurningBushNothing");
+                } else {
+                    setCurrentEvent("approachBurningBush2");
+                }
+            }
+        }]
+    },
+    "approachBurningBush2":{        
+        title: "Approach the Burning Bush 2",
+        id: "approachBurningBush2",
+        encounterRate: 1,
+        description: "You cautiously walk toward the burning bush, and then all of a sudden you feel something wriggling in your bag of stuff. You open your bag to take a look, and a serpent jumps out of the bag!\n\nIt\'s your serpent taxidermy, except it has come alive! The serpent slithers on the ground in a fit of madness, turns to you, and shrieks. You are filled with horror.",
+        actions: [{
+            name: "Grab the Serpent by the Tail",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                gameState.setInventory(produce((newInventory)=>{
+                    newInventory.items["serpentTaxidermy"] -= 1; 
+                    newInventory.weapons.push("staffOfMoses");
+                }));
+                setCurrentEvent("approachBurningBushTail");
+                }
+            },
+            {
+            name: "Grab the Serpent by the Head",
+            actionType: "setCharCondition",
+            func: (gameState, event, setCurrentEvent) => {
+                gameState.setCharCondition(produce((newCharCondition)=>{
+                    newCharCondition.hp -= 10;
+                }));
+                setCurrentEvent("approachBurningBushHead");
+                }
+            },
+            {
+            name: "Run Away",
+            actionType: "setCharCondition",
+            func: (gameState, event, setCurrentEvent) => {
+                gameState.setCharCondition(produce((newCharCondition)=>{
+                    newCharCondition.spiritualHp =  Math.max(0,newCharCondition.spiritualHp - 10);
+                }));
+                gameState.setInventory(produce((newInventory)=>{
+                    newInventory.items["serpentTaxidermy"] -= 1; 
+                }));
+                setCurrentEvent("approachBurningBushRun");
+                }
+            }
+        ]
+    },
+    "approachBurningBushTail":{        
+        title: "Grab the Serpent's Tail",
+        id: "approachBurningBushTail",
+        encounterRate: 1,
+        description: "You courageously grab the serpent by its tail, bracing yourself for what might happen next. But then the serpent suddenly freezes up, and it gradually morphs into an old wooden staff.\n\nAs you curiously examine the staff, you sense a great power that lies within it. It fills you with a holy courage unlike anything you\'ve ever experienced, and you feel braver than you\'ve ever been before.\n\n+1 Staff of Moses",
+        actions: []
+    }, 
+    "approachBurningBushHead":{        
+        title: "Grab the Serpent's Tail",
+        id: "approachBurningBushTail",
+        encounterRate: 1,
+        description: "You courageously grab the serpent by its head, bracing yourself for what might happen next. Horrible choice. The serpent sinks its fangs into your hand.\n\n\"YOWEEEEE!\" you exclaim.\n\n-10 Physical HP",
+        actions: [{
+            name: "Grab the Serpent by the Tail",
+            actionType: "setInventory",
+            func: (gameState, event, setCurrentEvent) => {
+                gameState.setInventory(produce((newInventory)=>{
+                    newInventory.items["serpentTaxidermy"] -= 1; 
+                    newInventory.weapons.push("staffOfMoses");
+                }));
+                setCurrentEvent("approachBurningBushTail");
+                }
+            },
+            {
+            name: "Run Away",
+            actionType: "setCharCondition",
+            func: (gameState, event, setCurrentEvent) => {
+                gameState.setCharCondition(produce((newCharCondition)=>{
+                    newCharCondition.spiritualHp = Math.max(0,newCharCondition.spiritualHp - 10);
+                }));
+                setCurrentEvent("approachBurningBushRun");
+                }
+            }
+        ]
+    }, 
+    "approachBurningBushRun":{        
+        title: "Nothing Happens",
+        id: "approachBurningBushRun",
+        encounterRate: 1,
+        description: "You run away like a scared little mouse. Not only have you lost your Serpent Taxidermy, but you've also lost your face, metaphorically.\n\n-10 Spiritual HP",
+        actions: []
+    },  
+        "approachBurningBushNothing":{        
+        title: "Nothing Happens",
+        id: "approachBurningBushNothing",
+        encounterRate: 1,
+        description: "You watch the mysterious fire flicker back and forth. You wait for something extraordinary to happen, but nothing does.",
+        actions: []
+    },    
+    /*
+
+    commenting off the Lost Man stuff because I can't figure it out.
+
+    "theLostMan": {
         title: "The Lost Man",
         id: "theLostMan",
         encounterRate: 1,
@@ -1130,6 +1260,7 @@ export const AreaOneEvents = {
         actions: []
 
     },
+    */
 
     //future events that haven't been implemented yet
     

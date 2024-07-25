@@ -238,6 +238,14 @@ export const AreaOneLocations = {
         parent: "wilderness",
         initialUnlocked: true
     },
+    "burningBush": {
+        title: "The Burning Bush",
+        id: "burningBush",
+        description: "You see a strange bush that is on fire, but it is not burning up. You are filled with awe, and you feel that you are standing on holy ground.",
+        events: ["approachTheBush"],
+        children: [],
+        parent: "wilderness",
+    },
     "yamSuph": {
         title: "Yam Suph",
         id: "yamSuph",
@@ -247,7 +255,7 @@ export const AreaOneLocations = {
         parent: "wilderness",
     },
     "fightGreatFear": {
-        title: "Fight the Great Fear",
+        title: "The Great Fear",
         id: "fightGreatFear",
         description: "This is the most frightening thing you've ever faced. Your mind is filled with hideous images that are too terrifying to write here.",
         events: [],

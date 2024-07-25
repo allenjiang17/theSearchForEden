@@ -9,7 +9,7 @@ export const QuestsDict = {
     },
     "getSomeBetterClothes": {
         title: "Get Some Better Clothes",
-        description: "You're no longer naked and ashamed, but you still feel a bit exposed. You need to get some clothes. The crafty fellow said he might be able to help you out if you brought him 5 Garments and 3 Earthly Coins",
+        description: "You're no longer naked and ashamed, but you still feel a bit exposed. You need to get some clothes. The crafty fellow said he might be able to help you out if you brought him 6 Garments and 4 Earthly Coins",
         conditionType: "event",
         conditionFunc: null,
     },
