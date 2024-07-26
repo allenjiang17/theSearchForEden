@@ -7,7 +7,8 @@ import { AreaOneLocations } from "../../../locations/areaOne/locations";
 import { AreaOneEnemies } from "../../../locations/areaOne/enemies";
 import { AreaOneItems } from "../../../locations/areaOne/items";
 import { Weapons } from "../../../equipables/weapons";
-import { updateInventory } from "../../../utils/misc";
+import { areStringsEqual, updateInventory } from "../../../utils/misc";
+import { LogosDictionary } from "../../../locations/logos";
 
 
 
@@ -21,6 +22,8 @@ export default function CombatEvent({event, setCurrentEvent}) {
 
 export function Combat({enemy, event, setCurrentEvent}) {
 
+    console.log('render');
+
     const gameState = useContext(GameContext);
 
     const [enemyCondition, setEnemyCondition] = useState({
@@ -28,6 +31,8 @@ export function Combat({enemy, event, setCurrentEvent}) {
         affliction: null,
         buff: null
     });
+
+    const [logos, setLogos] = useState("");
     const [combatMessage, setCombatMessage] = useState("");
     const [combatStatus, setCombatStatus] = useState("ongoing"); //ongoing, won, lost
 
@@ -37,31 +42,64 @@ export function Combat({enemy, event, setCurrentEvent}) {
 
         const charAttack = isPhysicalBattle ? gameState.character.stats.strength : gameState.character.stats.zeal;
         const charDefense = isPhysicalBattle ? gameState.character.stats.defense : gameState.character.stats.resilience;
-        const charWeapon = Weapons[gameState.charCondition.weapon ?? "bareHands"];
 
-        const damage = Math.ceil(charWeapon.power * (charAttack / enemy.defense) * (0.5*Math.random() + 0.75));
+        const logosMatch = matchLogos(logos, gameState.character.logos);
+
+        let combatMessage = "You mumble around and try to say something significant -- but nothing happens.";
+
+        if (logosMatch) {
+            if (LogosDictionary[logosMatch].type === "attack") {
+                const baseDamage = calculateBaseDamage(logosMatch, enemy);
+                const damage = Math.ceil(baseDamage * (charAttack / enemy.defense) * (0.5*Math.random() + 0.75));
+                const enemyHp = Math.max(0, enemyCondition.hp - damage);
+
+                setEnemyCondition(produce((enemyCondition)=>{
+                    enemyCondition.hp = enemyHp;
+                    //other conditions could be set here
+                })); 
+                combatMessage = `You dealt ${damage} damage`; 
+                
+                if (enemyHp === 0) {
+                    setCombatStatus("won");
+                    winCombat();
+                }
+            }
+
+            if (LogosDictionary[logosMatch].type === "heal") {
+
+                const healAmount = Math.ceil(LogosDictionary[logosMatch].basePower * (0.5*Math.random() + 0.75));
+
+                gameState.setCharCondition(produce((charCondition)=>{
+                    charCondition.hp = charCondition.hp + healAmount;
+                    charCondition.spiritualHp = charCondition.spiritualHp + healAmount;
+                }));
+
+                combatMessage = `You healed for ${healAmount}`;
+            }
+
+            if (LogosDictionary[logosMatch].type === "buff") {
+
+                LogosDictionary[logosMatch].func(gameState);
+                combatMessage = `${LogosDictionary[logosMatch].message}`;
+
+            }
+
+        }
+        setLogos("");
+
+        //Calculate Enemy Damage and turn
         const enemyDamage = Math.ceil((enemy.attack / charDefense) * 0.5*Math.random() + 0.75);
-
-        const enemyHp = Math.max(0, enemyCondition.hp - damage);
         const charHp = isPhysicalBattle ? Math.max(0, gameState.charCondition.hp - enemyDamage) : gameState.charCondition.hp;
         const charSpiritualHp = isPhysicalBattle ? gameState.charCondition.spiritualHp : Math.max(0, gameState.charCondition.spiritualHp - enemyDamage);
-
-        setEnemyCondition(produce((enemyCondition)=>{
-            enemyCondition.hp = enemyHp;
-            //other conditions could be set here
-        }));      
-            
+ 
         gameState.setCharCondition(produce((charCondition)=>{
             charCondition.hp = charHp
             charCondition.spiritualHp = charSpiritualHp;
         }));
 
-        setCombatMessage(`You dealt ${damage} damage. ${enemy.name} dealt ${enemyDamage} damage.`);
+        setCombatMessage(`${combatMessage}. ${enemy.name} dealt ${enemyDamage} damage.`);
 
-        if (enemyHp === 0) {
-            setCombatStatus("won");
-            winCombat();
-        } else if (charHp === 0 || charSpiritualHp === 0) {
+        if (charHp === 0 || charSpiritualHp === 0) {
             setCombatStatus("lost");
             loseCombat();
         }
@@ -188,7 +226,10 @@ export function Combat({enemy, event, setCurrentEvent}) {
 
     const buttonActions = 
         <Fragment>
-            <Button onClick={calculateCombatTurn}>Attack with {gameState.charCondition.weapon ?? "your bare hands"}!</Button> 
+            <div className="w-full flex flex-row justify-center items-center gap-2">
+                <input type="text" placeholder="Type your logos here" value={logos} onChange={(event)=>{setLogos(event.target.value)}}/>
+                <Button onClick={calculateCombatTurn}>Speak</Button>
+            </div>            
             <BattleItemComponent 
                 gameState={gameState} 
                 enemyCondition={enemyCondition} 
@@ -244,6 +285,40 @@ function getRandomEnemy(enemies) {
             return enemy;
         }
     }
+}
+
+
+function calculateBaseDamage(logosKey, enemy) {
+
+    const superEffectiveWeight = 2;
+    const normalEffectiveWeight = 1;
+
+    //see if logos is in enemy's dictionary
+    for (let key of enemy.logos.superEffective) {
+        if (logosKey === key) {
+            return superEffectiveWeight * LogosDictionary[key].basePower
+        }
+    }
+
+    for (let key of enemy.logos.normalEffective) {
+        if (logosKey === key) {
+            return normalEffectiveWeight * LogosDictionary[key].basePower
+        }
+    }
+
+    return 0;
+
+}
+
+function matchLogos(inputLogos, charLogos) {
+    let match = null;
+    for (let key of charLogos) {
+        if (areStringsEqual(inputLogos, LogosDictionary[key]?.logos)) {
+            match = key;
+        }
+    }
+    return match;
+
 }
 
 function joinList(array) {

@@ -7,6 +7,10 @@ export const AreaOneEnemies = {
         hp: 10,
         attack: 1,
         defense: 1,
+        logos: {
+            normalEffective: ["basicPhysicalAttack"],
+            superEffective: []
+        },
         statReward: [
             {stat: "strength", amount: 1, chance: 0.5},
             {stat: "defense", amount: 1, chance: 0.5},
@@ -23,6 +27,10 @@ export const AreaOneEnemies = {
         hp: 12,
         attack: 1,
         defense: 1,
+        logos: {
+            normalEffective: ["basicSpiritualAttack"],
+            superEffective: []
+        },
         statReward: [
             {stat: "zeal", amount: 1, chance: 0.5},
             {stat: "resilience", amount: 1, chance: 0.5},
@@ -39,6 +47,10 @@ export const AreaOneEnemies = {
         hp: 20,
         attack: 2,
         defense: 2,
+        logos: {
+            normalEffective: ["basicPhysicalAttack"],
+            superEffective: []
+        },
         statReward: [
             {stat: "strength", amount: 1, chance: 0.5},
             {stat: "defense", amount: 1, chance: 0.5},
@@ -56,6 +68,10 @@ export const AreaOneEnemies = {
         hp: 24,
         attack: 2,
         defense: 2,
+        logos: {
+            normalEffective: ["basicPhysicalAttack"],
+            superEffective: []
+        },
         statReward: [
             {stat: "strength", amount: 1, chance: 0.5},
             {stat: "defense", amount: 1, chance: 0.5},
@@ -72,6 +88,10 @@ export const AreaOneEnemies = {
         hp: 5,
         attack: 5,
         defense: 5,
+        logos: {
+            normalEffective: ["basicPhysicalAttack"],
+            superEffective: []
+        },
         statReward: [
             {stat: "strength", amount: 1, chance: 0.5},
             {stat: "defense", amount: 1, chance: 0.5},
@@ -88,6 +108,10 @@ export const AreaOneEnemies = {
         hp: 20,
         attack: 2,
         defense: 2,
+        logos: {
+            normalEffective: ["basicSpiritualAttack"],
+            superEffective: []
+        },
         statReward: [
             {stat: "zeal", amount: 1, chance: 0.5},
             {stat: "resilience", amount: 1, chance: 0.5},
@@ -104,6 +128,10 @@ export const AreaOneEnemies = {
         hp: 24,
         attack: 2,
         defense: 2,
+        logos: {
+            normalEffective: ["basicSpiritualAttack"],
+            superEffective: []
+        },
         statReward: [
             {stat: "zeal", amount: 1, chance: 0.5},
             {stat: "resilience", amount: 1, chance: 0.5},
@@ -121,6 +149,10 @@ export const AreaOneEnemies = {
         hp: 36,
         attack: 3,
         defense: 3,
+        logos: {
+            normalEffective: ["basicPhysicalAttack"],
+            superEffective: []
+        },
         statReward: [
             {stat: "strength", amount: 1, chance: 0.5},
             {stat: "defense", amount: 1, chance: 0.5},
@@ -140,6 +172,10 @@ export const AreaOneEnemies = {
         hp: 100,
         attack: 8,
         defense: 8,
+        logos: {
+            normalEffective: ["basicSpiritualAttack"],
+            superEffective: []
+        },
         statReward: [
             {stat: "zeal", amount: 1, chance: 1},
             {stat: "resilience", amount: 1, chance: 1},
@@ -156,6 +192,10 @@ export const AreaOneEnemies = {
         hp: 60,
         attack: 6,
         defense: 6,
+        logos: {
+            normalEffective: ["basicSpiritualAttack"],
+            superEffective: []
+        },
         statReward: [
             {stat: "zeal", amount: 1, chance: 0.5},
             {stat: "resilience", amount: 1, chance: 0.5},
@@ -172,6 +212,10 @@ export const AreaOneEnemies = {
         hp: 60,
         attack: 6,
         defense: 6,
+        logos: {
+            normalEffective: ["basicSpiritualAttack"],
+            superEffective: []
+        },
         statReward: [
             {stat: "zeal", amount: 1, chance: 0.5},
             {stat: "resilience", amount: 1, chance: 0.5},
@@ -188,6 +232,10 @@ export const AreaOneEnemies = {
         hp: 70,
         attack: 7,
         defense: 7,
+        logos: {
+            normalEffective: ["basicSpiritualAttack"],
+            superEffective: []
+        },
         statReward: [
             {stat: "zeal", amount: 1, chance: 0.5},
             {stat: "resilience", amount: 1, chance: 0.5},
@@ -204,6 +252,10 @@ export const AreaOneEnemies = {
         hp: 60,
         attack: 6,
         defense: 6,
+        logos: {
+            normalEffective: ["basicSpiritualAttack"],
+            superEffective: []
+        },
         statReward: [
             {stat: "zeal", amount: 1, chance: 0.5},
             {stat: "resilience", amount: 1, chance: 0.5},

@@ -24,8 +24,8 @@ const initialCharacterTest = {
     spiritualHp: 100,
     zeal: 1,
     resilience:1,
-
-  }
+  },
+  logos: ["basicPhysicalAttack", "basicSpiritualAttack", "basicBuff", "basicHeal"],
 };
 
 const initialInventory = {
