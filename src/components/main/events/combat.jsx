@@ -1,6 +1,6 @@
 import Button from "../../elements/button";
 import { Fragment } from "react";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { GameContext } from "../../../game";
 import { produce } from "immer";
 import { AreaOneLocations } from "../../../locations/areaOne/locations";
@@ -8,7 +8,8 @@ import { AreaOneEnemies } from "../../../locations/areaOne/enemies";
 import { AreaOneItems } from "../../../locations/areaOne/items";
 import { Weapons } from "../../../equipables/weapons";
 import { areStringsEqual, updateInventory } from "../../../utils/misc";
-import { LogosDictionary } from "../../../locations/logos";
+import { IncantationsDictionary } from "../../../locations/incantations";
+import LoadingBar from "../../elements/loading";
 
 
 
@@ -22,7 +23,7 @@ export default function CombatEvent({event, setCurrentEvent}) {
 
 export function Combat({enemy, event, setCurrentEvent}) {
 
-    console.log('render');
+    console.log("render");
 
     const gameState = useContext(GameContext);
 
@@ -32,24 +33,65 @@ export function Combat({enemy, event, setCurrentEvent}) {
         buff: null
     });
 
-    const [logos, setLogos] = useState("");
-    const [combatMessage, setCombatMessage] = useState("");
+    const [enemyTurn, setEnemyTurn] = useState(0);
+
+    const [playerAction, setPlayerAction] = useState("");
+    const [playerCombatMessage, setPlayerCombatMessage] = useState(" ");
+    const [enemyCombatMessage, setEnemyCombatMessage] = useState(" ");
     const [combatStatus, setCombatStatus] = useState("ongoing"); //ongoing, won, lost
 
     const isPhysicalBattle = enemy.type === "physical";
+    function calculatePlayerTurn() {
 
-    function calculateCombatTurn() {
+        if (playerAction.toLowerCase() === "attack") {
 
-        const charAttack = isPhysicalBattle ? gameState.character.stats.strength : gameState.character.stats.zeal;
-        const charDefense = isPhysicalBattle ? gameState.character.stats.defense : gameState.character.stats.resilience;
+            calculateNormalAttack();
 
-        const logosMatch = matchLogos(logos, gameState.character.logos);
+        } else if (playerAction.toLowerCase().includes("incantation")) {
 
-        let combatMessage = "You mumble around and try to say something significant -- but nothing happens.";
+            calculateIncantation(playerAction.split("incantation")[1].trim());
+ 
+        } else {
 
-        if (logosMatch) {
-            if (LogosDictionary[logosMatch].type === "attack") {
-                const baseDamage = calculateBaseDamage(logosMatch, enemy);
+            setPlayerCombatMessage("uhhh...were you trying to do something? Because that ain't it.")
+        }
+
+    }
+
+    function calculateNormalAttack() {
+
+        if (!isPhysicalBattle) {
+            setPlayerCombatMessage(`You tried attacking with your ${gameState.charCondition.weapon ?? "bareHands"}. Unfortunately, your enemy is not a physical thing, so it did absolutely nothing. You need to rethink your strategy here.`); 
+
+        }
+
+        const charAttack = gameState.character.stats.strength;
+        const charWeapon = Weapons[gameState.charCondition.weapon ?? "bareHands"];
+
+        const damage = Math.ceil(charWeapon.power * (charAttack / enemy.defense) * (0.5*Math.random() + 0.75));
+        const enemyHp = Math.max(0, enemyCondition.hp - damage);
+
+        setEnemyCondition(produce((enemyCondition)=>{
+            enemyCondition.hp = enemyHp;
+            //other conditions could be set here
+        })); 
+        setPlayerCombatMessage(`You attacked using your ${gameState.charCondition.weapon ?? "bare hands"}. You dealt ${damage} damage`); 
+        setPlayerAction("");
+
+        if (enemyHp === 0) {
+            setCombatStatus("won");
+            winCombat();
+        }
+
+    }
+
+    function calculateIncantation(incantation) {
+        const charAttack = gameState.character.stats.zeal;
+        const incantationMatch = matchIncantation(incantation, gameState.character.incantations);
+
+        if (incantationMatch) {
+            if (IncantationsDictionary[incantationMatch].type === "attack") {
+                const {effectiveness, baseDamage}  = calculateBaseDamage(incantationMatch, enemy);
                 const damage = Math.ceil(baseDamage * (charAttack / enemy.defense) * (0.5*Math.random() + 0.75));
                 const enemyHp = Math.max(0, enemyCondition.hp - damage);
 
@@ -57,7 +99,14 @@ export function Combat({enemy, event, setCurrentEvent}) {
                     enemyCondition.hp = enemyHp;
                     //other conditions could be set here
                 })); 
-                combatMessage = `You dealt ${damage} damage`; 
+
+                if (effectiveness === "superEffective") {
+                    setPlayerCombatMessage(`You spoke a powerful incantation. It dealt super effective damage! You dealt ${damage} damage`); 
+                } else if (effectiveness === "normalEffective") {
+                    setPlayerCombatMessage(`You spoke an incantation. It seemed to work! You dealt ${damage} damage`);
+                } else {
+                    setPlayerCombatMessage(`You spoke an incantation, but it seemed to have no effective on your enemy. You dealt ${damage} damage`);
+                }
                 
                 if (enemyHp === 0) {
                     setCombatStatus("won");
@@ -65,45 +114,106 @@ export function Combat({enemy, event, setCurrentEvent}) {
                 }
             }
 
-            if (LogosDictionary[logosMatch].type === "heal") {
+            if (IncantationsDictionary[incantationMatch].type === "heal") {
 
-                const healAmount = Math.ceil(LogosDictionary[logosMatch].basePower * (0.5*Math.random() + 0.75));
+                const healAmount = Math.ceil(IncantationsDictionary[incantationMatch].basePower * (0.5*Math.random() + 0.75));
 
                 gameState.setCharCondition(produce((charCondition)=>{
                     charCondition.hp = charCondition.hp + healAmount;
                     charCondition.spiritualHp = charCondition.spiritualHp + healAmount;
                 }));
 
-                combatMessage = `You healed for ${healAmount}`;
+                setPlayerCombatMessage(`You healed for ${healAmount}`);
             }
 
-            if (LogosDictionary[logosMatch].type === "buff") {
+            if (IncantationsDictionary[incantationMatch].type === "buff") {
 
-                LogosDictionary[logosMatch].func(gameState);
-                combatMessage = `${LogosDictionary[logosMatch].message}`;
+                IncantationsDictionary[incantationMatch].func(gameState);
+                setPlayerCombatMessage(`${IncantationsDictionary[incantationMatch].message}`);
 
             }
 
+        } else {
+            setPlayerCombatMessage("You fumble around with your words and try to say something meaningful, but it doesn't seem to work.")
         }
-        setLogos("");
+        setPlayerAction("");
+
+    }
+
+    function calculateEnemyTurn() {
+        console.log("here");
+        const charDefense = isPhysicalBattle ? gameState.character.stats.defense : gameState.character.stats.resilience;
 
         //Calculate Enemy Damage and turn
         const enemyDamage = Math.ceil((enemy.attack / charDefense) * 0.5*Math.random() + 0.75);
         const charHp = isPhysicalBattle ? Math.max(0, gameState.charCondition.hp - enemyDamage) : gameState.charCondition.hp;
         const charSpiritualHp = isPhysicalBattle ? gameState.charCondition.spiritualHp : Math.max(0, gameState.charCondition.spiritualHp - enemyDamage);
- 
+    
         gameState.setCharCondition(produce((charCondition)=>{
             charCondition.hp = charHp
             charCondition.spiritualHp = charSpiritualHp;
         }));
 
-        setCombatMessage(`${combatMessage}. ${enemy.name} dealt ${enemyDamage} damage.`);
+        setEnemyCombatMessage(`${enemy.name} attacked! It dealt ${enemyDamage} damage.`);
 
         if (charHp === 0 || charSpiritualHp === 0) {
             setCombatStatus("lost");
             loseCombat();
         }
+
     }
+
+    function EnemyAttackDisplay () {
+
+        const duration = 3000; 
+        const messageDisappearTime = 1000;
+        const [progress, setProgress] = useState(0);
+        const [showMessage, setShowMessage] = useState(true);
+        const [completed, setCompleted] = useState(false);
+      
+        useEffect(() => {
+            if (combatStatus !== "ongoing") {
+              return;
+            }
+
+          // Set up interval to increment progres
+          const increment = 100 / (duration / 100); // Calculate the increment value based on duration
+          const interval = setInterval(() => {
+            setProgress(prev => {
+              if (prev >= 100) {
+                clearInterval(interval);
+                setCompleted(true);
+                return 100;
+              }
+
+              if (prev >= (messageDisappearTime/duration) * 100 ) {
+                setShowMessage(false);
+              }
+              return prev + increment;
+            });
+          }, 100);
+      
+          return () => clearInterval(interval); // Cleanup interval on component unmount
+        }, [duration, completed]);
+      
+        useEffect(() => {
+          if (completed) {
+            console.log("completed");
+            calculateEnemyTurn();
+            setShowMessage(true);
+            setCompleted(false); // Reset completion state for next loop
+            setProgress(0); // Reset progress for next loop
+          }
+        }, [completed]);
+      
+        return (
+            <div>
+                <span className={`mt-4 transition-opacity duration-1000 ${showMessage? 'opacity-100' : 'opacity-0'}`}>
+                    {enemyCombatMessage}
+                </span>
+            </div>
+        );
+      };
 
     function winCombat() {
 
@@ -134,13 +244,13 @@ export function Combat({enemy, event, setCurrentEvent}) {
             }
         }
 
-        setCombatMessage(`You defeated ${enemy.name}! You gained ${joinList(statMessage)}, and you found ${joinList(lootMessage)}.`);
+        setPlayerCombatMessage(`You defeated ${enemy.name}! You gained ${joinList(statMessage)}, and you found ${joinList(lootMessage)}.`);
         gameState.taskFunc.use();
     }
 
     function loseCombat() {
 
-        setCombatMessage(`Ouch. You were defeated by ${enemy.name}. Perhaps you should go home and take a nap.`);
+        setPlayerCombatMessage(`Ouch. You were defeated by ${enemy.name}. Perhaps you should go home and take a nap.`);
         gameState.taskFunc.use();
 
     }
@@ -227,15 +337,15 @@ export function Combat({enemy, event, setCurrentEvent}) {
     const buttonActions = 
         <Fragment>
             <div className="w-full flex flex-row justify-center items-center gap-2">
-                <input type="text" placeholder="Type your logos here" value={logos} onChange={(event)=>{setLogos(event.target.value)}}/>
-                <Button onClick={calculateCombatTurn}>Speak</Button>
+                <input className={playerAction.includes("incantation") ? "animate-pulse text-blue-500" : "text-black"}type="text" placeholder="What will you do?" value={playerAction} onChange={(event)=>{setPlayerAction(event.target.value)}} onKeyPress={(e)=>{console.log(e.key); if (e.key === "Enter") {console.log("enter");calculatePlayerTurn()}}}/>
+                <Button onClick={calculatePlayerTurn}>Submit</Button>
             </div>            
             <BattleItemComponent 
                 gameState={gameState} 
                 enemyCondition={enemyCondition} 
                 setEnemyCondition={setEnemyCondition} 
                 setCombatStatus={setCombatStatus} 
-                setCombatMessage={setCombatMessage} 
+                setCombatMessage={setPlayerCombatMessage} 
                 isPhysicalBattle={isPhysicalBattle}
                 winCombat={winCombat} 
                 loseCombat={loseCombat}
@@ -248,7 +358,8 @@ export function Combat({enemy, event, setCurrentEvent}) {
             <span>{enemy.name}</span>
             <span>Hp: {enemyCondition.hp}/{enemy.hp}</span>
             <span>{enemy.description}</span>
-            <span>{combatMessage}</span>
+            <EnemyAttackDisplay/>
+            <span>{playerCombatMessage}</span>
             {isPhysicalBattle ? 
                 <span>Your Hp: {gameState.charCondition.hp}/{gameState.character.stats.hp}</span>
             : 
@@ -288,32 +399,42 @@ function getRandomEnemy(enemies) {
 }
 
 
-function calculateBaseDamage(logosKey, enemy) {
+function calculateBaseDamage(incantationKey, enemy) {
 
     const superEffectiveWeight = 2;
     const normalEffectiveWeight = 1;
 
-    //see if logos is in enemy's dictionary
-    for (let key of enemy.logos.superEffective) {
-        if (logosKey === key) {
-            return superEffectiveWeight * LogosDictionary[key].basePower
+    //see if incantation is in enemy's dictionary
+    for (let key of enemy.incantations.superEffective) {
+        console.log(key);
+        if (incantationKey === key) {
+            return {
+                effectiveness: "superEffective",
+                baseDamage: superEffectiveWeight * IncantationsDictionary[key].basePower
+            }
         }
     }
 
-    for (let key of enemy.logos.normalEffective) {
-        if (logosKey === key) {
-            return normalEffectiveWeight * LogosDictionary[key].basePower
+    for (let key of enemy.incantations.normalEffective) {
+        if (incantationKey === key) {
+            return {
+                effectiveness: "normalEffective",
+                baseDamage: normalEffectiveWeight * IncantationsDictionary[key].basePower
+            }        
         }
     }
 
-    return 0;
+    return {
+        effectiveness: none,
+        baseDamage: 0
+    }   
 
 }
 
-function matchLogos(inputLogos, charLogos) {
+function matchIncantation(inputIncantation, charIncantation) {
     let match = null;
-    for (let key of charLogos) {
-        if (areStringsEqual(inputLogos, LogosDictionary[key]?.logos)) {
+    for (let key of charIncantation) {
+        if (areStringsEqual(inputIncantation, IncantationsDictionary[key]?.incantation)) {
             match = key;
         }
     }
@@ -327,3 +448,4 @@ function joinList(array) {
     if (array.length === 2) return array.join(' and ');
     return array.slice(0, -1).join(', ') + ', and ' + array[array.length - 1];
 }
+

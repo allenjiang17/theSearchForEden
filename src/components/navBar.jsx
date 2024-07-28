@@ -14,6 +14,8 @@ export default function NavBar({setPage}) {
                 <button className="hover:underline" onClick={()=>{setPage("character")}}>Character</button>
                 <button className="hover:underline" onClick={()=>{setPage("inventory")}}>Inventory</button>
                 <button className="hover:underline" onClick={()=>{setPage("quests")}}>Quests</button>
+                <button className="hover:underline" onClick={()=>{setPage("incantations")}}>Incantations</button>
+
                 <button className="hover:underline" onClick={()=>{setPage("settings")}}>Settings</button>
             </div>
             <div className="hidden md:flex flex-row gap-5 justify-end">
