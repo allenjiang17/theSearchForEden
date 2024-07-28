@@ -49,7 +49,7 @@ export function Combat({enemy, event, setCurrentEvent}) {
 
         } else if (playerAction.toLowerCase().includes("incantation")) {
 
-            calculateIncantation(playerAction.split("incantation")[1].trim());
+            calculateIncantation(playerAction.toLowerCase().split("incantation")[1].trim());
  
         } else {
 
