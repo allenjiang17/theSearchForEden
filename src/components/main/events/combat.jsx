@@ -337,7 +337,7 @@ export function Combat({enemy, event, setCurrentEvent}) {
     const buttonActions = 
         <Fragment>
             <div className="w-full flex flex-row justify-center items-center gap-2">
-                <input className={playerAction.includes("incantation") ? "animate-pulse text-blue-500" : "text-black"}type="text" placeholder="What will you do?" value={playerAction} onChange={(event)=>{setPlayerAction(event.target.value)}} onKeyPress={(e)=>{console.log(e.key); if (e.key === "Enter") {console.log("enter");calculatePlayerTurn()}}}/>
+                <input className={playerAction.toLowerCase().includes("incantation") ? "animate-pulse text-blue-500" : "text-black"}type="text" placeholder="What will you do?" value={playerAction} onChange={(event)=>{setPlayerAction(event.target.value)}} onKeyPress={(e)=>{console.log(e.key); if (e.key === "Enter") {console.log("enter");calculatePlayerTurn()}}}/>
                 <Button onClick={calculatePlayerTurn}>Submit</Button>
             </div>            
             <BattleItemComponent 
