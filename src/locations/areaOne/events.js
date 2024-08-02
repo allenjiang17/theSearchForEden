@@ -222,25 +222,120 @@ export const AreaOneEvents = {
 
     //travelling prophetess events
     
-    "getResolve":{
-        title: "Get Resolve",
-        id: "getResolve",
+    "learnFirstIncantation":{
+        title: "Learn First Incantation",
+        id: "learnFirstIncantation",
         encounterRate: 1, 
-        description: "\"Hello there\", you say. \n\n\"Ah, yes,\" the woman says, \"You are just the one I seek.\"\n\n\"Me? Why?\"\n\n\"Because you, young sleeper, have woken up. And your journey to Eden has begun.\"\n\n\"What are you talking about?\" you ask, with bewilderment and confusion in your eyes.\n\n\"All will make sense one day. For now, take this. You will need it if you are to stand a chance in  spiritual battles. I will see you soon.\"\n\nThe old woman hands you Spirit of Resolve, and she continues on her way. \n\n(+1 Spirit of Resolve)",
-        autoAction: {
-            name: "Get Resolve",
-            actionType: "setInventory",
+        description: "\"Hello there\", you say. \n\n\"Ah, yes,\" the woman says, \"You are just the one I seek.\"\n\n\"Me? Why?\"\n\n\"Because you, young sleeper, have woken up. And your journey to Eden has begun.\"\n\n\"What are you talking about?\" you ask, with bewilderment and confusion in your eyes.\n\n\"All will make sense one day. Now you know in part. One day you shall know fully, even as you are fully known.\"",
+        actions: [{
+                name: "I don\'t understand. Why were you seeking me?",
+                func: (event, setCurrentEvent) => {
+                    setCurrentEvent("learnFirstIncantation2");
+                }
+            },{
+                name: "Okay, you seem like a bit weird. Goodbye.",
+                func: (event, setCurrentEvent) => {
+                    setCurrentEvent("learnFirstIncantationBye");
+                }
+            }
+    ]
+    },
+    "learnFirstIncantation2":{
+        title: "Learn First Incantation 2",
+        id: "learnFirstIncantation2",
+        encounterRate: 1, 
+        description: "There are two types of enemies in this world--physical enemies and spiritual enemies. It is of no use fighting spiritual enemies with physical weapons. For our struggle is not against flesh and blood, but against the rulers, against the authorities, against the powers of this dark world, and against the spiritual forces of evil in the heavenly realms.\"",
+        actions: [{
+                name: "So how do I fight these spiritual enemies?",
+                func: (event, setCurrentEvent) => {
+                    setCurrentEvent("learnFirstIncantation3");
+                }
+            },{
+                name: "Okay... I think you should go get help. See you later.",
+                func: (event, setCurrentEvent) => {
+                    setCurrentEvent("learnFirstIncantationBye");
+                }
+            }
+    ]
+    },
+    "learnFirstIncantation3":{
+        title: "Learn First Incantation 3",
+        id: "learnFirstIncantation3",
+        encounterRate: 1, 
+        description: "\"Long ago, people fought spiritual enemies with incantations that they learned from the Scroll of Sayings. This was a scroll of powerful magic, with truths unparalleled. But alas, the scroll was lost. Do you believe this?\"",
+        actions: [{
+                name: "I do believe. Help my unbelief!",
+                func: (event, setCurrentEvent) => {
+                    setCurrentEvent("learnFirstIncantation4");
+                }
+            },{
+                name: "Okay, this is getting a bit out of hand. I\'m going to stop talking to you right about... now. Take care.",
+                func: (event, setCurrentEvent) => {
+                    setCurrentEvent("learnFirstIncantationBye");
+                }
+            }
+    ]
+    },
+    "learnFirstIncantation4":{
+        title: "Learn First Incantation 4",
+        id: "learnFirstIncantation4",
+        encounterRate: 1, 
+        description: "\"Yes--all you need is faith the size of a mustard seed.\"\n\n\"How big is that?\" you ask.\n\n\"It is very small,\" the lady responds, \"Anyway, although the scroll has been lost, there is still a way to defeat spiritual enemies. You see, ever since the dawn of time, holy men and women have put many parts of the scroll to memory. And they\'ve been passing those sayings down to their followers over the generations, and many of their spiritual descendants are still alive today. If you seek them out, they will be able to teach you a saying or two.\"",
+        actions: [{
+                name: "Where do I find these people?",
+                func: (event, setCurrentEvent) => {
+                    setCurrentEvent("learnFirstIncantation5");
+                }
+            },{
+                name: "That sounds like too much work. Adios!",
+                func: (event, setCurrentEvent) => {
+                    setCurrentEvent("learnFirstIncantationBye");
+                }
+            }
+    ]
+    },
+    "learnFirstIncantation5":{
+        title: "Learn First Incantation 5",
+        id: "learnFirstIncantation5",
+        encounterRate: 1, 
+        description: "\"When the time is right, they will find you. For now, let me teach you your first incantation. Repeat after me: fight the good fight of the faith.\"",
+        actions: [{
+                name: "Fight the good fight of the faith.",
+                func: (event, setCurrentEvent) => {
+                    setCurrentEvent("learnFirstIncantation5");
+                }
+            },{
+                name: "I said BYE!",
+                func: (event, setCurrentEvent) => {
+                    setCurrentEvent("learnFirstIncantationBye");
+                }
+            }
+    ]
+    },
+    "learnFirstIncantation6":{
+        title: "Learn First Incantation 6",
+        id: "learnFirstIncantation5",
+        encounterRate: 1, 
+        description: "\"When you are in the midst of a spiritual battle, just say that line. And believe it. Remember--all it takes is faith the size of a mustard seed.\"\n\n\"Thank you,\" you say.\n\n\"Take care. I am sure we will meet again.\"",
+        actions: [],
+        autoAction: [{
+            actionType: "setMap",
             func: (gameState) => {
-                    gameState.setInventory(produce((newInventory)=>{
-                        updateInventory(newInventory, "spiritOfResolve");
-                    }));     
                     gameState.setMap(produce((newMap)=>{
                         newMap["travelingProphetess"].unlocked = false;
-                    }));       
+                    }));
+                    }
             }
-        },
+        ]
+    },
+    "learnFirstIncantationBye":{
+        title: "Learn First Incantation Bye",
+        id: "learnFirstIncantationBye",
+        encounterRate: 1, 
+        description: "You walk away from the strange woman, shaking your head. \"What utter foolishness,\" you think to yourself.",
         actions: []
     },
+
 
     // babbler events
 
@@ -273,9 +368,9 @@ export const AreaOneEvents = {
         ]
     },
     "babbleWithBabbler3":{
-        title: "Babble with Babbler 4",
+        title: "Babble with Babbler 3",
         encounterRate: 1, 
-        description: 'Have you met the traveling prophetess yet? If you visit the town square on the right days, you\'ll be able to meet her. On other days, she\'s traveling around in other places around the world.\n\n(-5 Spiritual HP)',
+        description: '\"You know what I would love to do one day? I would love to build a tower that reaches to the heavens. I would make such a name for myself, don\'t you think?\"\n\n(-5 Spiritual HP)',
         autoAction: [{
             name: "Talk with Babbler 3",
             actionType: "setCharCondition",
@@ -1168,11 +1263,10 @@ export const AreaOneEvents = {
         description: "You watch the mysterious fire flicker back and forth. You wait for something extraordinary to happen, but nothing does.",
         actions: []
     },    
-    /*
+    
+    // I can't figure out this Lost Man stuff. It's not working for me.
 
-    commenting off the Lost Man stuff because I can't figure it out.
-
-    "theLostMan": {
+    "theLostManQuest": {
         title: "The Lost Man",
         id: "theLostMan",
         encounterRate: 1,
@@ -1260,7 +1354,7 @@ export const AreaOneEvents = {
         actions: []
 
     },
-    */
+    
 
     //future events that haven't been implemented yet
     

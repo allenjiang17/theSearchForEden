@@ -87,8 +87,8 @@ export const AreaOneLocations = {
     "travelingProphetess": {
         title: "Traveling Prophetess",
         id: "travelingProphetess",
-        description: "You see an old holy woman talking a walk. She doesn't seem to be from here, but there's something about her that intrigues you.",
-        events: ["getResolve"],
+        description: "You see an unassuming woman talking a stroll. She doesn't seem to be from here, but there's something about her that intrigues you.",
+        events: ["learnFirstIncantation"],
         children: [],
         parent: "townSquare",
         initialUnlocked: true
@@ -177,7 +177,7 @@ export const AreaOneLocations = {
         id: "wilderness",
         description: "You walk out into the Wilderness. You hear a faint voice crying out, \"Prepare the way of the Lord; make his paths straight.\"\n\nYou look around but don't see any paths. Maybe these paths are not literal but metaphorical?",
         events: [],
-        children: ["fieldOfManna", "valleyOfStones", "desertOfWandering", "heapOfRuins", "bronzeSerpent", "burningBush", "yamSuph"],
+        children: ["theLostMan", "fieldOfManna", "valleyOfStones", "desertOfWandering", "heapOfRuins", "bronzeSerpent", "burningBush", "yamSuph"],
         parent: "world",
         initialUnlocked: true
     },
@@ -185,7 +185,7 @@ export const AreaOneLocations = {
         title: "The Lost Man",
         id: "theLostMan",
         description: "You meet a man aimlessly wandering around.",
-        events: ["theLostMan"],
+        events: ["theLostManQuest"],
         children: [],
         parent: "wilderness",
         initialUnlocked: true
@@ -242,7 +242,7 @@ export const AreaOneLocations = {
         title: "The Burning Bush",
         id: "burningBush",
         description: "You see a strange bush that is on fire, but it is not burning up. You are filled with awe, and you feel that you are standing on holy ground.",
-        events: ["approachTheBush"],
+        events: ["approachBurningBush"],
         children: [],
         parent: "wilderness",
         initialUnlocked: true
