@@ -8,6 +8,13 @@ export const IncantationsDictionary = {
         type: "attack", 
         basePower: 10,
     },
+    "basicAttackTest": {
+        id: "basicAttackTest",
+        title: "The Good Fight Test",
+        incantation: "Fight the good fight of the faith TEST",
+        type: "attack", 
+        basePower: 15,
+    },
     "basicBuff": {
         id: "basicBuff",
         title: "Trained for War",

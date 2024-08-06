@@ -227,14 +227,16 @@ export const AreaOneEvents = {
         id: "learnFirstIncantation",
         encounterRate: 1, 
         description: "\"Hello there\", you say. \n\n\"Ah, yes,\" the woman says, \"You are just the one I seek.\"\n\n\"Me? Why?\"\n\n\"Because you, young sleeper, have woken up. And your journey to Eden has begun.\"\n\n\"What are you talking about?\" you ask, with bewilderment and confusion in your eyes.\n\n\"All will make sense one day. Now you know in part. One day you shall know fully, even as you are fully known.\"",
-        actions: [{
+        actions: [
+            {
                 name: "I don\'t understand. Why were you seeking me?",
-                func: (event, setCurrentEvent) => {
+                func: (gameState, event, setCurrentEvent) => {
                     setCurrentEvent("learnFirstIncantation2");
                 }
-            },{
+            },
+            {
                 name: "Okay, you seem like a bit weird. Goodbye.",
-                func: (event, setCurrentEvent) => {
+                func: (gameState, event, setCurrentEvent) => {
                     setCurrentEvent("learnFirstIncantationBye");
                 }
             }
@@ -247,12 +249,12 @@ export const AreaOneEvents = {
         description: "There are two types of enemies in this world--physical enemies and spiritual enemies. It is of no use fighting spiritual enemies with physical weapons. For our struggle is not against flesh and blood, but against the rulers, against the authorities, against the powers of this dark world, and against the spiritual forces of evil in the heavenly realms.\"",
         actions: [{
                 name: "So how do I fight these spiritual enemies?",
-                func: (event, setCurrentEvent) => {
+                func: (gameState, event, setCurrentEvent) => {
                     setCurrentEvent("learnFirstIncantation3");
                 }
             },{
                 name: "Okay... I think you should go get help. See you later.",
-                func: (event, setCurrentEvent) => {
+                func: (gameState, event, setCurrentEvent) => {
                     setCurrentEvent("learnFirstIncantationBye");
                 }
             }
@@ -265,12 +267,12 @@ export const AreaOneEvents = {
         description: "\"Long ago, people fought spiritual enemies with incantations that they learned from the Scroll of Sayings. This was a scroll of powerful magic, with truths unparalleled. But alas, the scroll was lost. Do you believe this?\"",
         actions: [{
                 name: "I do believe. Help my unbelief!",
-                func: (event, setCurrentEvent) => {
+                func: (gameState, event, setCurrentEvent) => {
                     setCurrentEvent("learnFirstIncantation4");
                 }
             },{
                 name: "Okay, this is getting a bit out of hand. I\'m going to stop talking to you right about... now. Take care.",
-                func: (event, setCurrentEvent) => {
+                func: (gameState, event, setCurrentEvent) => {
                     setCurrentEvent("learnFirstIncantationBye");
                 }
             }
@@ -283,12 +285,12 @@ export const AreaOneEvents = {
         description: "\"Yes--all you need is faith the size of a mustard seed.\"\n\n\"How big is that?\" you ask.\n\n\"It is very small,\" the lady responds, \"Anyway, although the scroll has been lost, there is still a way to defeat spiritual enemies. You see, ever since the dawn of time, holy men and women have put many parts of the scroll to memory. And they\'ve been passing those sayings down to their followers over the generations, and many of their spiritual descendants are still alive today. If you seek them out, they will be able to teach you a saying or two.\"",
         actions: [{
                 name: "Where do I find these people?",
-                func: (event, setCurrentEvent) => {
+                func: (gameState, event, setCurrentEvent) => {
                     setCurrentEvent("learnFirstIncantation5");
                 }
             },{
                 name: "That sounds like too much work. Adios!",
-                func: (event, setCurrentEvent) => {
+                func: (gameState, event, setCurrentEvent) => {
                     setCurrentEvent("learnFirstIncantationBye");
                 }
             }
@@ -301,12 +303,15 @@ export const AreaOneEvents = {
         description: "\"When the time is right, they will find you. For now, let me teach you your first incantation. Repeat after me: fight the good fight of the faith.\"",
         actions: [{
                 name: "Fight the good fight of the faith.",
-                func: (event, setCurrentEvent) => {
-                    setCurrentEvent("learnFirstIncantation5");
+                func: (gameState, event, setCurrentEvent) => {
+                    gameState.setCharCondition(produce((newCharCondition)=>{
+                        newCharCondition.incantations.push("basicAttackTest");
+                    }));
+                    setCurrentEvent("learnFirstIncantation6");
                 }
             },{
                 name: "I said BYE!",
-                func: (event, setCurrentEvent) => {
+                func: (gameState, event, setCurrentEvent) => {
                     setCurrentEvent("learnFirstIncantationBye");
                 }
             }
@@ -314,7 +319,7 @@ export const AreaOneEvents = {
     },
     "learnFirstIncantation6":{
         title: "Learn First Incantation 6",
-        id: "learnFirstIncantation5",
+        id: "learnFirstIncantation6",
         encounterRate: 1, 
         description: "\"When you are in the midst of a spiritual battle, just say that line. And believe it. Remember--all it takes is faith the size of a mustard seed.\"\n\n\"Thank you,\" you say.\n\n\"Take care. I am sure we will meet again.\"",
         actions: [],
@@ -895,8 +900,10 @@ export const AreaOneEvents = {
             name: "Get Rope",
             actionType: "setInventory",
             func: (gameState) => {
-                updateInventory(newInventory, "rope");    
-            }
+                gameState.setInventory(produce((newInventory)=>{
+                    updateInventory(newInventory, "rope");
+                }));            
+        }
         },
         actions: []
     },
@@ -1279,14 +1286,10 @@ export const AreaOneEvents = {
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 const questState = gameState.quests["senseOfDirection"];
-                if (questState && questState.progress !== "complete") {
-                    if (gameState.inventory.items["senseOfDirection"] >= 1) {
-                        setCurrentEvent("senseOfDirectionCompleteStep1");
-                    } else {
-                        setCurrentEvent("senseOfDirectionIncomplete");
-                    }
+                if (gameState.inventory.items["senseOfDirection"] >= 1) {
+                    setCurrentEvent("senseOfDirectionCompleteStep1");
                 } else {
-                    setCurrentEvent("nobodyIsHere");
+                    setCurrentEvent("senseOfDirectionIncomplete");
                 }
             }
         }
@@ -1352,12 +1355,111 @@ export const AreaOneEvents = {
         actions: []
 
     },
-    //future events that haven't been implemented yet
+    
+    //land of the Patriarchs events
+
+    "merchantsOfMidianShop": {
+        title: "Merchants of Midian Shop",
+        id: "merchantsOfMidianShop",
+        encounterRate: 1, 
+        description: "\"Greetings,\" one of the merchants says to you, \"Are you interested in any of these items?\"",
+        actions: [{
+            name: "Bag of Lentils",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("getLentils");
+            }
+        },
+        {
+            name: "Goat",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("getGoat");
+            }
+        },
+        {
+            name: "Sheep",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("getSheep");
+            }
+        },
+        {
+            name: "Camel",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("getCamel");
+            }
+        },
+        {
+            name: "Cow",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("getCow");
+            }
+        },
+        {
+            name: "Donkey",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("getDonkey");
+            }
+        },
+        {
+            name: "Slave",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("getSlave");
+            }
+        }]
+    },
+    "getLentils":{
+        title: "Get Bag of Lentils",
+        id: "getLentils",
+        encounterRate: 1, 
+        description: "A bag of lentils costs 1 shekel of silver. Oh--it doesn\'t seem like you have the right currency.",
+        actions: []
+    },
+    "getGoat":{
+        title: "Get Goat",
+        id: "getGoat",
+        encounterRate: 1, 
+        description: "A goat costs 3 shekels of silver. Oh--it doesn\'t seem like you have the right currency.",
+        actions: []
+    },
+    "getSheep":{
+        title: "Get Sheep",
+        id: "getSheep",
+        encounterRate: 1, 
+        description: "A sheep costs 3 shekels of silver. Oh--it doesn\'t seem like you have the right currency.",
+        actions: []
+    },
+    "getCamel":{
+        title: "Get Camel",
+        id: "getCamel",
+        encounterRate: 1, 
+        description: "A camel costs 10 shekels of silver. Oh--it doesn\'t seem like you have the right currency.",
+        actions: []
+    },
+    "getCow":{
+        title: "Get Cow",
+        id: "getCow",
+        encounterRate: 1, 
+        description: "A cow costs 10 shekels of silver. Oh--it doesn\'t seem like you have the right currency.",
+        actions: []
+    },
+    "getDonkey":{
+        title: "Get Donkey",
+        id: "getDonkey",
+        encounterRate: 1, 
+        description: "A donkey costs 10 shekels of silver. Oh--it doesn\'t seem like you have the right currency.",
+        actions: []
+    },
+    "getSlave":{
+        title: "Get Slave",
+        id: "getSlave",
+        encounterRate: 1, 
+        description: "A slave costs 30 shekels of silver. Oh--it doesn\'t seem like you have the right currency.",
+        actions: []
+    },
     "rescueTheCaptives":{        
         title: "Rescue the Captives",
         id: "rescueTheCaptives",
         encounterRate: 1,
-        description: "You see an exhausted man with terror on his face running over to you. \"What\'s the matter?\" you ask.\n\nWith tears in his eyes, the man takes a few large breaths and responds, \"Our cities have been attacked and plundered, and our people have been taken captive.\"\n\n\"Take courage,\" you say, \"I will rescue them!\"",
+        description: "You see an exhausted man with terror on his face running over to you. \"What\'s the matter?\" you ask.\n\nWith tears in his eyes, the man takes a few large breaths and responds, \"Our cities have been attacked and plundered, and our people have been taken captive.\"\n\n\"Take courage,\" you say, \"I will rescue them!\"\n\nThe terrified man regains his composure, blinks his eyes a few times, and gives you a good look. Then he suddenly bursts into laughter.\n\n\"You?! Who do you think you are? You wouldn\'t stand a chance.\"\n\nYou walk away in embarrassment. Maybe you should come back when you are stronger.",
         actions: []
     },
     "sleepOnStone":{        
@@ -1383,6 +1485,8 @@ export const AreaOneEvents = {
         description: "You have a dream, and behold, you see a ladder set up on the earth, with the top of it reaching to heaven. And behold, you see the angels of God ascending and descending on it!\n\nYou wake up with wonder and think, \"Surely the Lord is in this place, and I did not know it.\"\n\nYour Spiritual HP is back to full!",
         actions: []
     },
+
+    // future events that haven't been implemented yet
     "donatingMoneyTemple":{
         title: "Donating Money",
         id: "donatingMoneyTemple",
