@@ -1168,10 +1168,6 @@ export const AreaOneEvents = {
         description: "You watch the mysterious fire flicker back and forth. You wait for something extraordinary to happen, but nothing does.",
         actions: []
     },    
-    /*
-
-    commenting off the Lost Man stuff because I can't figure it out.
-
     "theLostMan": {
         title: "The Lost Man",
         id: "theLostMan",
@@ -1260,10 +1256,6 @@ export const AreaOneEvents = {
         actions: []
 
     },
-    */
-
-    //future events that haven't been implemented yet
-    
     "rescueTheCaptives":{        
         title: "Rescue the Captives",
         id: "rescueTheCaptives",

@@ -130,6 +130,7 @@ function Game() {
   effectHook("page", page);
 
   //TODO: feels clunky but the only way to check quests that have inventory satisfaction conditions
+  /*
   useEffect(() => {
     for (let quest of Object.keys(quests)) {
       if (quest.progress !== "complete" && QuestsDict[quest].conditionType === "inventory") {
@@ -137,6 +138,7 @@ function Game() {
       }
     } 
   }, [inventory])
+  */
 
   return (
     <GameContext.Provider value ={{
