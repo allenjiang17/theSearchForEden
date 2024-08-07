@@ -270,7 +270,7 @@ export const AreaOneLocations = {
         id: "landOfThePatriarchs",
         description: "The Land of the Patriarchs lies before you. This is the place where heroes of old fought courageous battles, wrestled angels, and quarrelled over wells.",
         events: [],
-        children: ["bethel", "valleyOfSiddim", "cityOfSodom"],
+        children: ["merchantsOfMidian", "bethel", "valleyOfSiddim", "cityOfSodom"],
         parent: "world"
     },
     "landOfTheJudges": {
@@ -328,6 +328,15 @@ export const AreaOneLocations = {
         events: [],
         children: [],
         parent: "world"
+    },
+    "merchantsOfMidian": {
+        title: "The Merchants of Midian",
+        id: "merchantsOfMidian",
+        description: "You see a large caravan of merchants. They have purchased some supplies at low prices and are currently selling those supplies at higher prices.",
+        events: ["merchantsOfMidianShop"],
+        children: [],
+        parent: "landOfThePatriarchs",
+        initialUnlocked: true
     },
     "bethel": {
         title: "Bethel",

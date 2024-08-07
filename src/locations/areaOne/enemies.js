@@ -208,7 +208,7 @@ export const AreaOneEnemies = {
         name: "Worthless Assembly",
         encounterRate: 1,
         type: "spiritual",
-        description: "You encounter a Worthless Assembly. It invites you to come near to God with your mouth and honor him with your lips, but to keep your hearts are far from him.",
+        description: "You encounter a Worthless Assembly. It invites you to come near to God with your mouth and honor him with your lips, but to keep your hearts far from him.",
         hp: 60,
         attack: 6,
         defense: 6,
