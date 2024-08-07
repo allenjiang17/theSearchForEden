@@ -7,7 +7,8 @@ export function normalizeString(str) {
     return str
         .toLowerCase() // Convert to lowercase
         .replace(/[^\w\s]|_/g, "") // Remove punctuation
-        .replace(/\s+/g, " "); // Replace multiple spaces with a single space
+        .replace(/\s+/g, " ") // Replace multiple spaces with a single space
+        .trim();
 }
 
 export function areStringsEqual(str1, str2) {

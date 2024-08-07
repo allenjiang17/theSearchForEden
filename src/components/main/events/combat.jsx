@@ -339,17 +339,7 @@ export function Combat({enemy, event, setCurrentEvent}) {
             <div className="w-full flex flex-row justify-center items-center gap-2">
                 <input className={playerAction.toLowerCase().includes("incantation") ? "animate-pulse text-blue-500" : "text-black"}type="text" placeholder="What will you do?" value={playerAction} onChange={(event)=>{setPlayerAction(event.target.value)}} onKeyPress={(e)=>{console.log(e.key); if (e.key === "Enter") {console.log("enter");calculatePlayerTurn()}}}/>
                 <Button onClick={calculatePlayerTurn}>Submit</Button>
-            </div>            
-            <BattleItemComponent 
-                gameState={gameState} 
-                enemyCondition={enemyCondition} 
-                setEnemyCondition={setEnemyCondition} 
-                setCombatStatus={setCombatStatus} 
-                setCombatMessage={setPlayerCombatMessage} 
-                isPhysicalBattle={isPhysicalBattle}
-                winCombat={winCombat} 
-                loseCombat={loseCombat}
-            />
+            </div>    
         </Fragment>
     const buttonLeave = <Button onClick={()=>{setCurrentEvent(null); gameState.setLocation(AreaOneLocations[gameState.location].parent)}}>Go back to {AreaOneLocations[AreaOneLocations[gameState.location].parent].title}</Button>;
     
@@ -449,3 +439,16 @@ function joinList(array) {
     return array.slice(0, -1).join(', ') + ', and ' + array[array.length - 1];
 }
 
+
+/*
+    <BattleItemComponent 
+        gameState={gameState} 
+        enemyCondition={enemyCondition} 
+        setEnemyCondition={setEnemyCondition} 
+        setCombatStatus={setCombatStatus} 
+        setCombatMessage={setPlayerCombatMessage} 
+        isPhysicalBattle={isPhysicalBattle}
+        winCombat={winCombat} 
+        loseCombat={loseCombat}
+    />
+*/

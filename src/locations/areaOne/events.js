@@ -1285,9 +1285,7 @@ export const AreaOneEvents = {
                     } else {
                         setCurrentEvent("senseOfDirectionIncomplete");
                     }
-                } else {
-                    setCurrentEvent("nobodyIsHere");
-                }
+                } 
             }
         }
     },
