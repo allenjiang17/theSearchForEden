@@ -11,6 +11,13 @@ import { produce } from 'immer';
 
 export const GameContext = createContext();
 
+
+const version = "0.0.1";
+if (localStorage.getItem("version") !== version) {
+  localStorage.clear();
+  localStorage.setItem("version", version);
+} 
+
 // We should move all of the defaults into a separate file
 // this will be set by the user in the future
 const initialCharacterTest = {
@@ -25,7 +32,7 @@ const initialCharacterTest = {
     zeal: 1,
     resilience:1,
   },
-  incantations: ["basicAttack", "basicBuff", "basicHeal"],
+  incantations: [],
 };
 
 const initialInventory = {

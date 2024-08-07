@@ -304,8 +304,8 @@ export const AreaOneEvents = {
         actions: [{
                 name: "Fight the good fight of the faith.",
                 func: (gameState, event, setCurrentEvent) => {
-                    gameState.setCharCondition(produce((newCharCondition)=>{
-                        newCharCondition.incantations.push("basicAttackTest");
+                    gameState.setCharacter(produce((newCharacter)=>{
+                        newCharacter.incantations.push("basicAttack");
                     }));
                     setCurrentEvent("learnFirstIncantation6");
                 }
@@ -323,15 +323,14 @@ export const AreaOneEvents = {
         encounterRate: 1, 
         description: "\"When you are in the midst of a spiritual battle, just say that line. And believe it. Remember--all it takes is faith the size of a mustard seed.\"\n\n\"Thank you,\" you say.\n\n\"Take care. I am sure we will meet again.\"",
         actions: [],
-        autoAction: [{
+        autoAction: {
             actionType: "setMap",
-            func: (gameState) => {
+            func: (gameState, event, setCurrentEvent) => {
                     gameState.setMap(produce((newMap)=>{
                         newMap["travelingProphetess"].unlocked = false;
                     }));
-                    }
+                }
             }
-        ]
     },
     "learnFirstIncantationBye":{
         title: "Learn First Incantation Bye",
@@ -376,7 +375,7 @@ export const AreaOneEvents = {
         title: "Babble with Babbler 3",
         encounterRate: 1, 
         description: '\"You know what I would love to do one day? I would love to build a tower that reaches to the heavens. I would make such a name for myself, don\'t you think?\"\n\n(-5 Spiritual HP)',
-        autoAction: [{
+        autoAction: {
             name: "Talk with Babbler 3",
             actionType: "setCharCondition",
             func: (gameState, event, setCurrentEvent) => {
@@ -385,14 +384,13 @@ export const AreaOneEvents = {
                     }));
                 }
             }
-        ]
     },
     "babbleWithBabbler4":{
         title: "Babble with Babbler 4",
         id: "babbleWithBabbler4",
         encounterRate: 1, 
         description: 'Did you hear the legend of the powerful sorceror? I heard he once turned his staff into a serpent. Or did he turn his serpent into a staff? I forget.\n\n(-5 Spiritual HP)',
-        autoAction: [{
+        autoAction: {
             name: "Talk with Babbler 4",
             actionType: "setCharCondition",
             func: (gameState, event, setCurrentEvent) => {
@@ -401,14 +399,13 @@ export const AreaOneEvents = {
                     }));
                 }
             }
-        ]
     },
     "babbleWithBabbler5":{
         title: "Babble with Babbler 5",
         id: "babbleWithBabbler5",
         encounterRate: 1, 
         description: '\"A traveler once told me that he faced a terrifying spirit of fear in this place called Yam Suph, located in the wilderness. I asked him where it was, but he was too afraid to say. But he did draw this map for me.\"\n\nThe babbler pulls a crinkled map out of his coat pocket. \"You know what? I don\'t really need this map anymore. Why don\'t you have it?\"\n\n(-5 Spiritual HP) (+1 Map to Yam Suph)',
-        autoAction: [{
+        autoAction: {
             name: "Talk with Babbler 5",
             actionType: "setCharCondition",
             func: (gameState, event, setCurrentEvent) => {
@@ -421,7 +418,6 @@ export const AreaOneEvents = {
                     }
                 
             }
-        ]
     },
     "talkWithBabblerNoBread":{
         title: "Talk with Babbler No Bread",
