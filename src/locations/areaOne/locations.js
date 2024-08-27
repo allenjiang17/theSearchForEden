@@ -86,7 +86,7 @@ export const AreaOneLocations = {
     },
     "valiantSoldier": {
         title: "The Valiant Soldier",
-        id: "valientSoldier",
+        id: "valiantSoldier",
         description: "You see a valiant soldier in a full suit of armor. His soul has been hardened by years of battle.",
         events: ["valiantSoldierConversation"],
         children: [],
