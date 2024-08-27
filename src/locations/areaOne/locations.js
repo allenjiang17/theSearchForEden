@@ -85,7 +85,7 @@ export const AreaOneLocations = {
         initialUnlocked: true
     },
     "valiantSoldier": {
-        title: "Valiant Soldier",
+        title: "The Valiant Soldier",
         id: "valientSoldier",
         description: "You see a valiant soldier in a full suit of armor. His soul has been hardened by years of battle.",
         events: ["valiantSoldierConversation"],
@@ -94,7 +94,7 @@ export const AreaOneLocations = {
         initialUnlocked: true
     },
     "travelingProphetess": {
-        title: "Traveling Prophetess",
+        title: "The Traveling Prophetess",
         id: "travelingProphetess",
         description: "You see an unassuming woman talking a stroll. She doesn't seem to be from here, but there's something about her that intrigues you.",
         events: ["learnFirstIncantation"],
