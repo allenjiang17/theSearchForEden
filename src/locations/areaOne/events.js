@@ -367,7 +367,7 @@ export const AreaOneEvents = {
         title: "Talk to Valiant Soldier Who",
         id: "valiantSoldierConversationWho",
         encounterRate: 1, 
-        description: "\"I have been a warrior since my youth. And I have slain many enemies.",
+        description: "\"I have been a warrior since my youth. And I have slain many enemies.\"",
         actions: [
             {
                 name: "Wow. I would love to be a warrior myself. Is there a thing or two you can teach me about slaying enemies?",
@@ -387,7 +387,7 @@ export const AreaOneEvents = {
         title: "Talk to Valiant Soldier Enemies",
         id: "valiantSoldierConversationEnemies",
         encounterRate: 1, 
-        description: "\"Serpents! Lions! Warriors! If you ever encounter any, you best be ready.",
+        description: "\"Serpents! Lions! Warriors! If you ever encounter any, you best be ready.\"",
         actions: [
             {
                 name: "What should I do when I see one?",
@@ -451,7 +451,7 @@ export const AreaOneEvents = {
         description: "\"What do you mean? You just attack it.\"\n\n\"So like--I just type the word \'attack\' in the textbox?\" you ask.\n\n\"I do not know what you mean by the word \'type,\' nor do I understand this word \'textbox.\' You seem to be speaking a foreign language.\"",
         actions: [
             {
-                name: "Oh sorry. You see, I\'m not actually a real character in this world. I am playing a game, and the way I encounter a battle scene in this game, I have to type something in a textbox.",
+                name: "Oh sorry. You see, I\'m not actually a real character in this world. I am playing a game, and whenever I encounter a battle scene in this game, I have to type something in a textbox.",
                 func: (gameState, event, setCurrentEvent) => {
                     setCurrentEvent("valiantSoldierConversationReal");
                 }
@@ -468,7 +468,8 @@ export const AreaOneEvents = {
         title: "Talk to Valiant Soldier Real",
         id: "valiantSoldierConversationReal",
         encounterRate: 1, 
-        description: "\"Are you claiming to not be of this world? Are you claiming to be a god? What nonsense.\"\n\nThe valiant soldier scoffs at you, turns his back, and walks away.\"",
+        description: "\"Are you claiming to not be of this world? Are you claiming to be a god? What nonsense.\"\n\nThe valiant soldier scoffs at you, turns his back, and walks away.",
+        actions: []
     },
     "valiantSoldierConversationResistant":{
         title: "Talk to Valiant Soldier Resistant",
@@ -494,13 +495,15 @@ export const AreaOneEvents = {
         title: "Talk to Valiant Soldier Sloth",
         id: "valiantSoldierConversationSloth",
         encounterRate: 1, 
-        description: "\"Ah--you must be joking. Why would you fight sloth? Sloth is good for you. It enables you to rest. Just give in to your desire to sleep.\"\n\n\"I see,\" you say, as you ponder the words of the valiant soldier. You wonder if somebody else would be able to help you."
+        description: "\"Ah--you must be joking. Why would you fight sloth? Sloth is good for you. It enables you to rest. Just give in to your desire to sleep.\"\n\n\"I see,\" you say, as you ponder the words of the valiant soldier. You wonder if somebody else would be able to help you in the fight against some of these non-physical enemies.",
+        actions: []
     },
     "valiantSoldierConversationGluttony":{
         title: "Talk to Valiant Soldier Gluttony",
         id: "valiantSoldierConversationGluttony",
         encounterRate: 1, 
-        description: "\"Ah--you must be joking. Why would you fight gluttony? Gluttony is good for you. It gives you food. Just give in to your desire to eat.\"\n\n\"I see,\" you say, as you ponder the words of the valiant soldier. You wonder if somebody else would be able to help you."
+        description: "\"Ah--you must be joking. Why would you fight gluttony? Gluttony is good for you. It gives you food. Just give in to your desire to eat.\"\n\n\"I see,\" you say, as you ponder the words of the valiant soldier. You wonder if somebody else would be able to help you in the fight against some of these non-physical enemies.",
+        actions: []
     },
     "valiantSoldierConversationFind":{
         title: "Talk to Valiant Soldier Find",
@@ -527,6 +530,7 @@ export const AreaOneEvents = {
         id: "valiantSoldierConversationEnd",
         encounterRate: 1, 
         description: "The valiant soldier nods his head, and you take your leave.",
+        actions: []
     },
 
     // babbler events
