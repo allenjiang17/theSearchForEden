@@ -27,6 +27,7 @@ export const AreaOneEvents = {
     - cistern events
     - fig leaf events
     - travelling prophetess events
+    - valiant soldier event
     - babbler events
     - deceiver events
     - merchant events
@@ -340,6 +341,193 @@ export const AreaOneEvents = {
         actions: []
     },
 
+    // valiant soldier events
+
+    "valiantSoldierConversation":{
+        title: "Talk to Valiant Soldier",
+        id: "valiantSoldierConversation",
+        encounterRate: 1, 
+        description: "\"Stay alert, young lad! You never know who may be hiding in the shadows.\"",
+        actions: [
+            {
+                name: "Huh? Who are you?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationWho");
+                }
+            },
+            {
+                name: "What are you talking about?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationWhat");
+                }
+            }
+        ]
+    },
+    "valiantSoldierConversationWho":{
+        title: "Talk to Valiant Soldier Who",
+        id: "valiantSoldierConversationWho",
+        encounterRate: 1, 
+        description: "\"I have been a warrior since my youth. And I have slain many enemies.",
+        actions: [
+            {
+                name: "Wow. I would love to be a warrior myself. Is there a thing or two you can teach me about slaying enemies?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationTeach");
+                }
+            },
+            {
+                name: "What sort of enemies are you talking about?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationEnemies");
+                }
+            }
+        ]
+    },
+    "valiantSoldierConversationEnemies":{
+        title: "Talk to Valiant Soldier Enemies",
+        id: "valiantSoldierConversationEnemies",
+        encounterRate: 1, 
+        description: "\"Serpents! Lions! Warriors! If you ever encounter any, you best be ready.",
+        actions: [
+            {
+                name: "What should I do when I see one?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationFight");
+                }
+            },
+            {
+                name: "Where do I find these enemies?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationFind");
+                }
+            }
+        ]
+    },
+    "valiantSoldierConversationWhat":{
+        title: "Talk to Valiant Soldier What",
+        id: "valiantSoldierConversationWhat",
+        encounterRate: 1, 
+        description: "\"Enemies! Of all kinds. And they can strike you at any moment!\"",
+        actions: [
+            {
+                name: "I see. How do I fight an enemy when I encounter one?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationFight");
+                }
+            },
+            {
+                name: "Where do I find these enemies?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationFind");
+                }
+            }
+        ]
+    },
+
+    "valiantSoldierConversationTeach":{
+        title: "Talk to Valiant Soldier Teach",
+        id: "valiantSoldierConversationTeach",
+        encounterRate: 1, 
+        description: "\"What would you like to know, young lad?\"",
+        actions: [
+            {
+                name: "How do I fight an enemy when I encounter one?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationFight");
+                }
+            },
+            {
+                name: "Where do I find enemies to fight?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationFind");
+                }
+            }
+        ]
+    },
+    "valiantSoldierConversationFight":{
+        title: "Talk to Valiant Soldier Fight",
+        id: "valiantSoldierConversationFight",
+        encounterRate: 1, 
+        description: "\"What do you mean? You just attack it.\"\n\n\"So like--I just type the word \'attack\' in the textbox?\" you ask.\n\n\"I do not know what you mean by the word \'type,\' nor do I understand this word \'textbox.\' You seem to be speaking a foreign language.\"",
+        actions: [
+            {
+                name: "Oh sorry. You see, I\'m not actually a real character in this world. I am playing a game, and the way I encounter a battle scene in this game, I have to type something in a textbox.",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationReal");
+                }
+            },
+            {
+                name: "Never mind, I am just babbling nonsense. But what if the enemy is resistant to my attacks?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationResistant");
+                }
+            }
+        ]
+    },
+    "valiantSoldierConversationReal":{
+        title: "Talk to Valiant Soldier Real",
+        id: "valiantSoldierConversationReal",
+        encounterRate: 1, 
+        description: "\"Are you claiming to not be of this world? Are you claiming to be a god? What nonsense.\"\n\nThe valiant soldier scoffs at you, turns his back, and walks away.\"",
+    },
+    "valiantSoldierConversationResistant":{
+        title: "Talk to Valiant Soldier Resistant",
+        id: "valiantSoldierConversationResistant",
+        encounterRate: 1, 
+        description: "\"Resistant to your attacks? What sort of enemy are you talking about?\" the soldier asks.",
+        actions: [
+            {
+                name: "Like a common sloth.",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationSloth");
+                }
+            },
+            {
+                name: "Like a common gluttony.",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationGluttony");
+                }
+            }
+        ]
+    },
+    "valiantSoldierConversationSloth":{
+        title: "Talk to Valiant Soldier Sloth",
+        id: "valiantSoldierConversationSloth",
+        encounterRate: 1, 
+        description: "\"Ah--you must be joking. Why would you fight sloth? Sloth is good for you. It enables you to rest. Just give in to your desire to sleep.\"\n\n\"I see,\" you say, as you ponder the words of the valiant soldier. You wonder if somebody else would be able to help you."
+    },
+    "valiantSoldierConversationGluttony":{
+        title: "Talk to Valiant Soldier Gluttony",
+        id: "valiantSoldierConversationGluttony",
+        encounterRate: 1, 
+        description: "\"Ah--you must be joking. Why would you fight gluttony? Gluttony is good for you. It gives you food. Just give in to your desire to eat.\"\n\n\"I see,\" you say, as you ponder the words of the valiant soldier. You wonder if somebody else would be able to help you."
+    },
+    "valiantSoldierConversationFind":{
+        title: "Talk to Valiant Soldier Find",
+        id: "valiantSoldierConversationFind",
+        encounterRate: 1, 
+        description: "\"Enemies are everywhere, lurking in every corner. When you walk around to different places, they are bound to appear. And you must be ready to fight them when they do.\"",
+        actions: [
+            {
+                name: "How do I fight an enemy when I see one?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationFight");
+                }
+            },
+            {
+                name: "I see. Thank you for your time.",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("valiantSoldierConversationEnd");
+                }
+            }
+        ]
+    },
+    "valiantSoldierConversationEnd":{
+        title: "Talk to Valiant Soldier End",
+        id: "valiantSoldierConversationEnd",
+        encounterRate: 1, 
+        description: "The valiant soldier nods his head, and you take your leave.",
+    },
 
     // babbler events
 
