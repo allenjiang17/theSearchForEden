@@ -1652,6 +1652,29 @@ export const AreaOneEvents = {
         description: "You see an exhausted man with terror on his face running over to you. \"What\'s the matter?\" you ask.\n\nWith tears in his eyes, the man takes a few large breaths and responds, \"Our cities have been attacked and plundered, and our people have been taken captive.\"\n\n\"Take courage,\" you say, \"I will rescue them!\"\n\nThe terrified man regains his composure, blinks his eyes a few times, and gives you a good look. Then he suddenly bursts into laughter.\n\n\"You?! Who do you think you are? You wouldn\'t stand a chance.\"\n\nYou walk away in embarrassment. Maybe you should come back when you are stronger.",
         actions: []
     },
+    "beershebaStart":{        
+        title: "Beersheba Start",
+        id: "beershebaStart",
+        encounterRate: 1,
+        description: "You enter the tent and see a man sitting on the floor cooking some delicious lentil stew. Your mouth starts to water. It is the most delicious stew you\'ve ever laid your eyes on.\n\n\"Hello there. Are you interested in some of this lentil stew?\" the man says.\n\n\"Yes, absolutely!\" you exclaim, \"I am famished.\"\n\n\"Well, first,\" says the man, \"sell me your birthright.\"\n\n\"What is that?\" you ask.\n\nThe man looks up and studies you for a moment before speaking. \"It\'s the entitlement to a double portion of your father\'s inheritance. You would have one if you are the firstborn of your family.\"\n\n\"Oh,\" you say. You don\'t seem to remember if you are the firstborn. But even if you were, you wouldn\'t know how to talk to your dad. You\'re not really on good terms with your dad. It\'s a long story.\n\n\"Well?\" the man asks, seeming a bit annoyed. You notice that he is grasping your heel for some reason.\n\n\"I don\'t think I have a birthright,\" you stammer, \"And also, why are you grasping my heel?\"\n\n\"Oh, sorry about that,\" the man says as he lets go, \"Just a bad habit. Anyway, come back when you get a birthright.\"",
+        actions: []
+    },
+        "sleepOnStone":{        
+        title: "Sleep on the Stone",
+        id: "sleepOnStone",
+        encounterRate: 1,
+        description: "Would you like to lay your head on the stone and go to sleep?",
+        actions: [{
+            name: "Sleep on the Stone",
+            actionType: "setCharCondition",
+            func: (gameState, event, setCurrentEvent) => {
+                    gameState.setCharCondition(produce((newCharCondition)=>{
+                        newCharCondition.spiritualHp = 100;
+                    }));
+                    setCurrentEvent("finishSleepOnStone");
+            }
+        }]
+    },
     "sleepOnStone":{        
         title: "Sleep on the Stone",
         id: "sleepOnStone",

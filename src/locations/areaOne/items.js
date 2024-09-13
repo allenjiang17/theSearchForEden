@@ -161,5 +161,10 @@ export const AreaOneItems = {
         name: "Map to the Land of the Patriarchs",
         description: "This guides you to the Land of the Patriarchs. You can find it on the World Map.",
         price: 0
+    },
+    "birthright": {
+        name: "Birthright",
+        description: "This is the entitlement a firstborn has to a double inheritance.",
+        price: 0
     }
 }

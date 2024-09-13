@@ -263,5 +263,25 @@ export const AreaOneEnemies = {
         itemDrop: [
           {item: "healthyDoseOfHumility", chance: 0.5}
         ]
+    },
+    "bedDefiler": {
+        name: "Bed Defiler",
+        encounterRate: 1,
+        type: "physical",
+        description: "You encounter Bed Defiler! This man is seeking to defile his father's marrige bed!",
+        hp: 64,
+        attack: 64,
+        defense: 64,
+        incantations: {
+            normalEffective: ["basicAttack"],
+            superEffective: []
+        },
+        statReward: [
+            {stat: "strength", amount: 1, chance: 0.5},
+            {stat: "defense", amount: 1, chance: 0.5},
+        ],
+        itemDrop: [
+          {item: "birthright", chance: 0.3}
+        ]
     }
 }

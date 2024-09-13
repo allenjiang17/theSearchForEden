@@ -279,7 +279,7 @@ export const AreaOneLocations = {
         id: "landOfThePatriarchs",
         description: "The Land of the Patriarchs lies before you. This is the place where heroes of old fought courageous battles, wrestled angels, and quarrelled over wells.",
         events: [],
-        children: ["merchantsOfMidian", "bethel", "valleyOfSiddim", "cityOfSodom"],
+        children: ["merchantsOfMidian", "bethel", "tentOfBeersheba", "valleyOfSiddim", "cityOfSodom"],
         parent: "world"
     },
     "landOfTheJudges": {
@@ -352,6 +352,15 @@ export const AreaOneLocations = {
         id: "bethel",
         description: "There's not much here. All you see is an unassuming stone laying on the ground.",
         events: ["sleepOnStone"],
+        children: [],
+        parent: "landOfThePatriarchs",
+        initialUnlocked: true
+    },
+    "tentOfBeersheba": {
+        title: "Tent of Beersheba",
+        id: "tentOfBeersheba",
+        description: "You see a humble tent erected near an ancient well. You smell some delicious food, and you suddenly realize that you are famished.",
+        events: ["beershebaStart"],
         children: [],
         parent: "landOfThePatriarchs",
         initialUnlocked: true
