@@ -1656,10 +1656,227 @@ export const AreaOneEvents = {
         title: "Beersheba Start",
         id: "beershebaStart",
         encounterRate: 1,
-        description: "You enter the tent and see a man sitting on the floor cooking some delicious lentil stew. Your mouth starts to water. It is the most delicious stew you\'ve ever laid your eyes on.\n\n\"Hello there. Are you interested in some of this lentil stew?\" the man says.\n\n\"Yes, absolutely!\" you exclaim, \"I am famished.\"\n\n\"Well, first,\" says the man, \"sell me your birthright.\"\n\n\"What is that?\" you ask.\n\nThe man looks up and studies you for a moment before speaking. \"It\'s the entitlement to a double portion of your father\'s inheritance. You would have one if you are the firstborn of your family.\"\n\n\"Oh,\" you say. You don\'t seem to remember if you are the firstborn. But even if you were, you wouldn\'t know how to talk to your dad. You\'re not really on good terms with your dad. It\'s a long story.\n\n\"Well?\" the man asks, seeming a bit annoyed. You notice that he is grasping your heel for some reason.\n\n\"I don\'t think I have a birthright,\" you stammer, \"And also, why are you grasping my heel?\"\n\n\"Oh, sorry about that,\" the man says as he lets go, \"Just a bad habit. Anyway, come back when you get a birthright.\"",
+        description: "You enter the tent and see a man sitting on the floor cooking some delicious lentil stew. Your mouth starts to water. It is the most delicious stew you\'ve ever laid your eyes on.\n\n\"Hello there. Are you interested in some of this lentil stew?\" the man says.",
+        actions: [
+            {
+                name: "Yes, absolutely! I am famished.",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beersheba2");
+                }
+            },
+            {
+                name: "No thank you. I'm alright.",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaExit");
+                }
+            }
+        ]
+    },
+    "beersheba2":{
+        title: "Beersheba 2",
+        id: "beersheba2",
+        encounterRate: 1, 
+        description: "\"Well, first,\" says the man, \"sell me your birthright.\"\n\n\"What is that?\" you ask.\n\nThe man looks up and studies you for a moment before speaking. \"It\'s the entitlement to a double portion of your father\'s inheritance. You would have one if you are the firstborn of your family.\"\n\n\"Oh,\" you say. You don\'t seem to remember if you are the firstborn. But even if you were, you wouldn\'t know how to talk to your dad. You\'re not really on good terms with your dad. It\'s a long story.\n\n\"Well?\" the man asks, seeming a bit annoyed. You notice that he is grasping your heel for some reason.",
+        actions: [
+            {
+                name: "Okay, here is my birthright.",
+                func: (gameState, event, setCurrentEvent) => { 
+                    if (gameState.inventory.items["birthleft"] >= 3) {
+                        gameState.setInventory(produce((newInventory)=>{
+                            newInventory.items["birthleft"] = Math.max(0, newInventory.items["birthleft"] - 3); 
+                            updateInventory(newInventory, "lentilStew");
+                        }));
+                        setCurrentEvent("beersheba3");
+                    } else if (gameState.inventory.items["birthleft"] >= 0) {
+                        setCurrentEvent("beershebaExit2");
+                    } else
+                    setCurrentEvent("beershebaExit3");
+                }
+            },
+            {
+                name: "I don\'t think I have a birthright.",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaExit4");
+                }
+            }
+        ]
+    },
+    "beersheba3":{
+        title: "Beersheba 3",
+        id: "beersheba3",
+        encounterRate: 1, 
+        description: "\"Let me see...\" the man says. He ponders for a moment.\n\n\"Well, I see you have three birthlefts. I suppose that will do. Three birthlefts do make a birthright.\"\n\nThe man takes your three birthlefts and magically conjures up a birthright, which he places it in his pocket. Then he works some more magic in a big pot and conjures up a bowl of lentil stew, which he presents to you.\n\n+1 Lentil Stew",
+        actions: [
+            {
+                name: "How did you do that?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaCooking");
+                }
+            },
+            {
+                name: "Thank you! Blessings to you.",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaExit5");
+                }
+            }
+        ]
+    },
+    "beershebaCooking":{
+        title: "Beersheba Cooking",
+        id: "beershebaCooking",
+        encounterRate: 1, 
+        description: "\"Oh, that? That is an ancient magic that I practice. Throughout history, people have called it different names. I call it called cooking.\"",
+        actions: [
+            {
+                name: "What is cooking?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaCooking2");
+                }
+            },
+            {
+                name: "How did you learn this magic?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaCookingHow");
+                }
+            }
+        ]
+    },
+    "beershebaCooking2":{
+        title: "Beersheba Cooking 2",
+        id: "beershebaCooking2",
+        encounterRate: 1, 
+        description: "\"It is a very difficult art to master, and few have the wisdom to understand it. But I will try to explain it in simple terms to you.\"\n\nYou nod in anticipation.\n\n\"There are items in this world called ingredients. And when these select ingredients come together, and if you apply heat, then the sum of the ingredients will be greater than the individual items themselves. In fact, you will conjure up a new food altogether, which is thousands of times more delicious than the individual ingredients by themsevles.\"",
+        actions: [
+            {
+                name: "Can you teach me?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaCooking3");
+                }
+            },
+            {
+                name: "How did you learn this magic?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaCookingHow");
+                }
+            }
+        ]
+    },
+    "beershebaCooking3":{
+        title: "Beersheba Cooking 3",
+        id: "beershebaCooking3",
+        encounterRate: 1, 
+        description: "The man eyes you with suspicion, and he pauses before speaking again. \"Few have the patience to master cooking. But if you wish to endeavor on this noble task, I will teach you.\"\n\n\"Yes, please!\" you exclaim.\n\n\"The first food I will teach you how to make is called Hot Water. It is the base of many other foods, and it is also moderately useful in combat. Aside from a heat source, there is simply one ingredient required: water. Simply put the water into a pot, heat it up, and then you will have hot water.\"\n\nYou learned the Hot Water Recipe!",
+        actions: [
+            {
+                name: "Where do I get a pot?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaCookingPot");
+                }
+            },
+            {
+                name: "How do I heat up the pot?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaCooking4");
+                }
+            }
+        ]
+    },
+    "beershebaCooking4":{
+        title: "Beersheba Cooking 4",
+        id: "beershebaCooking4",
+        encounterRate: 1, 
+        description: "\"You will need to collect fuel sources. Typically, 3 Scrap Woods or 1 Coal should be enough to make one food item.\"",
+        actions: [
+            {
+                name: "Where do I get a pot?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaCookingPot");
+                }
+            },
+            {
+                name: "Got it. Thank you very much.",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaExit5");
+                }
+            }
+        ]
+    },
+    "beershebaCookingHow":{
+        title: "Beersheba Cooking How",
+        id: "beershebaCookingHow",
+        encounterRate: 1, 
+        description: "\"When I was a child, I spent many years studying under a certain master of the secret arts. He was so skilled that people gave him the most famed title of prestige in all the land: the cook. It was he who taught me the art of cooking.\"",
+        actions: [
+            {
+                name: "What is cooking?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaCooking2");
+                }
+            },
+            {
+                name: "I see. That seems too advanced for me. See you later.",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaCookingExit5");
+                }
+            }
+        ]
+    },
+    "beershebaCookingPot":{
+        title: "Beersheba Cooking Pot",
+        id: "beershebaCookingPot",
+        encounterRate: 1, 
+        description: "\"The pot is one of the rarest of items in all the land. Perhaps one day you will be able to obtain your own. But I\'ll let you borrow mine each time you visit me here.\"",
+        actions: [
+            {
+                name: "Thank you. And how do I heat up the pot?",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaCooking4");
+                }
+            },
+            {
+                name: "Thank you. I am forever grateful for this lesson.",
+                func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("beershebaCookingExit5");
+                }
+            }
+        ]
+    },
+    "beershebaExit":{
+        title: "Beersheba Exit",
+        id: "beershebaExit",
+        encounterRate: 1, 
+        description: "\"You do you. If you ever want some lentil stew, you know where to find me.\"",
         actions: []
     },
-        "sleepOnStone":{        
+    "beershebaExit2":{
+        title: "Beersheba Exit 2",
+        id: "beershebaExit2",
+        encounterRate: 1, 
+        description: "\"I said I want a birthRIGHT, not a birthLEFT. Do you even know the difference between your left and your right?\"",
+        actions: []
+    },
+    "beershebaExit3":{
+        title: "Beersheba Exit 3",
+        id: "beershebaExit3",
+        encounterRate: 1, 
+        description: "\"It doesn\'t seem like you have a birthright. Come back when you get one.\"",
+        actions: []
+    },
+    "beershebaExit4":{
+        title: "Beersheba Exit 4",
+        id: "beershebaExit4",
+        encounterRate: 1, 
+        description: "\"Well, if you ever get one, you know where to find me.\"",
+        actions: []
+    },
+    "beershebaExit5":{
+        title: "Beersheba Exit 5",
+        id: "beershebaExit5",
+        encounterRate: 1, 
+        description: "\"Blessings to you.\"\n\nAs you leave the tent, you notice that he has his fingers crossed.",
+        actions: []
+    },
+    "sleepOnStone":{        
         title: "Sleep on the Stone",
         id: "sleepOnStone",
         encounterRate: 1,

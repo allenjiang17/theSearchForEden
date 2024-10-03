@@ -379,7 +379,7 @@ export const AreaOneLocations = {
         id: "cityOfSodom",
         description: "You enter the great city of wickedness. The outcry against Sodom is great.",
         events: [],
-        enemies: ["meaninglessOffering", "worthlessAssembly", "handOfBlood", "commonPride"],
+        enemies: ["meaninglessOffering", "worthlessAssembly", "commonPride", "bedDefiler", "lefteousPerson"],
         children: [],
         parent: "landOfThePatriarchs",
         initialUnlocked: true

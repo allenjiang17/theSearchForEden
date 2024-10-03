@@ -162,9 +162,29 @@ export const AreaOneItems = {
         description: "This guides you to the Land of the Patriarchs. You can find it on the World Map.",
         price: 0
     },
+    "uncleanBedsheet": {
+        name: "Unclean Bedsheet",
+        description: "This is a bedsheet that is unclean. We will spare you the details.",
+        price: 0
+    },
+    "scrapWood": {
+        name: "Scrap Wood",
+        description: "This is some scrap wood, possibly from an old bed.",
+        price: 0
+    },
+    "birthleft": {
+        name: "Birthleft",
+        description: "This is the opposite of a birthright.",
+        price: 0
+    },
     "birthright": {
         name: "Birthright",
         description: "This is the entitlement a firstborn has to a double inheritance.",
+        price: 0
+    },
+    "lentilStew": {
+        name: "Lentil Stew",
+        description: "This is the best stew you\'ve ever tasted.",
         price: 0
     }
 }

@@ -281,7 +281,28 @@ export const AreaOneEnemies = {
             {stat: "defense", amount: 1, chance: 0.5},
         ],
         itemDrop: [
-          {item: "birthright", chance: 0.3}
+          {item: "uncleanBedsheet", chance: 0.3},
+          {item: "scrapWood", chance: 0.7}
+        ]
+    },
+    "lefteousPerson": {
+        name: "Lefteous Person",
+        encounterRate: 1,
+        type: "physical",
+        description: "You encounter Lefteous Person! This person is the opposite of a righteous person.",
+        hp: 64,
+        attack: 64,
+        defense: 64,
+        incantations: {
+            normalEffective: ["basicAttack"],
+            superEffective: []
+        },
+        statReward: [
+            {stat: "strength", amount: 1, chance: 0.5},
+            {stat: "defense", amount: 1, chance: 0.5},
+        ],
+        itemDrop: [
+          {item: "birthleft", chance: 0.5}
         ]
     }
 }
