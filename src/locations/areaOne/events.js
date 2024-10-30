@@ -692,6 +692,9 @@ export const AreaOneEvents = {
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (!gameState.inventory.items["breadOfIdleness"] || gameState.inventory.items["breadOfIdleness"] < 1) {
+                    gameState.setCharCondition(produce((newCharCondition)=>{
+                        newCharCondition.spiritualHp = Math.max(0,newCharCondition.spiritualHp - 5);
+                        }));
                     setCurrentEvent("dishonestMerchantFailure");
                 } else {
                     gameState.setInventory(produce((newInventory)=>{
@@ -707,6 +710,9 @@ export const AreaOneEvents = {
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (!gameState.inventory.items["exStoneBread"] || gameState.inventory.items["exStoneBread"] < 1) {
+                    gameState.setCharCondition(produce((newCharCondition)=>{
+                        newCharCondition.spiritualHp = Math.max(0,newCharCondition.spiritualHp - 5);
+                        }));
                     setCurrentEvent("dishonestMerchantFailure");
                 } else {
                     gameState.setInventory(produce((newInventory)=>{
@@ -722,6 +728,9 @@ export const AreaOneEvents = {
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (!gameState.inventory.items["literalQuail"] || gameState.inventory.items["literalQuail"] < 1) {
+                    gameState.setCharCondition(produce((newCharCondition)=>{
+                        newCharCondition.spiritualHp = Math.max(0,newCharCondition.spiritualHp - 5);
+                        }));
                     setCurrentEvent("dishonestMerchantFailure");
                 } else {
                     gameState.setInventory(produce((newInventory)=>{
@@ -737,6 +746,9 @@ export const AreaOneEvents = {
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (!gameState.inventory.items["locust"] || gameState.inventory.items["locust"] < 1) {
+                    gameState.setCharCondition(produce((newCharCondition)=>{
+                        newCharCondition.spiritualHp = Math.max(0,newCharCondition.spiritualHp - 5);
+                        }));
                     setCurrentEvent("dishonestMerchantFailure");
                 } else {
                     gameState.setInventory(produce((newInventory)=>{
@@ -752,6 +764,9 @@ export const AreaOneEvents = {
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (!gameState.inventory.items["waterOfMeribah"] || gameState.inventory.items["waterOfMeribah"] < 1) {
+                    gameState.setCharCondition(produce((newCharCondition)=>{
+                        newCharCondition.spiritualHp = Math.max(0,newCharCondition.spiritualHp - 5);
+                        }));
                     setCurrentEvent("dishonestMerchantFailure");
                 } else {
                     gameState.setInventory(produce((newInventory)=>{
@@ -767,6 +782,9 @@ export const AreaOneEvents = {
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (!gameState.inventory.items["manna"] || gameState.inventory.items["manna"] < 1) {
+                    gameState.setCharCondition(produce((newCharCondition)=>{
+                        newCharCondition.spiritualHp = Math.max(0,newCharCondition.spiritualHp - 5);
+                        }));
                     setCurrentEvent("dishonestMerchantFailure");
                 } else {
                     gameState.setInventory(produce((newInventory)=>{
@@ -782,6 +800,9 @@ export const AreaOneEvents = {
             actionType: "setInventory",
             func: (gameState, event, setCurrentEvent) => {
                 if (!gameState.inventory.items["senseOfDirection"] || gameState.inventory.items["senseOfDirection"] < 1) {
+                    gameState.setCharCondition(produce((newCharCondition)=>{
+                        newCharCondition.spiritualHp = Math.max(0,newCharCondition.spiritualHp - 5);
+                        }));
                     setCurrentEvent("dishonestMerchantFailure");
                 } else {
                     gameState.setInventory(produce((newInventory)=>{
@@ -848,16 +869,7 @@ export const AreaOneEvents = {
         id: "dishonestMerchantFailure",
         encounterRate: 1, 
         description: "\"You don\'t even have that! Are you trying to beat me in my own game?\"\n\nYou lose 5 Spiritual HP for being dishonest.",
-        autoAction: {
-            name: "Being Dishonest",
-            actionType: "setCharCondition",
-            func: (gameState, event, setCurrentEvent) => {
-                gameState.setCharCondition(produce((newCharCondition)=>{
-                    newCharCondition.spiritualHp = Math.max(0,newCharCondition.spiritualHp - 5);
-                }));
-                setCurrentEvent("chatWithMerchant")
-            }
-        }
+        actions: []
     },
 
     //crafty sir penn: quest events
