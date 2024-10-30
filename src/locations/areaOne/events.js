@@ -1928,6 +1928,160 @@ export const AreaOneEvents = {
         actions: []
     },
 
+    //land of the Judges events
+
+    "bankOfTheJordanExchange": {
+        title: "Bank of the Jordan Exchange",
+        id: "bankOfTheJordanExchange",
+        encounterRate: 1, 
+        description: "\"Hello wanderer,\" a smiling man says to you, \"Here we can exchange currencies for you, with a small fee of course. What are you looking to obtain?\"",
+        actions: [{
+            name: "Drachmae",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("exchangeDrachmae");
+            }
+        },
+        {
+            name: "Shekels",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("exchangeShekels");
+            }
+        },
+        {
+            name: "Minae",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("exchangeMinae");
+            }
+        },
+        {
+            name: "Talents",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("exchangeTalents");
+            }
+        },
+        {
+            name: "I don't understand",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("exchangeHelp");
+            }
+        }]
+    },
+    "bankOfTheJordanExchange2": {
+        title: "Bank of the Jordan Exchange 2",
+        id: "bankOfTheJordanExchange2",
+        encounterRate: 1, 
+        description: "\"So what are you looking to obtain?\"",
+        actions: [{
+            name: "Drachmae",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("exchangeDrachmae");
+            }
+        },
+        {
+            name: "Shekels",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("exchangeShekels");
+            }
+        },
+        {
+            name: "Minae",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("exchangeMinae");
+            }
+        },
+        {
+            name: "Talents",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("exchangeTalents");
+            }
+        },
+        {
+            name: "I don't understand",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("exchangeHelp");
+            }
+        }]
+    },
+    "exchangeDrachmae": {
+        title: "Exchange Drachmae",
+        id: "exchangeDrachmae",
+        encounterRate: 1, 
+        description: "\"So you want drachmae. How proper of you. Each shekel is worth 4 drachmae. But I'll give you 3 because I got to eat too! How many drachmae would you like?\"\n\nNote: Not sure how to work this.",
+        actions: []
+    },
+    "exchangeShekels": {
+        title: "Exchange Shekels",
+        id: "exchangeShekels",
+        encounterRate: 1, 
+        description: "\"So you want shekels of silver. Dealing in the black market, I presume? Each shekel of silver is the equivalent of 4 drachmae. But I'll charge you 5, because I got to eat too! How many would you like?\"\n\nNote: Not sure how to work this.",
+        actions: []
+    },
+    "exchangeMinae": {
+        title: "Exchange Minae",
+        id: "exchangeMinae",
+        encounterRate: 1, 
+        description: "\"So you want minae. Old school. Each mina is the equivalent of 100 drachmae. But I'll charge you 120, because I got to eat too! How many would you like?\"\n\nNote: Not sure how to work this.",
+        actions: []
+    },
+    "exchangeTalents": {
+        title: "Exchange Talents",
+        id: "exchangeTalents",
+        encounterRate: 1, 
+        description: "\"So you want talents. How posh of you. Each talent is the equivalent of 60 minae. But I'll charge you 80, because I got to eat too! How many would you like?\"\n\nNote: Not sure how to work this.",
+        actions: []
+    },
+    "exchangeHelp": {
+        title: "Exchange Help",
+        id: "exchangeHelp",
+        encounterRate: 1, 
+        description: "\"Different lands utilize different currencies. So if, hypothetically, you try to spend shekels at a store that only takes drachmae, you'll get nowhere.\"",
+        actions: [{
+            name: "I see.",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("bankOfTheJordanExchange2");
+            }
+        },
+        {
+            name: "What if I'm looking for currency that you don't have?",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("exchangeDontHave");
+            }
+        },
+    ]
+    },
+    "exchangeDontHave": {
+        title: "Exchange Don't Have",
+        id: "exchangeDontHave",
+        encounterRate: 1, 
+        description: "\"What sort of currencies are you talking about?\"",
+        actions: [{
+            name: "What about small copper coins?",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("exchangeSmallCopper");
+            }
+        },
+        {
+            name: "What about coins of the heavenly variety?",
+            func: (gameState, event, setCurrentEvent) => {
+                    setCurrentEvent("exchangeHeavenly");
+            }
+        },
+    ]
+    },
+    "exchangeSmallCopper": {
+        title: "Exchange Small Copper",
+        id: "exchangeSmallCopper",
+        encounterRate: 1, 
+        description: "\"You mean leptons? Those are basically useless. Why would I stock those?\"",
+        actions: []
+    },
+    "exchangeHeavenly": {
+        title: "Exchange Heavenly",
+        id: "exchangeHeavenly",
+        encounterRate: 1, 
+        description: "\"What are you, some sort of religious fanatic? Why collect heavenly coins when you live on earth?\"",
+        actions: []
+    },
     // future events that haven't been implemented yet
     "donatingMoneyTemple":{
         title: "Donating Money",
